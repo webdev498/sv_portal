@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>articles</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">{$includes}
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY bgColor=white {$bodyonload}>
+<FORM encType=multipart/form-data method=post name=editform 
+action=articles_edit.php?SearchFor={$value_Category} {$onsubmit}>{include_if_exists file="include/header.php"} {literal}
+<STYLE>
+A.link8
+{
+    FONT-SIZE: 8pt;
+    COLOR: #4b4b4b;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans serif;
+    TEXT-DECORATION: none;
+}
+A.kb8
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline;
+}
+
+</STYLE>
+{/literal}{doevent name="EditOnLoad"} 
+{$message}&nbsp;&nbsp;&nbsp;&nbsp;<A class=kb8 
+href="articles_list.php?a=search&amp;value=1&amp;SearchFor={$value_Category}&amp;SearchOption=Contains&amp;SearchField=Category"><FONT 
+color=#388e8e size=2><STRONG>Back to list</STRONG></FONT></A><BR><BR>
+<TABLE cellPadding=4 width="95%" align=center>
+  <TBODY>
+  <TR>
+    <TD class=blackshade height=20 colSpan=2>&nbsp;&nbsp;<FONT 
+      color=#4b4b4b><A class=link8 href="main_list.php">Knowledge Base</A> &gt; 
+      <A class=link8 
+      href="articles_list.php?a=search&amp;value=1&amp;SearchFor={$value_Category}&amp;SearchOption=Contains&amp;SearchField=Category">{$value_Category}</A>&gt; 
+{$value_Title}</FONT></TD></TR><input type=hidden name=editid1 value="{$key1}">
+  <TR>
+    <TD class=shade vAlign=top width=150>Category</TD>
+    <TD>{build_edit_control field="Category" value=$value_Category mode="edit"} &nbsp;<IMG 
+      src="images/icon_required.gif"> </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Title</TD>
+    <TD>{build_edit_control field="Title" value=$value_Title mode="edit"} 
+      &nbsp;<IMG src="images/icon_required.gif"> </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Problem</TD>
+    <TD>{build_edit_control field="Problem" value=$value_Problem mode="edit"} &nbsp;<IMG 
+      src="images/icon_required.gif"> </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Screenshot of the Problem</TD>
+    <TD>{build_edit_control field="screenp" value=$value_screenp mode="edit"} </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>File of the Problem</TD>
+    <TD>{build_edit_control field="filep" value=$value_filep mode="edit"} 
+    </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Solution</TD>
+    <TD>{build_edit_control field="Solution" value=$value_Solution mode="edit"} </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Screenshot of the Solution</TD>
+    <TD>{build_edit_control field="screens" value=$value_screens mode="edit"} </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>File of the Solution</TD>
+    <TD>{build_edit_control field="files" value=$value_files mode="edit"} 
+    </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Date Created</TD>
+    <TD>{build_edit_control field="DateCreated" value=$value_DateCreated mode="edit"} &nbsp;<IMG 
+      src="images/icon_required.gif"> </TD></TR>
+  <TR>
+    <TD class=shade vAlign=top width=150>Approved</TD>
+    <TD>{build_edit_control field="approved" value=$value_approved mode="edit"} </TD></TR>
+  <TR height=50>
+    <TD colSpan=2 align=middle><INPUT id=submit1 class=button value=Save type=submit name=submit1> 
+<INPUT class=button value=Reset type=reset> <input type=hidden name="a" value="edited"></TD></TR></FORM><!-- legend -->
+  <TR height=50>
+    <TD colSpan=2 align=left>
+      <HR SIZE=1 width=300 noShade>
+      <BR><IMG src="images/icon_required.gif"> <FONT color=#ff0000 
+      size=2><STRONG>- Required field</STRONG></FONT> </TD></TR></TBODY></TABLE>{include_if_exists file="include/footer.php"} {$linkdata}<script>SetToFirstControl();</script></BODY></HTML>

@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>##@TABLE.strCaption h##</title>
+	<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body topmargin=5 bgcolor=white>
+{$includes}
+{include_if_exists file="include/header.##@ext##"}
+{literal}
+<style> 
+table.report {  border-collapse: collapse} 
+table.report td { 
+ padding: 2px; 
+ border-width: 1px; 
+ border-style: solid; 
+ border-color: #cccccc; 
+}
+##if @TABLE.arrReportGroupFields.len##
+td.group_1 { 
+background-color:#ccffcc;
+}
+
+td.group_2 { 
+background-color:#cceeff;
+}
+td.group_3 { 
+background-color:#ffcccc;
+}
+td.group_4 { 
+background-color:#ffff90;
+}
+
+td.nbgroup_1 { 
+background-color:#ccffcc;
+border-style:none;
+}
+
+td.nbgroup_2 { 
+background-color:#cceeff;
+border-style:none;
+}
+td.nbgroup_3 { 
+background-color:#ffcccc;
+border-style:none;
+}
+td.nbgroup_4 { 
+background-color:#ffff90;
+border-style:none;
+}
+
+td.header_1
+{
+background-color:#90ff90;
+}
+td.header_2
+{
+background-color:#aaccff
+}
+td.header_3
+{
+background-color:#ffaaaa
+}
+td.header_4
+{
+background-color:#ffff40
+}
+##endif##
+
+td.pagesummary
+{
+background-color:#ffffbb;
+}
+td.globalsummary
+{
+background-color:#ffe0b0;
+}
+</style> 
+{/literal}
+
+
+<table>
+<tr>
+<td width=30>&nbsp;</td>
+<td align=center>
+<font size=+0><b>&nbsp;##@TABLE.strCaption hn##</b></font>
+</td>
+
+<td width=80% align=center>
+
+<table align='center' border='0'>
+<tr>
+<td width=10>&nbsp;</td>
+
+##if @BUILDER.bCreateLoginPage##
+<td align=center>##message LOGGED_AS ##&nbsp;<b>{$userid}</b>&nbsp;
+<a href="login.##@ext##?a=logout">##message LOG_OUT##</a>
+</td><td width=20>&nbsp;</td>
+
+##if @BUILDER.Registration.bChangePwdPage && @BUILDER.nLoginMethod == SECURITY_TABLE##
+##if @BUILDER.bGuestLogin## {if $guest==0} ##endif##
+<td align=center>&nbsp;
+<a href="changepwd.##@ext##">##message CHANGE_PASSWORD ##</a>
+</td><td width=20>&nbsp;</td>
+##if @BUILDER.bGuestLogin## {/if} ##endif##
+##endif##
+##endif##
+
+##if CreateMenu##
+<td valign=middle align=center>##message QUICK_JUMP##:</td>
+<td align=center>
+<select onchange="window.location.href=this.options[this.selectedIndex].value;">
+<option value="menu.##@ext##">##message BACK_TO_MENU##</option>
+##foreach @BUILDER.Tables as @t filter @t.bMenuItem order @t.nMenuOrder##
+##if GroupSecurity##{if $allow_##@t.strShortTableName##}##endif##
+	##if @t.bList##
+<option value="##@t.strShortTableName##_list.##@ext##" 
+	##elseif @t.bAdd##
+<option value="##@t.strShortTableName##_add.##@ext##" 
+	##elseif @t.nType==titREPORT##
+<option value="##@t.strShortTableName##_report.##@ext##" 
+	##elseif @t.nType==titCHART##
+<option value="##@t.strShortTableName##_chart.##@ext##" 
+	##endif##
+##if @t.strDataSourceTable==@TABLE.strDataSourceTable## selected##endif##>##@t.strCaption h##</option>
+##if GroupSecurity##{/if}##endif##
+##endfor##
+</select>
+</td>
+<td width=20>&nbsp;</td>
+##endif##
+
+##if Fields[bAdvancedSearch=1].len##
+<td align=center>
+<a href="##@TABLE.strShortTableName h##_search.##@ext##">##message ADVANCED_SEARCH##</a>	
+</td>
+<td width=20>&nbsp;</td>
+##endif##
+
+##if @TABLE.bPrinterFriendly##
+##if GroupSecurity## {if $allow_export} ##endif##
+<td align=center>
+<a target="_blank" href="##@TABLE.strShortTableName h##_print.##@ext##">
+<img src="images/printer.gif" border=0></a>	
+</td>
+<td align=center>
+<a target="_blank" href="##@TABLE.strShortTableName h##_print.##@ext##">##message PRINT_THIS_PAGE##</a>
+</td>
+<td width=20>&nbsp;</td>
+<td align=center>
+<a target="_blank" href="##@TABLE.strShortTableName h##_print.##@ext##?all=1">
+<img src="images/printer.gif" border=0></a>	
+</td>
+<td align=center>
+<a target="_blank" href="##@TABLE.strShortTableName h##_print.##@ext##?all=1">##message PRINT_WHOLE_REPORT##</a>
+</td>
+##if GroupSecurity## {/if} ##endif##
+##endif##
+
+</table>
+</td>
+</table>
+{doevent name="ReportOnLoad"}
+<table width=50%>
+<td width=30>&nbsp;</td>
+<td>
+##if @TABLE.arrReportGroupFields.len##
+##message GROUPS_PP##:&nbsp;<select 
+onChange="javascript: document.location='##@TABLE.strShortTableName h##_report.##@ext##?pagesize='+this.options[this.selectedIndex].value;">
+<option value="1" {$gpp1_selected}>1</option>
+<option value="3" {$gpp3_selected}>3</option>
+<option value="5" {$gpp5_selected}>5</option>
+<option value="10" {$gpp10_selected}>10</option>
+<option value="50" {$gpp50_selected}>50</option>
+<option value="100" {$gpp100_selected}>100</option>
+<option value="-1" {$gpp0_selected}>All</option>
+</select>
+##else##
+##message RECORDS_PP##:&nbsp;<select 
+onChange="javascript: document.location='##@TABLE.strShortTableName h##_report.##@ext##?pagesize='+this.options[this.selectedIndex].value;">
+<option value="10" {$rpp10_selected}>10</option>
+<option value="20" {$rpp20_selected}>20</option>
+<option value="50" {$rpp50_selected}>50</option>
+<option value="100" {$rpp100_selected}>100</option>
+<option value="500" {$rpp500_selected}>500</option>
+<option value="-1" {$rpp0_selected}>All</option>
+</select>
+##endif##
+</td>
+<td >
+{$pagination}
+</td>
+</table>

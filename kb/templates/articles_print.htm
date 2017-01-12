@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>articles</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+{literal}
+<style> 
+table {  border-collapse: collapse} 
+A.link8
+{
+    FONT-SIZE: 8pt;
+    COLOR: #4b4b4b;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans serif;
+    TEXT-DECORATION: none;
+}
+A.kb8
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline;
+}
+</style> 
+{/literal}
+{doevent name="PrintOnLoad"}
+	
+	
+
+
+{foreach from=$rowinfo item=row}
+
+
+<table align='center' width='95%' border='0' cellpadding=0 cellspacing=2>
+
+
+<tr><td colspan=2 height=20 class=blackshade>&nbsp;&nbsp;<font color=#4b4b4b>Knowledge Base > {$row.1Category_value} > {$row.1Title_value}</font></td></tr>
+<tr><td colspan=2 height=24>&nbsp;&nbsp;<font size=2><b>{$row.1Title_value}</b></font></td></tr>
+<tr>
+<td valign=top class=shade width=150><br>
+	&nbsp;&nbsp;Views:&nbsp;{$row.1Views_value}<br><br>
+	&nbsp;&nbsp;DateCreated:&nbsp;{$row.1DateCreated_value}<br><br>
+	&nbsp;&nbsp;ArticleID:&nbsp;{$row.1ArticleID_value}<br><br>
+</td>
+
+<td valign=top width=80%>
+<table width=100% cellpadding=3 cellspacing=0 border=0>
+<tr><td class=shade><b>Problem</b></td></tr>
+<tr><td height=50% >{$row.1Problem_value}</td></tr>
+<tr><td class=shade><b>Solution</b></td></tr>
+<tr><td height=50% >{$row.1Solution_value}</td></tr>
+</table>
+</td>
+</tr>
+
+</table>
+<br>
+
+{/foreach}
+<!-- totals row -->
+</table>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>article</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">{literal}
+<STYLE> 
+table {  border-collapse: collapse} 
+td { 
+ padding: 5px; 
+ margin: 0px; 
+ border-width: 1px; 
+ border-style: solid; 
+ border-color: #000000; 
+}
+</STYLE>
+{/literal}
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY>{include_if_exists file="include/header.php"} 
+{doevent name="PrintOnLoad"} 
+<H1>Article</H1>
+<TABLE border=0 cellSpacing=2 cellPadding=3 width="95%" align=center>
+  <TBODY>
+  <TR><!--{if $column1show}-->
+    <TD class=blackshade>Category</TD>
+    <TD class=blackshade>Title</TD>
+    <TD class=blackshade>Problem</TD>
+    <TD class=blackshade>Solution</TD>
+    <TD class=blackshade>Views</TD>
+    <TD class=blackshade>DateCreated</TD><!--{/if}--></TR>{foreach from=$rowinfo item=row}
+  <TR vAlign=top>
+    <TD>{$row.1Category_value} </TD>
+    <TD>{$row.1Title_value} 
+    </TD>
+    <TD>{$row.1Problem_value} </TD>
+    <TD>{$row.1Solution_value} </TD>
+    <TD>{$row.1Views_value} 
+    </TD>
+    <TD>{$row.1DateCreated_value} </TD></TR>{/foreach}<!-- totals row --></TBODY></TABLE>{include_if_exists file="include/footer.php"} </BODY></HTML>

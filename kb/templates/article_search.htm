@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>article: Advanced search page</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">{$includes}
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY bgColor=white {$onload}>{include_if_exists file="include/header.php"} <!-- search form -->
+<FORM method=post name=editform action=article_list.php {if $noAJAX} onkeydown="OnKeyDown(event);" {/if}><input type="hidden" id="a" name="a" value="advsearch">{doevent name="SearchOnLoad"} 
+<TABLE 
+style="BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid" 
+cellSpacing=1 cellPadding=4 width=750 align=center>
+  <TBODY>
+  <TR class=blackshade vAlign=middle>
+    <TD class=tableheader colSpan=5>
+      <TABLE cellSpacing=0 cellPadding=3 width="100%">
+        <TBODY>
+        <TR>
+          <TD class=tableheader width=200>Article</TD>
+          <TD class=tableheader align=middle>Advanced search</TD>
+          <TD class=tableheader width=200>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class=header2 vAlign=middle colSpan=5 align=middle>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD width=200>&nbsp;</TD>
+          <TD width=300 align=middle><B class=xtop><B class=xb1></B><B 
+            class=xb2></B><B class=xb3></B><B class=xb4></B></B>
+            <DIV class=xboxcontent><SPAN class=fieldname>Search for: 
+            </SPAN><INPUT value=and type=radio name=type {$all_checked}>All 
+            conditions &nbsp;&nbsp;&nbsp; <INPUT value=or type=radio name=type 
+            {$any_checked}>Any condition </DIV><B class=xbottom><B 
+            class=xb4></B><B class=xb3></B><B class=xb2></B><B 
+          class=xb1></B></B></TD>
+          <TD width=200>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+  <TR class=blackshade vAlign=middle>
+    <TD vAlign=middle align=middle>&nbsp;</TD>
+    <TD class=fieldname vAlign=middle width=30 align=middle>NOT</TD>
+    <TD vAlign=middle colSpan=3 align=middle>&nbsp; </TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>Category <input type="Hidden" name="asearchfield[]" value="Category"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_Category 
+{$not_Category}></TD>
+    <TD>{$searchtype_Category} </TD>
+    <TD width=270>{build_edit_control field="Category" value=$value_Category mode="search"}</TD>
+    <TD width=270><SPAN id=second_Category>{build_edit_control field="Category" second=true value=$value1_Category mode="search"} </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>Title <input type="Hidden" name="asearchfield[]" value="Title"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_Title {$not_Title}></TD>
+    <TD>{$searchtype_Title} </TD>
+    <TD width=270>{build_edit_control field="Title" value=$value_Title mode="search"}</TD>
+    <TD width=270><SPAN id=second_Title>{build_edit_control field="Title" second=true value=$value1_Title mode="search"} 
+      </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>Problem <input type="Hidden" name="asearchfield[]" value="Problem"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_Problem {$not_Problem}></TD>
+    <TD>{$searchtype_Problem} </TD>
+    <TD width=270>{build_edit_control field="Problem" value=$value_Problem mode="search"}</TD>
+    <TD width=270><SPAN id=second_Problem>{build_edit_control field="Problem" second=true value=$value1_Problem mode="search"} </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>screenp <input type="Hidden" name="asearchfield[]" value="screenp"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_screenp {$not_screenp}></TD>
+    <TD>{$searchtype_screenp} </TD>
+    <TD width=270>{build_edit_control field="screenp" value=$value_screenp mode="search"}</TD>
+    <TD width=270><SPAN id=second_screenp>{build_edit_control field="screenp" second=true value=$value1_screenp mode="search"} </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>filep <input type="Hidden" name="asearchfield[]" value="filep"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_filep {$not_filep}></TD>
+    <TD>{$searchtype_filep} </TD>
+    <TD width=270>{build_edit_control field="filep" value=$value_filep mode="search"}</TD>
+    <TD width=270><SPAN id=second_filep>{build_edit_control field="filep" second=true value=$value1_filep mode="search"} 
+      </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>Solution <input type="Hidden" name="asearchfield[]" value="Solution"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_Solution 
+{$not_Solution}></TD>
+    <TD>{$searchtype_Solution} </TD>
+    <TD width=270>{build_edit_control field="Solution" value=$value_Solution mode="search"}</TD>
+    <TD width=270><SPAN id=second_Solution>{build_edit_control field="Solution" second=true value=$value1_Solution mode="search"} </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>screens <input type="Hidden" name="asearchfield[]" value="screens"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_screens {$not_screens}></TD>
+    <TD>{$searchtype_screens} </TD>
+    <TD width=270>{build_edit_control field="screens" value=$value_screens mode="search"}</TD>
+    <TD width=270><SPAN id=second_screens>{build_edit_control field="screens" second=true value=$value1_screens mode="search"} </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>files <input type="Hidden" name="asearchfield[]" value="files"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_files {$not_files}></TD>
+    <TD>{$searchtype_files} </TD>
+    <TD width=270>{build_edit_control field="files" value=$value_files mode="search"}</TD>
+    <TD width=270><SPAN id=second_files>{build_edit_control field="files" second=true value=$value1_files mode="search"} 
+      </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>DateCreated <input type="Hidden" name="asearchfield[]" value="DateCreated"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_DateCreated 
+      {$not_DateCreated}></TD>
+    <TD>{$searchtype_DateCreated} </TD>
+    <TD width=270>{build_edit_control field="DateCreated" value=$value_DateCreated mode="search"}</TD>
+    <TD width=270><SPAN id=second_DateCreated>{build_edit_control field="DateCreated" second=true value=$value1_DateCreated mode="search"} </SPAN></TD></TR>
+  <TR class=blackshade>
+    <TD colSpan=5 align=middle><INPUT class=button onclick=javascript:document.forms.editform.submit(); value=Search type=button name=SearchButton> 
+<INPUT class=button onclick="return ResetControls();" value=Reset type=button> 
+<INPUT class=button onclick="javascript: document.forms.editform.a.value='return'; document.forms.editform.submit();" value="Back to list" type=button> 
+    </TD></TR></TBODY></TABLE></FORM>{include_if_exists file="include/footer.php"} 
+{$linkdata}</BODY></HTML>

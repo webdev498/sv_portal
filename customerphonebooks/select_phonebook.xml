@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?> <ppxml xmlns="http://panasonic/sip_phone"  
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xsi:schemaLocation="http://panasonic/sip_phone sip_phone.xsd">
+ <Screen version="2.0"> 
+ <PhoneBook version="2.0"> 
+
+ <Personnel id="1"> 
+ <Name>Park 1</Name> 
+ <PhoneNums> 
+ 	<PhoneNum type="home">*3106261</PhoneNum> 
+ </PhoneNums>  </Personnel> 
+
+ <Personnel id="2"> 
+ <Name>Park 2</Name> 
+ <PhoneNums> 
+ 	<PhoneNum type="home">*3106262</PhoneNum> 
+ </PhoneNums>  </Personnel>
+ 
+ <Personnel id="3"> 
+ <Name>Park 3</Name> 
+ <PhoneNums> 
+ 	<PhoneNum type="home">*31062613</PhoneNum> 
+ </PhoneNums>  </Personnel> 
+
+ </PhoneBook> 
+  </Screen> </ppxml> 

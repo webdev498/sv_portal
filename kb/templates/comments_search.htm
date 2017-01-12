@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>comments: Advanced search page</title>
+</head>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+{$includes}
+<body bgcolor=white {$onload}>
+{include_if_exists file="include/header.php"}
+<!-- search form -->
+<form method="POST" 
+action="comments_list.php" 
+name="editform" {if $noAJAX} onkeydown="OnKeyDown(event);" {/if} >
+	<input type="hidden" id="a" name="a" value="advsearch">
+
+{doevent name="SearchOnLoad"}
+	
+<table CELLPADDING=4 CELLSPACING=1 align='center' width='750' style="BORDER: #cccccc 1px solid;">
+<tr valign=center class=blackshade>
+<td colspan=5 class=tableheader>
+
+<table width=100% CELLSPACING=0 CELLPADDING=3><tr>
+<td width=200 class=tableheader>comments</td>
+<td align=center class=tableheader>
+Advanced search</td>
+<td width=200 class=tableheader>&nbsp;</td>
+</tr></table>
+
+</td></tr>
+
+<tr><td colspan=5 align=center valign=middle class=header2>
+
+<table><tr><td width=200>&nbsp;</td><td align=center width=300>
+
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<span class=fieldname>Search for: </span>
+<input type="radio" name="type" value="and" {$all_checked}>All conditions
+&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" value="or" {$any_checked}>Any condition
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+
+</td><td width=200>&nbsp;</td></tr></table>
+</td></tr>
+<tr valign=center class=blackshade>
+<td align=center valign=middle>&nbsp;</td><td width=30 align=center valign=middle class=fieldname>NOT</td>
+<td colspan=3 align=center valign=middle>&nbsp; </td></tr>
+
+		
+<tr class=shade>
+	<td class=fieldname>email
+	<input type="Hidden" name="asearchfield[]" value="email"></td>
+	<td align=center><input type=CheckBox name="not_email" {$not_email}></td>
+	
+	<td>
+	{$searchtype_email}
+	</td>
+	
+	<td width=270>{build_edit_control field="email" value=$value_email mode="search"}</td>
+
+	<td width=270><span id="second_email">
+	{build_edit_control field="email" second=true value=$value1_email mode="search"}
+	</span></td>
+	
+	
+</tr>
+		
+<tr class=shade>
+	<td class=fieldname>comment
+	<input type="Hidden" name="asearchfield[]" value="comment"></td>
+	<td align=center><input type=CheckBox name="not_comment" {$not_comment}></td>
+	
+	<td>
+	{$searchtype_comment}
+	</td>
+	
+	<td width=270>{build_edit_control field="comment" value=$value_comment mode="search"}</td>
+
+	<td width=270><span id="second_comment">
+	{build_edit_control field="comment" second=true value=$value1_comment mode="search"}
+	</span></td>
+	
+	
+</tr>
+
+<tr class=blackshade><td colspan=5 align=center>
+<input type=button class=button name="SearchButton" value="Search"
+onClick="javascript:document.forms.editform.submit();">
+<input class=button type=button value="Reset" onclick="return ResetControls();">
+<input type=button class=button value="Back to list" onClick="javascript: document.forms.editform.a.value='return'; document.forms.editform.submit();">
+</td></tr>
+</table>
+
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+
+</body>
+</html>

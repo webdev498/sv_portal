@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>_register</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY topMargin=5 bgColor=white {$onload}>{$includes}{include_if_exists file="include/header.php"} 
+<FORM method=get name=frmSearch action=_register_list.php><input type="Hidden" name="a" value="search"><input type="Hidden" name="value" value="1"><input type="Hidden" name="SearchFor" value=""><input type="Hidden" name="SearchOption" value=""><input type="Hidden" name="SearchField" value=""></FORM>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD width=30>&nbsp;</TD>
+    <TD align=middle><FONT size=+0><B>&nbsp;User Manager</B></FONT></TD>
+    <TD width=50 align=middle>
+    <TD width="80%" align=middle>
+      <TABLE border=0 align=center>
+        <TBODY>
+        <TR>
+          <TD width=10>&nbsp;</TD>
+          <TD align=middle>Logged as&nbsp;<B>{$userid}</B>&nbsp; <A 
+            href="login.php?a=logout"><FONT color=#388e8e size=2><STRONG>Log 
+            out</STRONG></FONT></A><FONT color=#388e8e size=2><STRONG> 
+            </STRONG></FONT></TD>
+          <TD width=20><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{if $guest==0}
+          <TD align=middle><FONT color=#388e8e size=2><STRONG>&nbsp; 
+            </STRONG></FONT><A href="changepwd.php"><FONT color=#388e8e 
+            size=2><STRONG>Change password</STRONG></FONT></A> </TD>
+          <TD 
+width=20>&nbsp;</TD>{/if}</TR></TBODY></TABLE></TD></TR></TBODY></TABLE>{doevent name="ListOnLoad"} 
+<TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=1 cellPadding=4 width="95%" align=center>
+  <TBODY>
+  <TR>{if $allow_search}<!-- how many records found-->
+    <TD class=shade align=middle>Details found: {$records_found}<BR>Page {$page}of {$maxpages}</TD><!--Records per page-->
+    <TD class=shade align=middle>Records Per Page:<BR><select 
+onChange="javascript: document.location='_register_list.php?pagesize='+this.options[this.selectedIndex].value;">
+<option value="10" {$rpp10_selected}>10</option>
+<option value="20" {$rpp20_selected}>20</option>
+<option value="30" {$rpp30_selected}>30</option>
+<option value="50" {$rpp50_selected}>50</option>
+<option value="100" {$rpp100_selected}>100</option>
+<option value="500" {$rpp500_selected}>500</option>
+</select> </TD></TR></TBODY></TABLE>
+<P>{if $rowsfound}{if $allow_delete}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<A 
+onclick="if (confirm('Do you really want to delete these records?')) frmAdmin.submit(); return false;" 
+href="#"><FONT color=#388e8e size=2><STRONG>Delete selected</STRONG></FONT></A> 
+</P>
+<P>{/if}<!-- delete form --></P>
+<FORM method=post name=frmAdmin action=_register_list.php><input type=hidden id="a" name="a" value="delete">
+<TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=2 cellPadding=3 width="95%" align=center><!-- table header -->
+  <TBODY>
+  <TR class=blackshade vAlign=top><!--{if $column1show}-->{if $allow_delete || $allow_export }
+    <TD width=50 align=middle><INPUT 
+      onclick="var i;&#13;&#10;if ((typeof frmAdmin.elements['selection[]'].length)=='undefined')&#13;&#10;&#9;frmAdmin.elements['selection[]'].checked=this.checked;&#13;&#10;else&#13;&#10;for (i=0;i<frmAdmin.elements['selection[]'].length;++i) &#13;&#10;&#9;frmAdmin.elements['selection[]'][i].checked=this.checked;" 
+      type=checkbox> </TD>{/if}
+    <TD>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><A class=blackshade 
+            href="_register_list.php?orderby={$order_dir_username}username">username</A> 
+          </TD>
+          <TD>{$order_image_username}</TD></TR></TBODY></TABLE></TD>
+    <TD>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><A class=blackshade 
+            href="_register_list.php?orderby={$order_dir_fullname}fullname">fullname</A> 
+          </TD>
+          <TD>{$order_image_fullname}</TD></TR></TBODY></TABLE></TD>
+    <TD>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><A class=blackshade 
+            href="_register_list.php?orderby={$order_dir_email}email">email</A> 
+          </TD>
+          <TD>{$order_image_email}</TD></TR></TBODY></TABLE></TD><!--{/if}--></TR><!-- table data --><!--{foreach from=$rowinfo item=row}-->
+  <TR onmouseover="this.className = 'rowselected';" 
+  onmouseout="this.className = '{$row.shadeclassname}';" vAlign=top 
+  {$row.shadeclass}>{if $allow_delete || $allow_export }
+    <TD align=middle><INPUT id=check{$row.1recno} value="{$row.1keyblock}" type=checkbox name=selection[]> </TD>{/if}
+    <TD>{$row.1username_value} </TD>
+    <TD>{$row.1fullname_value} </TD>
+    <TD>{$row.1email_value} 
+    </TD><!--{/foreach}--></TR>{/if}{/if}</TBODY></TABLE></FORM>
+<P>&nbsp;</P>
+<P align=center><B>{$message}</B></P>{if $allow_search}{$pagination} {/if}{include_if_exists file="include/footer.php"} {$linkdata}</BODY></HTML>

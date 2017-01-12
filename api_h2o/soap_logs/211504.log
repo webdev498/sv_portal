@@ -1,0 +1,205 @@
+Last Response XML: <xmp>0
+<?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<soap:Body>
+			<NewCustomers_CreateResponse xmlns="http://api.myh2o.com/v20">
+				<NewCustomers_CreateResult>
+					<Header>
+						<Success>false
+							</Success>
+						<Message>The package has no associated products, and no additional products have been specified.
+							</Message>
+						<SessionKey>RULsQi3NbxCKTLogJXDJquLHGsNtxe1SAD/gJEt6Fw/LnulT44Hfvy8QGv/1fCwLcd3g6JjKI4IIXyIM/6axK0UDZSqdfdKkp/LEkZfEiDHNY//CL5PLEA==
+							</SessionKey>
+						<Impersonated>false
+							</Impersonated>
+						</Header>
+					<Customer_ID xsi:nil="true" />
+						<Status xsi:nil="true" />
+							</NewCustomers_CreateResult>
+						</NewCustomers_CreateResponse>
+					</soap:Body>
+				</soap:Envelope></xmp>Last Response: <pre>stdClass Object
+(
+    [NewCustomers_CreateResult] => stdClass Object
+        (
+            [Header] => stdClass Object
+                (
+                    [Success] => 
+                    [Message] => The package has no associated products, and no additional products have been specified.
+                    [SessionKey] => RULsQi3NbxCKTLogJXDJquLHGsNtxe1SAD/gJEt6Fw/LnulT44Hfvy8QGv/1fCwLcd3g6JjKI4IIXyIM/6axK0UDZSqdfdKkp/LEkZfEiDHNY//CL5PLEA==
+                    [Impersonated] => 
+                )
+
+            [Customer_ID] => 
+            [Status] => 
+        )
+
+)
+</pre>Last Resquest XML: <xmp>0
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://api.myh2o.com/v20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:enc="http://www.w3.org/2003/05/soap-encoding">
+		<env:Body>
+			<ns1:NewCustomers_Create>
+				<ns1:Request>
+					<ns1:Credentials>
+						<ns1:Username>jrobbins
+							</ns1:Username>
+						<ns1:Password>g3ck0!
+							</ns1:Password>
+						<ns1:Client>cbv
+							</ns1:Client>
+						</ns1:Credentials>
+					<ns1:Customer>
+						<ns1:PhysicalAddress enc:id="ref1">
+							<ns1:CompanyName>SV Select Comfort 11111
+								</ns1:CompanyName>
+							<ns1:Address1>123 Main St
+								</ns1:Address1>
+							<ns1:Address2>
+								</ns1:Address2>
+							<ns1:City>Chicago
+								</ns1:City>
+							<ns1:State>IL
+								</ns1:State>
+							<ns1:Zip>60061
+								</ns1:Zip>
+							<ns1:Country>USA
+								</ns1:Country>
+							</ns1:PhysicalAddress>
+						<ns1:MailingAddress>
+							<ns1:CompanyName>SV Select Comfort 11111
+								</ns1:CompanyName>
+							<ns1:Address1>123 Main St
+								</ns1:Address1>
+							<ns1:Address2>
+								</ns1:Address2>
+							<ns1:City>Chicago
+								</ns1:City>
+							<ns1:State>IL
+								</ns1:State>
+							<ns1:Zip>60061
+								</ns1:Zip>
+							<ns1:Country>USA
+								</ns1:Country>
+							</ns1:MailingAddress>
+						<ns1:Billing>
+							<ns1:Balance>0
+								</ns1:Balance>
+							<ns1:Due>0
+								</ns1:Due>
+							<ns1:UnbilledUsage>0
+								</ns1:UnbilledUsage>
+							<ns1:EnableBalanceLimit>false
+								</ns1:EnableBalanceLimit>
+							<ns1:PaymentTerms>0
+								</ns1:PaymentTerms>
+							<ns1:PaymentTermsOverride>false
+								</ns1:PaymentTermsOverride>
+							</ns1:Billing>
+						<ns1:CustomerClass>Business
+							</ns1:CustomerClass>
+						<ns1:ParentCustomerID xsi:nil="true"/>
+							<ns1:ContractStart>2016-07-19
+								</ns1:ContractStart>
+							</ns1:Customer>
+						<ns1:Order>
+							<ns1:PackageID>1006
+								</ns1:PackageID>
+							<ns1:ShippingAddress enc:ref="#ref1"/>
+								<ns1:Description>description
+									</ns1:Description>
+								</ns1:Order>
+							</ns1:Request>
+						</ns1:NewCustomers_Create>
+					</env:Body>
+				</env:Envelope>
+</xmp>Last Resquest: <pre>Array
+(
+    [Request] => Array
+        (
+            [Credentials] => Array
+                (
+                    [Username] => jrobbins
+                    [Password] => g3ck0!
+                    [Client] => cbv
+                )
+
+            [Customer] => Array
+                (
+                    [CustomerClass] => Business
+                    [ParentCustomerID] => 
+                    [PhysicalAddress] => Array
+                        (
+                            [CompanyName] => SV Select Comfort 11111
+                            [Address1] => 123 Main St
+                            [Address2] => 
+                            [City] => Chicago
+                            [State] => IL
+                            [Zip] => 60061
+                            [Country] => USA
+                        )
+
+                    [MailingAddress] => Array
+                        (
+                            [CompanyName] => SV Select Comfort 11111
+                            [Address1] => 123 Main St
+                            [Address2] => 
+                            [City] => Chicago
+                            [State] => IL
+                            [Zip] => 60061
+                            [Country] => USA
+                        )
+
+                    [Billing] => Array
+                        (
+                            [Balance] => 0
+                            [Due] => 0
+                            [OverDue] => 0
+                            [UnbilledUsage] => 0
+                            [UsageBalanceLimit] => 0
+                            [EnableBalanceLimit] => 0
+                            [PaymentTermsOverride] => 0
+                            [PaymentTerms] => 0
+                        )
+
+                    [ContractStart] => 2016-07-19
+                )
+
+            [Order] => Array
+                (
+                    [ShippingAddress] => Array
+                        (
+                            [CompanyName] => SV Select Comfort 11111
+                            [Address1] => 123 Main St
+                            [Address2] => 
+                            [City] => Chicago
+                            [State] => IL
+                            [Zip] => 60061
+                            [Country] => USA
+                        )
+
+                    [MailingAddress] => Array
+                        (
+                            [CompanyName] => SV Select Comfort 11111
+                            [Address1] => 123 Main St
+                            [Address2] => 
+                            [City] => Chicago
+                            [State] => IL
+                            [Zip] => 60061
+                            [Country] => USA
+                        )
+
+                    [Description] => description
+                    [TN] => 3123333333
+                    [PackageID] => 1006
+                    [AdditionalProducts] => 
+                )
+
+        )
+
+)
+</pre>
+
+ ret_str: ../orderdetails.php?orderID=659parentAccountID=1700&status=0&command=AddCustomer

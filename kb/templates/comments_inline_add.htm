@@ -1,0 +1,18 @@
+<edit_controls>
+	<jscode>{$linkdata}</jscode>
+	<control 
+	field="email">
+	    <nobr>
+	{build_edit_control field="email" value=$value_email mode="inline_add" id=$id}
+	    <font color="red">*</font>
+	</nobr>
+	</control>
+	<control 
+	field="comment">
+	    <nobr>
+	{build_edit_control field="comment" value=$value_comment mode="inline_add" id=$id}
+	    <font color="red">*</font>
+	</nobr>
+	</control>
+	<message status="{$status}">{$message}</message>
+</edit_controls>

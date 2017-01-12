@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>comment: Advanced search page</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">{$includes}
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY bgColor=white {$onload}>{include_if_exists file="include/header.php"} <!-- search form -->
+<FORM method=post name=editform action=comment_list.php {if $noAJAX} onkeydown="OnKeyDown(event);" {/if}><input type="hidden" id="a" name="a" value="advsearch">{doevent name="SearchOnLoad"} 
+<TABLE 
+style="BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid" 
+cellSpacing=1 cellPadding=4 width=750 align=center>
+  <TBODY>
+  <TR class=blackshade vAlign=middle>
+    <TD class=tableheader colSpan=5>
+      <TABLE cellSpacing=0 cellPadding=3 width="100%">
+        <TBODY>
+        <TR>
+          <TD class=tableheader width=200>Comment</TD>
+          <TD class=tableheader align=middle>Advanced search</TD>
+          <TD class=tableheader width=200>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class=header2 vAlign=middle colSpan=5 align=middle>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD width=200>&nbsp;</TD>
+          <TD width=300 align=middle><B class=xtop><B class=xb1></B><B 
+            class=xb2></B><B class=xb3></B><B class=xb4></B></B>
+            <DIV class=xboxcontent><SPAN class=fieldname>Search for: 
+            </SPAN><INPUT value=and type=radio name=type {$all_checked}>All 
+            conditions &nbsp;&nbsp;&nbsp; <INPUT value=or type=radio name=type 
+            {$any_checked}>Any condition </DIV><B class=xbottom><B 
+            class=xb4></B><B class=xb3></B><B class=xb2></B><B 
+          class=xb1></B></B></TD>
+          <TD width=200>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+  <TR class=blackshade vAlign=middle>
+    <TD vAlign=middle align=middle>&nbsp;</TD>
+    <TD class=fieldname vAlign=middle width=30 align=middle>NOT</TD>
+    <TD vAlign=middle colSpan=3 align=middle>&nbsp; </TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>email <input type="Hidden" name="asearchfield[]" value="email"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_email {$not_email}></TD>
+    <TD>{$searchtype_email} </TD>
+    <TD width=270>{build_edit_control field="email" value=$value_email mode="search"}</TD>
+    <TD width=270><SPAN id=second_email>{build_edit_control field="email" second=true value=$value1_email mode="search"} 
+      </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>comment <input type="Hidden" name="asearchfield[]" value="comment"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_comment {$not_comment}></TD>
+    <TD>{$searchtype_comment} </TD>
+    <TD width=270>{build_edit_control field="comment" value=$value_comment mode="search"}</TD>
+    <TD width=270><SPAN id=second_comment>{build_edit_control field="comment" second=true value=$value1_comment mode="search"} </SPAN></TD></TR>
+  <TR class=shade>
+    <TD class=fieldname>access <input type="Hidden" name="asearchfield[]" value="access"></TD>
+    <TD align=middle><INPUT type=checkbox name=not_access {$not_access}></TD>
+    <TD>{$searchtype_access} </TD>
+    <TD width=270>{build_edit_control field="access" value=$value_access mode="search"}</TD>
+    <TD width=270><SPAN id=second_access>{build_edit_control field="access" second=true value=$value1_access mode="search"} </SPAN></TD></TR>
+  <TR class=blackshade>
+    <TD colSpan=5 align=middle><INPUT class=button onclick=javascript:document.forms.editform.submit(); value=Search type=button name=SearchButton> 
+<INPUT class=button onclick="return ResetControls();" value=Reset type=button> 
+<INPUT class=button onclick="javascript: document.forms.editform.a.value='return'; document.forms.editform.submit();" value="Back to list" type=button> 
+    </TD></TR></TBODY></TABLE></FORM>{include_if_exists file="include/footer.php"} 
+{$linkdata}</BODY></HTML>

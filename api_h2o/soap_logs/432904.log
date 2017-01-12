@@ -1,0 +1,649 @@
+Last Response XML: <xmp>0
+<?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<soap:Body>
+			<NewCustomers_CreateResponse xmlns="http://api.myh2o.com/v20">
+				<NewCustomers_CreateResult>
+					<Header>
+						<Success>true
+							</Success>
+						<SessionKey>ZfJzZ+FNrPcNCgBIJgUi6hV6H3LqIc2BLNaVPusbEZeqdklUMuX9gdhnPnlZSH+a2k69860vk0LOrZGDUksyskiwpu7r5zHsltvhaukWkUqaLgqGG6TkJQ==
+							</SessionKey>
+						<Impersonated>false
+							</Impersonated>
+						</Header>
+					<Customer_ID>1807
+						</Customer_ID>
+					<Status>PENDING
+						</Status>
+					<Orders>
+						<Order>1257
+							</Order>
+						</Orders>
+					<Lines>
+						<Line>3361
+							</Line>
+						</Lines>
+					<Products>
+						<Product>
+							<ProductID>4585
+								</ProductID>
+							<ProductGroupID>0
+								</ProductGroupID>
+							<LeadProductFlag>false
+								</LeadProductFlag>
+							</Product>
+						<Product>
+							<ProductID>4586
+								</ProductID>
+							<ProductGroupID>0
+								</ProductGroupID>
+							<LeadProductFlag>false
+								</LeadProductFlag>
+							</Product>
+						<Product>
+							<ProductID>4632
+								</ProductID>
+							<ProductGroupID>0
+								</ProductGroupID>
+							<LeadProductFlag>false
+								</LeadProductFlag>
+							</Product>
+						</Products>
+					</NewCustomers_CreateResult>
+				</NewCustomers_CreateResponse>
+			</soap:Body>
+		</soap:Envelope></xmp>Last Response: <pre>stdClass Object
+(
+    [NewCustomers_CreateResult] => stdClass Object
+        (
+            [Header] => stdClass Object
+                (
+                    [Success] => 1
+                    [SessionKey] => ZfJzZ+FNrPcNCgBIJgUi6hV6H3LqIc2BLNaVPusbEZeqdklUMuX9gdhnPnlZSH+a2k69860vk0LOrZGDUksyskiwpu7r5zHsltvhaukWkUqaLgqGG6TkJQ==
+                    [Impersonated] => 
+                )
+
+            [Customer_ID] => 1807
+            [Status] => PENDING
+            [Orders] => stdClass Object
+                (
+                    [Order] => 1257
+                )
+
+            [Lines] => stdClass Object
+                (
+                    [Line] => 3361
+                )
+
+            [Products] => stdClass Object
+                (
+                    [Product] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [ProductID] => 4585
+                                    [ProductGroupID] => 0
+                                    [LeadProductFlag] => 
+                                )
+
+                            [1] => stdClass Object
+                                (
+                                    [ProductID] => 4586
+                                    [ProductGroupID] => 0
+                                    [LeadProductFlag] => 
+                                )
+
+                            [2] => stdClass Object
+                                (
+                                    [ProductID] => 4632
+                                    [ProductGroupID] => 0
+                                    [LeadProductFlag] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+</pre>Last Resquest XML: <xmp>0
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://api.myh2o.com/v20" xmlns:enc="http://www.w3.org/2003/05/soap-encoding">
+		<env:Body>
+			<ns1:NewCustomers_Create>
+				<ns1:Request>
+					<ns1:Credentials>
+						<ns1:Username>jrobbins
+							</ns1:Username>
+						<ns1:Password>g3ck0!
+							</ns1:Password>
+						<ns1:Client>cbv
+							</ns1:Client>
+						</ns1:Credentials>
+					<ns1:Customer>
+						<ns1:PhysicalAddress enc:id="ref1">
+							<ns1:CompanyName>test6
+								</ns1:CompanyName>
+							<ns1:Address1>257 Cline Ave
+								</ns1:Address1>
+							<ns1:Address2>
+								</ns1:Address2>
+							<ns1:City>Mansfield
+								</ns1:City>
+							<ns1:State>OH
+								</ns1:State>
+							<ns1:Zip>44907
+								</ns1:Zip>
+							<ns1:Country>USA
+								</ns1:Country>
+							</ns1:PhysicalAddress>
+						<ns1:MailingAddress>
+							<ns1:CompanyName>test6
+								</ns1:CompanyName>
+							<ns1:Address1>257 Cline Ave
+								</ns1:Address1>
+							<ns1:Address2>
+								</ns1:Address2>
+							<ns1:City>Mansfield
+								</ns1:City>
+							<ns1:State>OH
+								</ns1:State>
+							<ns1:Zip>44907
+								</ns1:Zip>
+							<ns1:Country>USA
+								</ns1:Country>
+							</ns1:MailingAddress>
+						<ns1:Billing>
+							<ns1:Balance>0
+								</ns1:Balance>
+							<ns1:Due>0
+								</ns1:Due>
+							<ns1:UnbilledUsage>0
+								</ns1:UnbilledUsage>
+							<ns1:EnableBalanceLimit>false
+								</ns1:EnableBalanceLimit>
+							<ns1:PaymentTerms>0
+								</ns1:PaymentTerms>
+							<ns1:PaymentTermsOverride>false
+								</ns1:PaymentTermsOverride>
+							</ns1:Billing>
+						<ns1:CustomerClass>Business
+							</ns1:CustomerClass>
+						<ns1:ParentCustomerID>1700
+							</ns1:ParentCustomerID>
+						<ns1:ContractStart>2016-07-15
+							</ns1:ContractStart>
+						</ns1:Customer>
+					<ns1:Order>
+						<ns1:PackageID>1006
+							</ns1:PackageID>
+						<ns1:ShippingAddress enc:ref="#ref1"/>
+							<ns1:Description>description
+								</ns1:Description>
+							<ns1:AdditionalProducts>
+								<ns1:Product>
+									<ns1:ProductID>4632
+										</ns1:ProductID>
+									<ns1:Rate>27.5
+										</ns1:Rate>
+									<ns1:Quantity>2
+										</ns1:Quantity>
+									<ns1:Description>SV Managed Extension
+										</ns1:Description>
+									</ns1:Product>
+								<ns1:Product>
+									<ns1:ProductID>4585
+										</ns1:ProductID>
+									<ns1:Rate>3
+										</ns1:Rate>
+									<ns1:Quantity>2
+										</ns1:Quantity>
+									<ns1:Description>SV - 911 Recovery Charge
+										</ns1:Description>
+									</ns1:Product>
+								<ns1:Product>
+									<ns1:ProductID>4586
+										</ns1:ProductID>
+									<ns1:Rate>2
+										</ns1:Rate>
+									<ns1:Quantity>2
+										</ns1:Quantity>
+									<ns1:Description>SV - Regulatory Recovery Fee
+										</ns1:Description>
+									</ns1:Product>
+								</ns1:AdditionalProducts>
+							</ns1:Order>
+						</ns1:Request>
+					</ns1:NewCustomers_Create>
+				</env:Body>
+			</env:Envelope>
+</xmp>Last Resquest: <pre>Array
+(
+    [Request] => Array
+        (
+            [Credentials] => Array
+                (
+                    [Username] => jrobbins
+                    [Password] => g3ck0!
+                    [Client] => cbv
+                )
+
+            [Customer] => Array
+                (
+                    [CustomerClass] => Business
+                    [ParentCustomerID] => 1700
+                    [PhysicalAddress] => Array
+                        (
+                            [CompanyName] => test6
+                            [Address1] => 257 Cline Ave
+                            [Address2] => 
+                            [City] => Mansfield
+                            [State] => OH
+                            [Zip] => 44907
+                            [Country] => USA
+                        )
+
+                    [MailingAddress] => Array
+                        (
+                            [CompanyName] => test6
+                            [Address1] => 257 Cline Ave
+                            [Address2] => 
+                            [City] => Mansfield
+                            [State] => OH
+                            [Zip] => 44907
+                            [Country] => USA
+                        )
+
+                    [Billing] => Array
+                        (
+                            [Balance] => 0
+                            [Due] => 0
+                            [OverDue] => 0
+                            [UnbilledUsage] => 0
+                            [UsageBalanceLimit] => 0
+                            [EnableBalanceLimit] => 0
+                            [PaymentTermsOverride] => 0
+                            [PaymentTerms] => 0
+                        )
+
+                    [ContractStart] => 2016-07-15
+                )
+
+            [Order] => Array
+                (
+                    [ShippingAddress] => Array
+                        (
+                            [CompanyName] => test6
+                            [Address1] => 257 Cline Ave
+                            [Address2] => 
+                            [City] => Mansfield
+                            [State] => OH
+                            [Zip] => 44907
+                            [Country] => USA
+                        )
+
+                    [MailingAddress] => Array
+                        (
+                            [CompanyName] => test6
+                            [Address1] => 257 Cline Ave
+                            [Address2] => 
+                            [City] => Mansfield
+                            [State] => OH
+                            [Zip] => 44907
+                            [Country] => USA
+                        )
+
+                    [Description] => description
+                    [TN] => 3125551212
+                    [PackageID] => 1006
+                    [AdditionalProducts] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [Product] => Array
+                                        (
+                                        )
+
+                                    [ProductID] => 4632
+                                    [Rate] => 27.5
+                                    [Quantity] => 2
+                                    [Description] => SV Managed Extension
+                                )
+
+                            [1] => Array
+                                (
+                                    [Product] => Array
+                                        (
+                                        )
+
+                                    [ProductID] => 4585
+                                    [Rate] => 3
+                                    [Quantity] => 2
+                                    [Description] => SV - 911 Recovery Charge
+                                )
+
+                            [2] => Array
+                                (
+                                    [Product] => Array
+                                        (
+                                        )
+
+                                    [ProductID] => 4586
+                                    [Rate] => 2
+                                    [Quantity] => 2
+                                    [Description] => SV - Regulatory Recovery Fee
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+</pre>Last Response XML: <xmp>0
+<?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<soap:Body>
+			<Lines_UpdateResponse xmlns="http://api.myh2o.com/v20">
+				<Lines_UpdateResult>
+					<Header>
+						<Success>true
+							</Success>
+						<SessionKey>unJDlEMfsUNEPSMj26vAnvZI3KejUhFLz93mGpbsaTe66/EeS/rm11+VdaV7tl0qruCLwCuHGjMB/kIdJKYtzV2JgYdZGR7OKhI6geZfHrtIJ6Ml3CBNXg==
+							</SessionKey>
+						<Impersonated>false
+							</Impersonated>
+						</Header>
+					</Lines_UpdateResult>
+				</Lines_UpdateResponse>
+			</soap:Body>
+		</soap:Envelope></xmp>Last Response: <pre>stdClass Object
+(
+    [Lines_UpdateResult] => stdClass Object
+        (
+            [Header] => stdClass Object
+                (
+                    [Success] => 1
+                    [SessionKey] => unJDlEMfsUNEPSMj26vAnvZI3KejUhFLz93mGpbsaTe66/EeS/rm11+VdaV7tl0qruCLwCuHGjMB/kIdJKYtzV2JgYdZGR7OKhI6geZfHrtIJ6Ml3CBNXg==
+                    [Impersonated] => 
+                )
+
+        )
+
+)
+</pre>Last Resquest XML: <xmp>0
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://api.myh2o.com/v20">
+		<env:Body>
+			<ns1:Lines_Update>
+				<ns1:Request>
+					<ns1:Credentials>
+						<ns1:Username>jrobbins
+							</ns1:Username>
+						<ns1:Password>g3ck0!
+							</ns1:Password>
+						<ns1:Client>cbv
+							</ns1:Client>
+						</ns1:Credentials>
+					<ns1:Line_ID>3361
+						</ns1:Line_ID>
+					<ns1:Number>
+						<ns1:Updated>true
+							</ns1:Updated>
+						<ns1:Value>3125551212
+							</ns1:Value>
+						</ns1:Number>
+					</ns1:Request>
+				</ns1:Lines_Update>
+			</env:Body>
+		</env:Envelope>
+</xmp>Last Resquest: <pre>Array
+(
+    [Request] => Array
+        (
+            [Credentials] => Array
+                (
+                    [Username] => jrobbins
+                    [Password] => g3ck0!
+                    [Client] => cbv
+                )
+
+            [Line_ID] => 3361
+            [Number] => Array
+                (
+                    [Updated] => 1
+                    [Value] => 3125551212
+                )
+
+        )
+
+)
+</pre>Last Response XML: <xmp>0
+<?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<soap:Body>
+			<Orders_UpdateResponse xmlns="http://api.myh2o.com/v20">
+				<Orders_UpdateResult>
+					<Header>
+						<Success>true
+							</Success>
+						<SessionKey>yXmPlryor7mo46vjab8SLn7VapRqkRqnLrXZbCN/nyifVCpZNv+pR131yAs4QbaFyIB1kpl0kKV0k68gub84dBffmxNaCaHE297DMNnZSFc9zDBGNrNYbw==
+							</SessionKey>
+						<Impersonated>false
+							</Impersonated>
+						</Header>
+					</Orders_UpdateResult>
+				</Orders_UpdateResponse>
+			</soap:Body>
+		</soap:Envelope></xmp>Last Response: <pre>stdClass Object
+(
+    [Orders_UpdateResult] => stdClass Object
+        (
+            [Header] => stdClass Object
+                (
+                    [Success] => 1
+                    [SessionKey] => yXmPlryor7mo46vjab8SLn7VapRqkRqnLrXZbCN/nyifVCpZNv+pR131yAs4QbaFyIB1kpl0kKV0k68gub84dBffmxNaCaHE297DMNnZSFc9zDBGNrNYbw==
+                    [Impersonated] => 
+                )
+
+        )
+
+)
+</pre>Last Resquest XML: <xmp>0
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://api.myh2o.com/v20">
+		<env:Body>
+			<ns1:Orders_Update>
+				<ns1:Request>
+					<ns1:Credentials>
+						<ns1:Username>jrobbins
+							</ns1:Username>
+						<ns1:Password>g3ck0!
+							</ns1:Password>
+						<ns1:Client>cbv
+							</ns1:Client>
+						</ns1:Credentials>
+					<ns1:OrderID>1257
+						</ns1:OrderID>
+					<ns1:Status>COMPLETE
+						</ns1:Status>
+					</ns1:Request>
+				</ns1:Orders_Update>
+			</env:Body>
+		</env:Envelope>
+</xmp>Last Resquest: <pre>Array
+(
+    [Request] => Array
+        (
+            [Credentials] => Array
+                (
+                    [Username] => jrobbins
+                    [Password] => g3ck0!
+                    [Client] => cbv
+                )
+
+            [OrderID] => 1257
+            [Status] => COMPLETE
+        )
+
+)
+</pre>Last Response XML: <xmp>0
+<?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<soap:Body>
+			<Transactions_CreateResponse xmlns="http://api.myh2o.com/v20">
+				<Transactions_CreateResult>
+					<Header>
+						<Success>true
+							</Success>
+						<SessionKey>A3MjvSHYV7T2VaXH+zeLeVpVROLSr+lPJeZxuj02mC2oXnIuOpckXBwXtaGe29Lp+UtZWmo7+zE01RO46FIxT/maXMFiwEw86c3Q32rpZ+9TD49W4maLcA==
+							</SessionKey>
+						<Impersonated>false
+							</Impersonated>
+						</Header>
+					<Transaction>
+						<Type>CHARGE
+							</Type>
+						<ID>39599
+							</ID>
+						<Amount>55.0000
+							</Amount>
+						<Quantity>2
+							</Quantity>
+						<Description>SV Managed Extension Setup Charge
+							</Description>
+						<ProductID>4571
+							</ProductID>
+						<ProductTypeID>265
+							</ProductTypeID>
+						<CustomerID>1807
+							</CustomerID>
+						<LineID xsi:nil="true" />
+							<CustomerProductID xsi:nil="true" />
+								<DateStart>2016-07-18T00:00:00
+									</DateStart>
+								<DateEnd>2016-07-18T00:00:00
+									</DateEnd>
+								<TaxIncluded>false
+									</TaxIncluded>
+								<Prorate>false
+									</Prorate>
+								<AgentID xsi:nil="true" />
+									<StatementID xsi:nil="true" />
+										<CreatedDate>2016-07-19T11:29:47.203
+											</CreatedDate>
+										</Transaction>
+									</Transactions_CreateResult>
+								</Transactions_CreateResponse>
+							</soap:Body>
+						</soap:Envelope></xmp>Last Response: <pre>stdClass Object
+(
+    [Transactions_CreateResult] => stdClass Object
+        (
+            [Header] => stdClass Object
+                (
+                    [Success] => 1
+                    [SessionKey] => A3MjvSHYV7T2VaXH+zeLeVpVROLSr+lPJeZxuj02mC2oXnIuOpckXBwXtaGe29Lp+UtZWmo7+zE01RO46FIxT/maXMFiwEw86c3Q32rpZ+9TD49W4maLcA==
+                    [Impersonated] => 
+                )
+
+            [Transaction] => stdClass Object
+                (
+                    [Type] => CHARGE
+                    [ID] => 39599
+                    [Amount] => 55.0000
+                    [Quantity] => 2
+                    [Description] => SV Managed Extension Setup Charge
+                    [ProductID] => 4571
+                    [ProductTypeID] => 265
+                    [CustomerID] => 1807
+                    [LineID] => 
+                    [CustomerProductID] => 
+                    [DateStart] => 2016-07-18T00:00:00
+                    [DateEnd] => 2016-07-18T00:00:00
+                    [TaxIncluded] => 
+                    [Prorate] => 
+                    [AgentID] => 
+                    [StatementID] => 
+                    [CreatedDate] => 2016-07-19T11:29:47.203
+                )
+
+        )
+
+)
+</pre>Last Resquest XML: <xmp>0
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://api.myh2o.com/v20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<env:Body>
+			<ns1:Transactions_Create>
+				<ns1:Request>
+					<ns1:Credentials>
+						<ns1:Username>jrobbins
+							</ns1:Username>
+						<ns1:Password>g3ck0!
+							</ns1:Password>
+						<ns1:Client>cbv
+							</ns1:Client>
+						</ns1:Credentials>
+					<ns1:Transaction>
+						<ns1:Type>CHARGE
+							</ns1:Type>
+						<ns1:ID xsi:nil="true"/>
+							<ns1:Amount>27.5
+								</ns1:Amount>
+							<ns1:Quantity>2
+								</ns1:Quantity>
+							<ns1:ProductID>4571
+								</ns1:ProductID>
+							<ns1:ProductTypeID xsi:nil="true"/>
+								<ns1:CustomerID>1807
+									</ns1:CustomerID>
+								<ns1:LineID xsi:nil="true"/>
+									<ns1:CustomerProductID xsi:nil="true"/>
+										<ns1:DateStart>2016-07-18
+											</ns1:DateStart>
+										<ns1:DateEnd>2016-07-18
+											</ns1:DateEnd>
+										<ns1:TaxIncluded xsi:nil="true"/>
+											<ns1:Prorate xsi:nil="true"/>
+												<ns1:AgentID xsi:nil="true"/>
+													<ns1:StatementID xsi:nil="true"/>
+														<ns1:CreatedDate xsi:nil="true"/>
+															</ns1:Transaction>
+														</ns1:Request>
+													</ns1:Transactions_Create>
+												</env:Body>
+											</env:Envelope>
+</xmp>Last Resquest: <pre>Array
+(
+    [Request] => Array
+        (
+            [Credentials] => Array
+                (
+                    [Username] => jrobbins
+                    [Password] => g3ck0!
+                    [Client] => cbv
+                )
+
+            [Transaction] => Array
+                (
+                    [CustomerID] => 1807
+                    [ProductID] => 4571
+                    [Type] => CHARGE
+                    [Amount] => 27.5
+                    [Quantity] => 2
+                    [DateStart] => 2016-07-18
+                    [DateEnd] => 2016-07-18
+                )
+
+        )
+
+)
+</pre>

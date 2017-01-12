@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>main</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY topMargin=5 bgColor=white 
+{$onload}>{$includes}{include_if_exists file="include/header.php"}{literal} 
+<STYLE>
+A.kb10
+{
+    FONT-SIZE: 10pt;
+    COLOR: black;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline
+}
+A.kb8
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline
+}
+</STYLE>
+{/literal}
+<FORM method=get name=frmSearch action=main_list.php><input type="Hidden" name="a" value="search"><input type="Hidden" name="value" value="1"><input type="Hidden" name="SearchFor" value=""><input type="Hidden" name="SearchOption" value=""><input type="Hidden" name="SearchField" value=""></FORM>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD width=30>&nbsp;</TD>
+    <TD width="80%" align=middle>
+      <TABLE border=0 align=center>
+        <TBODY>
+        <TR>
+          <TD width=12>&nbsp;</TD>
+          <TD width=109 align=middle>Logged 
+            as&nbsp;<B>{$userid}</B>&nbsp; <A class=kb8 
+            href="login.php?a=logout"><FONT color=#388e8e size=2><STRONG>Log 
+            out</STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD>
+          <TD width=22><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{if $guest==0}
+          <TD width=124 align=middle><FONT color=#388e8e size=2><STRONG>&nbsp; 
+            </STRONG></FONT><A class=kb8 href="changepwd.php"><FONT 
+            color=#388e8e size=2><STRONG>Change password</STRONG></FONT></A></TD>
+          <TD width=22>&nbsp;</TD>{/if}
+          <TD width=94 align=middle></TD>
+          <TD width=22>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>{doevent name="ListOnLoad"} 
+<TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=1 cellPadding=4 width="95%" align=center>
+  <TBODY>
+  <TR>{if $allow_search}
+    <TD class=shade vAlign=middle align=middle><B>Search for: 
+      </B>&nbsp;&nbsp;&nbsp; <select id="ctlSearchField"><option value="">Any field</option><option value="Category" {$search_Category_field_selected}>Category</option><option value="Title" {$search_Title_field_selected}>Title</option><option value="Views" {$search_Views_field_selected}>Views</option></select> &nbsp; <select id="ctlSearchOption"><option value="Contains" {$search_contains_option_selected}>Contains</option><option value="Equals" {$search_equals_option_selected}>Equals</option><option value="Starts with ..." {$search_startswith_option_selected}>Starts with ...</option><option value="More than ..." {$search_more_option_selected}>More than ...</option><option value="Less than ..." {$search_less_option_selected}>Less than ...</option><option value="Equal or more than ..." {$search_equalor_option_selected}>Equal or more than ...</option><option value="Equal or less than ..." {$search_equalorless_option_selected}>Equal or less than ...</option><option value="Empty" {$search_empty_option_selected}>Empty</option></select> &nbsp; <INPUT 
+      id=ctlSearchFor {$search_searchfor}> &nbsp; <INPUT class=button onclick="javascript: frmSearch.a.value = 'search'; &#13;&#10;&#9;&#9;frmSearch.SearchFor.value = document.getElementById('ctlSearchFor').value; &#13;&#10;&#9;&#9;frmSearch.SearchField.value = document.getElementById('ctlSearchField').options[document.getElementById('ctlSearchField').selectedIndex].value; &#13;&#10;&#9;&#9;frmSearch.SearchOption.value = document.getElementById('ctlSearchOption').options[document.getElementById('ctlSearchOption').selectedIndex].value; &#13;&#10;&#9;&#9;frmSearch.submit();" value=Search type=button> 
+      &nbsp; <INPUT class=button onclick="javascript: frmSearch.a.value = 'showall'; frmSearch.submit();" value="Show all" type=button></TD><!-- how many records found-->
+    <TD class=shade align=middle>Details found: {$records_found}<BR>Page {$page}of {$maxpages}</TD><!--Records per page-->
+    <TD class=shade align=middle>Records Per Page:<BR><select 
+onChange="javascript: document.location='main_list.php?pagesize='+this.options[this.selectedIndex].value;"><option value="10" {$rpp10_selected}>10</option><option value="20" {$rpp20_selected}>20</option><option value="30" {$rpp30_selected}>30</option><option value="50" {$rpp50_selected}>50</option><option value="100" {$rpp100_selected}>100</option><option value="500" {$rpp500_selected}>500</option></select></TD></TR></TBODY></TABLE>{if $rowsfound}<!-- delete form -->
+<FORM method=post name=frmAdmin action=main_list.php><input type=hidden id="a" name="a" value="delete">
+<TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=0 cellPadding=3 width="95%" align=center><!-- table data -->{foreach from=$rowinfo item=row}<!--{if $row.1categ_value}-->
+  <TBODY>
+  <TR class=blackshade vAlign=top>
+    <TD style="BORDER-BOTTOM: white 1px solid" width=1579 colSpan=2 
+      align=left><B><A class=kb10 
+      href="articles_list.php?a=search&amp;value=1&amp;SearchFor={$row.1Category_value}&amp;SearchOption=Contains&amp;SearchField=Category">{$row.1Category_value}</A></B></TD><!--{/if}-->
+  <TR onmouseover="this.className = 'shade';" 
+  onmouseout="this.className = '{$row.shadeclassname}';" vAlign=top 
+  {$row.shadeclass}>
+    <TD width=1398>&nbsp;&nbsp;<IMG border=0 src="images\bullet.gif">&nbsp; <A 
+      class=kb10 href="articles_view.php?editid1={$row.1ArticleID_value}">{$row.1Title_value}</A>&nbsp;(Views: {$row.1Views_value} 
+      ) </TD>
+    <TD width=181>&nbsp;Status Approved: {$row.1approved_value}</TD></TD>
+  <TR>{/foreach}{/if}{/if}</TR></TBODY></TABLE></FORM>
+<P>&nbsp;</P>
+<P align=center><B>{$message}</B></P>{if $allow_search}{$pagination}{/if}{include_if_exists file="include/footer.php"} 
+</BODY></HTML>

@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>article</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY topMargin=5 bgColor=white {$onload}>{$includes}{literal}
+<STYLE>
+A.kb10
+{
+    FONT-SIZE: 10pt;
+    COLOR: blue;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline
+}
+A.kb9
+{
+    FONT-SIZE: 9pt;
+    COLOR: black;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline
+}
+A.kb8
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline
+}
+A.kb8n
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+}
+</STYLE>
+{/literal}{include_if_exists file="include/header.php"}{doevent name="ListOnLoad"} 
+<FORM method=get name=frmSearch action=article_list.php><input type="Hidden" name="a" value="search"><input type="Hidden" name="value" value="1"><input type="Hidden" name="SearchFor" value=""><input type="Hidden" name="SearchOption" value=""><input type="Hidden" name="SearchField" value=""></FORM>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD width="80%" align=middle>
+      <TABLE border=0 align=center>
+        <TBODY>
+        <TR>
+          <TD width=63>&nbsp;</TD>
+          <TD width=113 align=middle>Logged 
+            as&nbsp;<B>{$userid}</B>&nbsp; <A class=kb8 
+            href="login.php?a=logout"><FONT color=#388e8e size=2><STRONG>Log 
+            out</STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD>
+          <TD width=82><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{if $guest==0}
+          <TD width=151 align=middle><FONT color=#388e8e size=2><STRONG>&nbsp; 
+            </STRONG></FONT><A class=kb8 href="changepwd.php"><FONT 
+            color=#388e8e size=2><STRONG>Change 
+            password</STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD>
+          <TD width=82><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{/if}
+          <TD width=82><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{if $allow_search}
+          <TD width=151 align=middle><A class=kb8 
+            href="article_search.php"><FONT color=#388e8e 
+            size=2><STRONG>Advanced search</STRONG></FONT></A><FONT 
+            color=#388e8e size=2><STRONG></STRONG></FONT></TD>
+          <TD width=82><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{/if}{if $allow_export}
+          <TD width=129 align=middle><A class=kb8 href="article_export.php" 
+            target=_blank><FONT color=#388e8e size=2><STRONG>Export 
+            results</STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD>
+          <TD width=82><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>
+          <TD width=96 align=middle><A class=kb8 href="article_print.php" 
+            target=_blank><FONT color=#388e8e size=2><STRONG><IMG border=0 
+            src="images/printer.gif"></STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD>
+          <TD width=144 align=middle><A class=kb8 href="article_print.php" 
+            target=_blank><FONT color=#388e8e size=2><STRONG>Printer-friendly 
+            version</STRONG></FONT></A></TD>
+          <TD 
+  width=81>&nbsp;</TD>{/if}</TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=1 cellPadding=4 width="95%" align=center>
+  <TBODY>
+  <TR>{if $allow_add}<!-- Add new record -->
+    <TD class=shade align=middle><A class=kb8n 
+      href="article_add.php?SearchFor={$row11Category_value}"><FONT 
+      color=#388e8e size=2><STRONG>Add new</STRONG></FONT></A></TD>{/if}{if $allow_search}
+    <TD class=shade vAlign=middle align=middle><B>Search for: 
+      </B>&nbsp;&nbsp;&nbsp; <select id="ctlSearchField"><option value="">Any field</option><option value="Category" {$search_Category}>Category</option><option value="Title" {$search_Title}>Title</option><option value="Problem" {$search_Problem}>Problem</option><option value="screenp" {$search_screenp}>screenp</option><option value="filep" {$search_filep}>filep</option><option value="Solution" {$search_Solution}>Solution</option><option value="screens" {$search_screens}>screens</option><option value="files" {$search_files}>files</option><option value="DateCreated" {$search_DateCreated}>DateCreated</option><option value="Views" {$search_Views}>Views</option></select> &nbsp; <select id="ctlSearchOption"><option value="Contains" {$search_contains_option_selected}>Contains</option><option value="Equals" {$search_equals_option_selected}>Equals</option><option value="Starts with ..." {$search_startswith_option_selected}>Starts with ...</option><option value="More than ..." {$search_more_option_selected}>More than ...</option><option value="Less than ..." {$search_less_option_selected}>Less than ...</option><option value="Equal or more than ..." {$search_equalormore_option_selected}>Equal or more than ...</option><option value="Equal or less than ..." {$search_equalorless_option_selected}>Equal or less than ...</option><option value="Empty" {$search_empty_option_selected}>Empty</option></select> &nbsp; <INPUT 
+      id=ctlSearchFor {$search_searchfor} {if $useAJAX} autocomplete="off" onkeydown="return listenEvent(event,this,'ordinary');" onkeyup="searchSuggest(event,this,'ordinary');" {else} onkeydown="e=event; if(!e) e = window.event; if (e.keyCode != 13) return true; e.cancel = true; RunSearch(); return false;" {/if}> &nbsp; <INPUT class=button onclick="javascript: RunSearch();" value=Search type=button> 
+      &nbsp; <INPUT class=button onclick="javascript: frmSearch.a.value = 'showall'; frmSearch.submit();" value="Show all" type=button></TD>
+    <TD class=shade align=middle><A class=kb8n href="users_list.php"><FONT 
+      color=#388e8e size=2><STRONG>Main 
+page</STRONG></FONT></A></TD></TR></TBODY></TABLE>{if $rowsfound}{if $allow_delete}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<A class=kb8n 
+onclick="var i; bSelected = !bSelected; &#13;&#10;if ((typeof frmAdmin.elements['mdelete[]'].length)=='undefined')&#13;&#10;&#9;frmAdmin.elements['mdelete[]'].checked=bSelected;&#13;&#10;else&#13;&#10;for (i=0;i<frmAdmin.elements['mdelete[]'].length;++i) &#13;&#10;&#9;frmAdmin.elements['mdelete[]'][i].checked=bSelected;" 
+href="#"><FONT color=#388e8e size=2><STRONG>Select/Unselect 
+all</STRONG></FONT></A><FONT color=#388e8e size=2><STRONG> &nbsp;&nbsp; 
+</STRONG></FONT><A class=kb8n 
+onclick="if (confirm('Do you really want to delete these records?')) frmAdmin.submit(); return false;" 
+href="#"><FONT color=#388e8e size=2><STRONG>Delete 
+selected</STRONG></FONT></A><FONT color=#388e8e size=2><STRONG>{/if}{if $allow_export}&nbsp;&nbsp; </STRONG></FONT><A 
+class=kb8n 
+onclick="var c=0; for (i=0;i<frmAdmin.elements['mdelete[]'].length;++i) if (frmAdmin.elements['mdelete[]'][i].checked) c=1;  if(c==0) return true; frmAdmin.action='article_export.php';frmAdmin.target='_blank';frmAdmin.submit(); frmAdmin.action='article_list.php'; frmAdmin.target='_self';" 
+href="#"><FONT color=#388e8e size=2><STRONG>Export 
+selected</STRONG></FONT></A><FONT color=#388e8e size=2><STRONG>{/if}{if $allow_export}&nbsp;&nbsp; </STRONG></FONT><A 
+class=kb8n 
+onclick="var c=0; for (i=0;i<frmAdmin.elements['mdelete[]'].length;++i) if (frmAdmin.elements['mdelete[]'][i].checked) c=1;  if(c==0) return true; frmAdmin.action='article_print.php';frmAdmin.target='_blank';frmAdmin.submit(); frmAdmin.action='article_list.php'; frmAdmin.target='_self';" 
+href="#"><FONT color=#388e8e size=2><STRONG>Print selected</STRONG></FONT></A>{/if} 
+<P class=blackshade>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Category:&nbsp;<B>{$row11Category_value}</B></P><!-- delete form -->
+<FORM method=post name=frmAdmin 
+action=article_list.php?SearchFor={$row11Category_value}><input type=hidden id="a" name="a" value="delete">
+<TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=2 cellPadding=3 width="95%" align=center><!-- table header -->
+  <TBODY>
+  <TR class=blackshade vAlign=top><!--{if $column1show}-->
+    <TD width=36 align=middle></TD>{if $allow_comment}
+    <TD width=59>&nbsp;</TD>{/if}
+    <TD width=955>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><B><A class=kb9 
+            href="article_list.php?orderby={$order_dir_Title}Title">Title</A></B></TD>
+          <TD>{$order_image_Title}</TD></TR></TBODY></TABLE></TD>
+    <TD width=102>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><B><A class=kb9 
+            href="article_list.php?orderby={$order_dir_screenp}screenp">screenp</A></B></TD>
+          <TD>{$order_image_screenp}</TD></TR></TBODY></TABLE></TD>
+    <TD width=102>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><B><A class=kb9 
+            href="article_list.php?orderby={$order_dir_filep}filep">filep</A></B></TD>
+          <TD>{$order_image_filep}</TD></TR></TBODY></TABLE></TD>
+    <TD width=102>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><B><A class=kb9 
+            href="article_list.php?orderby={$order_dir_screens}screens">screens</A></B></TD>
+          <TD>{$order_image_screens}</TD></TR></TBODY></TABLE></TD>
+    <TD width=102>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><B><A class=kb9 
+            href="article_list.php?orderby={$order_dir_files}files">files</A></B></TD>
+          <TD>{$order_image_files}</TD></TR></TBODY></TABLE></TD>
+    <TD width=102>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=blackshade><B><A class=kb9 
+            href="article_list.php?orderby={$order_dir_Views}Views">Views</A></B></TD>
+          <TD>{$order_image_Views}</TD></TR></TBODY></TABLE></TD><!--{/if}--><!-- table data --><!--{foreach from=$rowinfo item=row}-->
+  <TR onmouseover="this.className = 'shade';" 
+  onmouseout="this.className = '{$row.shadeclassname}';" vAlign=top 
+  {$row.shadeclass}>
+    <TD width=36 align=middle><INPUT value="{$row.1recno}" type=checkbox name=mdelete[]><input type=hidden name="mdelete1[]" value="{$row.1id1}">&nbsp;</TD>{if $allow_comment}
+    <TD width=59 align=middle><A class=kb8 
+      href="comment_list.php?{$row.1comment_masterkeys}&amp;SearchFor={$row.1Category_value}"><FONT 
+      color=#388e8e>comment</FONT></A></TD>{/if}
+    <TD width=955><IMG src="images/bullet.gif">&nbsp; <A class=kb10 
+      href="article_view.php?{$row.1editlink}"><B>{$row.1Title_value}</B></A><BR><BR>{$row.1Problem_value}</TD>
+    <TD width=102>{$row.1screenp_value}</TD>
+    <TD width=102>{$row.1filep_value}</TD>
+    <TD width=102>{$row.1screens_value}</TD>
+    <TD width=102>{$row.1files_value}</TD>
+    <TD width=102 align=middle>{$row.1Views_value}</TD><!--{/foreach}-->{/if}{/if}</TR></TBODY></TABLE></FORM>
+<P>&nbsp;</P>
+<P align=center><B>{$message}</B></P>{if $allow_search}{$pagination}{/if}{include_if_exists file="include/footer.php"} 
+</BODY></HTML>

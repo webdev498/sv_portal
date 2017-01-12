@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Register</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body  text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#0066cc">
+{include_if_exists file="include/header.php"}
+<form method="POST" action="login.php" name="loginform">
+<input type="Hidden" name=username value="{$username}">
+<input type="Hidden" name=password value="{$password}">
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="99%">
+  <tr>
+    <td valign="center" align="middle"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td  valign="top" align="right"> 
+                  <table width="300" border="0" cellspacing="4" cellpadding="4" align="center">
+                    <tr> 
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  <table width="300" border="0" cellspacing="1" cellpadding="4" align="center" >
+                    <tr> 
+                      <td align=middle class=blackshade>
+							 <b><font size=+1>Register</font></b></td>
+                    </tr>
+                    <tr> 
+                      <td valign="top" class=shade>
+                        <DIV align=center> 
+                        <table width="200" border=0 align="center" class=shade>
+                          <tbody>
+						  <tr height=10><td colspan=2>&nbsp;</td></tr>
+                          <tr> 
+                            <td colspan=2 align=middle> 
+                              Registration successful!<br>
+							  <a href="login.php" onclick="loginform.submit(); return false;">Proceed to login page</a>
+                            </td>
+                          </tr>
+
+                          </tbody> 
+                        </table></DIV>
+                      </td>
+                    </tr>
+                  </table>
+                <p>&nbsp;</p></td>
+              </tr>
+            </table>
+            
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+</html>

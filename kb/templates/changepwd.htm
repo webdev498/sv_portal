@@ -1,0 +1,124 @@
+<html> 
+<head>
+<title>Change password</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body  text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#0066cc">
+{literal}
+<script language="JavaScript">
+
+function validate()
+{
+
+	
+	if (document.forms.form1.cpass.value!=document.forms.form1.newpass.value)
+	{	
+		alert('Passwords do not match. Re-enter password');
+		return false;
+	}
+	
+
+	return true;
+
+}
+
+</script>
+{/literal}
+
+{doevent name="ChangePasswordOnLoad"}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="99%">
+  <tr>
+    <td valign="center" align="middle"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td  valign="top" align="right"> 
+                  <table width="300" border="0" cellspacing="4" cellpadding="4" align="center">
+                    <tr> 
+                      <td>&nbsp</td>
+                    </tr>
+                  </table>
+
+                  <form method="POST" action="changepwd.php" id=form1 name=form1 onsubmit="return validate();">
+                  <table width="300" border="0" cellspacing="1" cellpadding="4" align="center">
+                    <tr> 
+                      <td align=middle class=blackshade>
+							 <b><font size=+1>Change password</font></b></td>
+                    </tr>
+                    <tr> 
+                      <td valign="top" class=shade>
+                        <DIV align=center> 
+                        <table width="200" border=0 align="center" class=shade>
+                          <tbody>
+								  <tr height=10><td>&nbsp</td></tr>
+						  <tr> 
+                            <td align=right width="50%"> 
+                              <div align="left">Old password</div>
+                            </td>
+                            <td width="50%"> 
+                              <input name="opass" value="" type=password>
+                            </td>
+                          </tr>
+
+						  <tr>
+                            <td align=right width="50%"> 
+                              <div align="left">New password</div>
+                            </td>
+                            <td width="50%"> 
+                              <input name="newpass" value="" type=password>
+                            </td>
+                          </tr>
+
+						  <tr> 
+                            <td align=right width="50%"> 
+                              <div align="left">Confirm password</div>
+                            </td>
+                            <td width="50%"> 
+                              <input name="cpass" value="" type=password onkeydown="e=event; if (!e) e = window.event; if (e.keyCode != 13) return; e.cancel = true; document.forms[0].submit();">
+                            </td>
+                          </tr>
+
+
+                          <tr> 
+                            <td colspan=2 align=middle>
+								<input type=hidden name=btnSubmit value="Submit">
+								<input type=submit value="Submit" class=buttonM>
+                            </td>
+                          </tr>
+
+                          <tr> 
+                            <td colspan=2 align=middle>
+								<a href="{$backurl}">Back</a>
+                            </td>
+                          </tr>
+								   <tr height=20>
+								   <td align=center colspan=2>
+										<font color=red>{$message}</font>&nbsp
+									</td></tr>
+									
+                          </tbody> 
+                        </table></DIV>
+                      </td>
+                    </tr>
+                  </table>
+                  </form>
+                <p>&nbsp</p></td>
+              </tr>
+            </table>
+            
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</script>
+</body>
+</html>

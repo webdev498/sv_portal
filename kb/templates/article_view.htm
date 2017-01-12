@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>article</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY bgColor=white>{include_if_exists file="include/header.php"}{$message}{doevent name="ViewOnLoad"}{literal} 
+<STYLE>
+A.link8
+{
+    FONT-SIZE: 8pt;
+    COLOR: #4b4b4b;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans serif;
+    TEXT-DECORATION: none;
+}
+A.kb8
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline;
+}
+</STYLE>
+{/literal}
+<TABLE style="HEIGHT: 3px" border=0 cellSpacing=1 cellPadding=0 width="95%" 
+align=center>
+  <TBODY>
+  <TR>
+    <TD class=blackshade height=20 width=1579 colSpan=2>&nbsp;&nbsp;<FONT 
+      color=#4b4b4b><A class=link8 href="users_list.php">Knowledge Base</A> &gt; 
+      <A class=link8 
+      href="article_list.php?a=search&amp;value=1&amp;SearchFor={$show_Category}&amp;SearchOption=Contains&amp;SearchField=Category">{$show_Category}</A> &gt; {$show_Title}</FONT></TD>
+  <TR>
+    <TD height=24 width=1579 colSpan=2>&nbsp;&nbsp;<FONT size=2><B>{$show_Title}</B></FONT></TD>
+  <TR>
+    <TD class=shade vAlign=top width=316><BR>&nbsp;&nbsp;Views:&nbsp;{$show_Views}<BR><BR>&nbsp;&nbsp;DateCreated:&nbsp;{$show_DateCreated}<BR><BR>&nbsp;&nbsp;ArticleID:&nbsp;{$show_ArticleID}<BR><BR>&nbsp;&nbsp;<A 
+      class=kb8 
+      href="article_export.php?a=delete&amp;mdelete[]=1&amp;mdelete1[]={$show_ArticleID}" 
+      target=_blank><FONT color=#388e8e size=2>Export 
+      article</FONT></A><BR><BR>&nbsp;&nbsp;<A class=kb8 
+      href="article_print.php?a=delete&amp;mdelete[]=1&amp;mdelete1[]={$show_ArticleID}" 
+      target=_blank><FONT color=#388e8e size=2>Printer-friendly 
+      version</FONT></A><BR><BR></TD>
+    <TD vAlign=top width=1263>
+      <TABLE border=0 cellSpacing=0 cellPadding=3 width="100%">
+        <TBODY>
+        <TR>
+          <TD class=shade><B>Problem</B></TD>
+        <TR>
+          <TD height="50%">{$show_Problem}</TD>
+        <TR>
+          <TD class=shade><B>Solution</B></TD>
+        <TR>
+          <TD height="50%">{$show_Solution}</TD></TR></TBODY></TABLE></TD>
+  <TR height=6>
+    <TD style="BACKGROUND-COLOR: #deedeb" width=316>&nbsp;</TD>
+    <TD width=1262>&nbsp;</TD></TR>
+  <TR>
+    <TD class=shade width=316>&nbsp; Screenshot of the Problem</TD>
+    <TD width=1262>{$show_screenp}</TD>
+  <TR>
+    <TD style="BACKGROUND-COLOR: #deedeb" width=316>&nbsp;</TD>
+    <TD width=1262>&nbsp;</TD></TR>
+  <TR>
+    <TD class=shade width=316>&nbsp; File Upload of the Problem</TD>
+    <TD width=1262>{$show_filep}</TD>
+  <TR>
+    <TD style="BACKGROUND-COLOR: #deedeb" width=316>&nbsp;</TD>
+    <TD width=1262>&nbsp;</TD></TR>
+  <TR>
+    <TD class=shade width=316>&nbsp; Screenshot of the Solution</TD>
+    <TD width=1262>{$show_screens}</TD>
+  <TR>
+    <TD style="BACKGROUND-COLOR: #deedeb" width=316>&nbsp;</TD>
+    <TD width=1262>&nbsp;</TD></TR>
+  <TR>
+    <TD class=shade width=316>&nbsp; File Upload of the Solution</TD>
+    <TD width=1262>{$show_files}</TD></TR></TBODY></TABLE>
+<P align=center><A class=kb8 
+href="article_list.php?a=search&amp;value=1&amp;SearchFor={$show_Category}&amp;SearchOption=Contains&amp;SearchField=Category"><STRONG><FONT 
+color=#388e8e size=2>Back to list</FONT></STRONG></A><STRONG><FONT color=#388e8e 
+size=2>{if $allow_edit}&nbsp;&nbsp;</FONT></STRONG><A class=kb8 
+href="comment_add.php?SearchFor={$show_Category}"><STRONG><FONT color=#388e8e 
+size=2>Add comment</FONT></STRONG></A><BR><BR>{/if}</P>{include_if_exists file="include/footer.php"} 
+</BODY></HTML>

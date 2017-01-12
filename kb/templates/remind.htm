@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Password reminder</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+
+<body text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#0066cc">
+{literal}
+<script language = JavaScript>
+
+function OnKeyDown()
+{
+	e = window.event;
+	if (e.keyCode == 13)
+	{
+		e.cancel = true;
+		document.forms[0].submit();
+	}	
+}
+
+function UpdateControls()
+{
+	if (document.forms.form1.searchby.value=="username")
+	{
+		document.forms.form1.username.style.backgroundColor='white';
+		document.forms.form1.email.style.backgroundColor='gainsboro';
+		document.forms.form1.username.disabled=false; 
+		document.forms.form1.email.disabled=true;
+	}
+	else
+	{
+		document.forms.form1.username.style.backgroundColor='gainsboro';
+		document.forms.form1.email.style.backgroundColor='white';
+		document.forms.form1.username.disabled=true; 
+		document.forms.form1.email.disabled=false;
+	}
+}
+</script>
+{/literal}
+{doevent name="RemindPasswordOnLoad"}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="99%">
+  <tr>
+    <td valign="center" align="middle"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td  valign="top" align="right"> 
+                  <table width="300" border="0" cellspacing="4" cellpadding="4" align="center">
+                    <tr> 
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  <table width="300" border="0" cellspacing="1" cellpadding="4" align="center" >
+                    <tr> 
+                      <td align=middle class=blackshade>
+							 <b><font size=+1>Password reminder</font></b></td>
+                    </tr>
+                    <tr> 
+                      <td valign="top" class=shade>
+                        <DIV align=center> 
+                        <table width="200" border=0 align="center" class=shade>
+                          <tbody>
+								  <tr height=10><td>&nbsp;</td></tr>
+						  <tr> 
+                  <form method="POST" action="remind.php" id=form1 name=form1>
+				  <input type="Hidden" name="searchby" {$strSearchBy}>
+							<td colspan=3 align=middle > 
+                              Please enter your username or email address  and click on submit to receive your password by email
+                            </td>
+                          </tr>
+						  <tr><td>&nbsp;</td></tr> 
+                            <td align=left width=30> 
+                              <input name=remtype type="Radio" {$checked_username} onclick="document.forms.form1.searchby.value='username'; UpdateControls();">&nbsp;&nbsp;Username:
+                            </td>
+                            <td > 
+                              <input name=username {$strUsername}>
+                            </td>
+                          </tr>
+						  <tr> 
+                            <td align=left width=30> 
+                              <input name=remtype type="Radio" {$checked_email} onclick="document.forms.form1.searchby.value='email'; UpdateControls();">&nbsp;&nbsp;Email:
+                            </td>
+                            <td > 
+                              <input name="email" {$strEmail}>
+                            </td>
+                          </tr>
+				  <script language="JavaScript">
+				  document.forms.form1.{$searchby_disabled}.disabled=true;
+				  </script>
+                          <tr> 
+                            <td colspan=2 align=middle>
+								<input type=hidden name=btnSubmit value="Remind">
+								<input type=submit value="Submit" class=buttonM  >
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td colspan=2 align=middle>
+								<a href="login.php">Back to login page</a>
+                            </td>
+                          </tr>
+								   <tr height=20>
+								   <td align=center colspan=2>
+										<font color=red>{$message}</font>&nbsp;
+									</td></tr>
+									
+                            <script language="Javascript">
+							UpdateControls();
+							</script>
+                          </tbody> 
+                        </table></DIV>
+                      </td>
+                    </tr>
+                  </table>
+                  </form>
+                <p>&nbsp;</p></td>
+              </tr>
+            </table>
+            
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

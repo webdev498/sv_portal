@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><TITLE>comments</TITLE><META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css"><META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD><BODY topMargin=5 bgColor=white {$onload}>{$includes}{include_if_exists file="include/header.php"}{literal}<STYLE>
+A.kb8n
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+}
+A.kb8
+{
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline;
+}
+A.kb9
+{
+    FONT-SIZE: 9pt;
+    COLOR: black;
+    FONT-FAMILY: Tahoma, Arial, Helvetica, sans serif;
+    TEXT-DECORATION: underline
+}
+</STYLE>{/literal}<FORM method=get name=frmSearch action=comments_list.php><input type="Hidden" name="a" value="search"><input type="Hidden" name="value" value="1"><input type="Hidden" name="SearchFor" value=""><input type="Hidden" name="SearchOption" value=""><input type="Hidden" name="SearchField" value=""></FORM>{include file="$showmasterfile"}{doevent name="ListOnLoad"}<TABLE width="95%"><TR><TD width="100%" align=middle><TABLE border=0 width="100%" align=center><TR height=15><TD width=14>&nbsp;</TD>{if $mastertable!=""}<TD width=377 align=middle><A class=kb8 href="{$mastertable_short}_list.php?a=return"><FONT color=#388e8e 
+            size=2><STRONG>Back to Master table</STRONG></FONT></A></TD><TD width=24>&nbsp;</TD>{/if}<TD width=363 align=middle>Logged 
+            as&nbsp;<B>{$userid}</B>&nbsp; <A class=kb8 
+            href="login.php?a=logout"><FONT color=#388e8e size=2><STRONG>Log 
+            out</STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD><TD width=24><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{if $guest==0}<TD width=370 align=middle><FONT color=#388e8e size=2><STRONG>&nbsp; 
+            </STRONG></FONT><A class=kb8 href="changepwd.php"><FONT 
+            color=#388e8e size=2><STRONG>Change 
+            password</STRONG></FONT></A><FONT color=#388e8e 
+            size=2><STRONG></STRONG></FONT></TD><TD width=24><FONT color=#388e8e 
+            size=2><STRONG>&nbsp;</STRONG></FONT></TD>{/if}<td valign=middle align=center>Quick jump:</td><td align=center><select onchange="window.location.href=this.options[this.selectedIndex].value;"><option value="menu.php">Back to menu</option>{if $allow_main}<option value="main_list.php" 
+>main</option>{/if}{if $allow_register}<option value="register_add.php" 
+>register</option>{/if}</select></td><td width=20>&nbsp;</td>{if $allow_search}<TD width=336 align=middle><A class=kb8 
+            href="comments_search.php"><FONT color=#388e8e 
+            size=2><STRONG>Advanced search</STRONG></FONT></A></TD><TD 
+  width=24>&nbsp;</TD>{/if}</TABLE></TD></TABLE><TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=1 cellPadding=4 width="95%" align=center><TR>{if $allow_add}<!-- Add new record --><TD class=shade align=middle><A class=kb8n href="comments_add.php"><FONT 
+      color=#388e8e size=2><STRONG>Add new</STRONG></FONT></A></TD>{/if}{if $allow_add}<TD class=shade align=middle><A id=inline_add class=kb8n 
+      onclick="return inlineAdd(newrecord_id++);" href="#"><FONT color=#388e8e 
+      size=2><STRONG>Inline Add</STRONG></FONT></A></TD>{/if}{if $allow_search}<TD class=shade vAlign=middle align=middle><B>Search for: 
+      </B>&nbsp;&nbsp;&nbsp; <select id="ctlSearchField"><option value="">Any field</option><option value="email" {$search_email}>email</option><option value="comment" {$search_comment}>comment</select> &nbsp; <select id="ctlSearchOption"><option value="Contains" {$search_contains_option_selected}>Contains</option><option value="Equals" {$search_equals_option_selected}>Equals</option><option value="Starts with ..." {$search_startswith_option_selected}>Starts with ...</option><option value="More than ..." {$search_more_option_selected}>More than ...</option><option value="Less than ..." {$search_less_option_selected}>Less than ...</option><option value="Equal or more than ..." {$search_equalormore_option_selected}>Equal or more than ...</option><option value="Equal or less than ..." {$search_equalorless_option_selected}>Equal or less than ...</option><option value="Empty" {$search_empty_option_selected}>Empty</option></select> &nbsp; <INPUT 
+      id=ctlSearchFor name=ctlSearchFor {if $useAJAX} autocomplete="off" onkeydown="return listenEvent(event,this,'ordinary');" onkeyup="searchSuggest(event,this,'ordinary');" {else} onkeydown="e=event; if(!e) e = window.event; if (e.keyCode != 13) return true; e.cancel = true; RunSearch(); return false;" {/if} {$search_searchfor}> &nbsp; <INPUT class=button onclick="javascript: RunSearch();" value=Search type=button> 
+      &nbsp; <INPUT class=button onclick="javascript: document.forms.frmSearch.a.value = 'showall'; document.forms.frmSearch.submit();" value="Show all" type=button></TD><!-- how many records found--><TD class=shade align=middle>Details found: {$records_found}<BR>Page {$page}of {$maxpages}</TD><!--Records per page--><TD class=shade align=middle>Records Per Page:<BR><select 
+onChange="javascript: document.location='comments_list.php?pagesize='+this.options[this.selectedIndex].value;"><option value="10" {$rpp10_selected}>10</option><option value="20" {$rpp20_selected}>20</option><option value="30" {$rpp30_selected}>30</option><option value="50" {$rpp50_selected}>50</option><option value="100" {$rpp100_selected}>100</option><option value="500" {$rpp500_selected}>500</option></select></TD></TABLE><SPAN 
+name="record_controls">{if $allow_delete}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<A class=kb8n 
+onclick="if (confirm('Do you really want to delete these records?')) frmAdmin.submit(); return false;" 
+href="#"><FONT color=#388e8e size=2><STRONG>Delete 
+selected</STRONG></FONT></A><FONT color=#388e8e size=2><STRONG>{/if}{if $allow_edit || $allow_add}&nbsp;&nbsp; </STRONG></FONT><A 
+class=kb8n onclick="" href="javascript:void(0);" name=edit_selected>{if $allow_edit || $allow_add}<FONT color=#388e8e><FONT 
+size=2><STRONG>Edit selected {/if}</STRONG></FONT></FONT></A><FONT 
+color=#388e8e size=2><STRONG>&nbsp;&nbsp; </STRONG></FONT><A 
+style="DISPLAY: none" class=kb8n onclick="" href="javascript:void(0);" 
+name=saveall_edited><FONT color=#388e8e size=2><STRONG>Save all / 
+</STRONG></FONT></A><A style="DISPLAY: none" class=kb8n onclick="" 
+href="javascript:void(0);" name=revertall_edited><FONT color=#388e8e 
+size=2><STRONG>Cancel</STRONG></FONT></A>{/if}</SPAN><!-- delete form --><FORM method=post name=frmAdmin action=comments_list.php><input type=hidden id="a" name="a" value="delete"><TABLE 
+style="BORDER-BOTTOM: #c0c0c0 1px solid; BORDER-LEFT: #c0c0c0 1px solid; BORDER-TOP: #c0c0c0 1px solid; BORDER-RIGHT: #c0c0c0 1px solid" 
+border=0 cellSpacing=2 cellPadding=3 width="95%" align=center name="maintable"><!-- table header --><TR class=blackshade vAlign=top><!--{if $column1show}-->{if $allow_edit}<TD width=56 align=middle><IMG src="include/img/icon_edit.gif"></TD>{/if}{if $allow_edit}<TD width=56 align=middle><IMG src="include/img/icon_edit.gif"></TD>{/if}{if $allow_delete || $allow_export  || $allow_edit }<TD width=56 align=middle><INPUT 
+      onclick="var i;&#13;&#10;if ((typeof frmAdmin.elements['selection[]'].length)=='undefined')&#13;&#10;&#9;frmAdmin.elements['selection[]'].checked=this.checked;&#13;&#10;else&#13;&#10;for (i=0;i<frmAdmin.elements['selection[]'].length;++i) &#13;&#10;&#9;frmAdmin.elements['selection[]'][i].checked=this.checked;" 
+      type=checkbox></TD>{/if}<TD width=466><TABLE><TR><TD class=blackshade><A class=kb9 
+            href="comments_list.php?orderby={$order_dir_email}email">email</A></TD><TD>{$order_image_email}</TD></TABLE></TD><TD width=466><TABLE><TR><TD class=blackshade><A class=kb9 
+            href="comments_list.php?orderby={$order_dir_comment}comment">comment</A></TD><TD>{$order_image_comment}<!--{/if}--><!-- inline add area --><TR class=addarea>{if $allow_edit}<TD width=56 align=middle><A id=editlink_add 
+      href="comments_edit.php?"><FONT color=#388e8e>Edit</FONT></A></TD>{/if}{if $allow_edit}<TD width=56 align=middle><A id=ieditlink_add 
+      href="comments_edit.php?"><FONT color=#388e8e size=1>Inline 
+    Edit</FONT></A></TD>{/if}{if $allow_delete || $allow_export  || $allow_edit }<TD width=56 align=middle><INPUT id=check_add value="" type=checkbox 
+      name=selection[]></TD>{/if}<TD width=466>{if !$allow_edit}<A id=ieditlink_add 
+      href="comments_edit.php?"></A>{/if}<SPAN 
+    id=add_email></SPAN></TD><TD width=466><SPAN id=add_comment><!-- end inline add area -->{if $rowsfound}<!-- table data --><!--{foreach from=$rowinfo item=row}--><TR onmouseover="this.className = 'shade';" 
+  onmouseout="this.className = '{$row.shadeclassname}';" vAlign=top 
+  {$row.shadeclass}>{if $allow_edit}<TD width=56 align=middle><A id=editlink{$row.1recno} 
+      href="comments_edit.php?{$row.1editlink}"><FONT 
+      color=#388e8e>Edit</FONT></A>&nbsp; </TD>{/if}{if $allow_edit}<TD width=56 align=middle><A id=ieditlink{$row.1recno} 
+      onclick="return inlineEdit('{$row.1recno}','{$row.1editlink}');" 
+      href="comments_edit.php?{$row.1editlink}"><FONT color=#388e8e>Inline 
+      Edit</FONT></A></TD>{/if}{if $allow_delete || $allow_export  || $allow_edit }<TD width=56 align=middle><INPUT id=check{$row.1recno} value="{$row.1keyblock}" type=checkbox name=selection[]></TD>{/if}<TD width=466>{$row.1email_value}</TD><TD width=466>{$row.1comment_value}</TD><!--{/foreach}-->{/if}{/if}</TABLE></FORM><P>&nbsp;</P><P align=center><B>{$message}</B></P>{if $allow_search}{$pagination}{/if}{include_if_exists file="include/footer.php"}{$linkdata}</BODY></HTML>

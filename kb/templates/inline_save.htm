@@ -1,0 +1,19 @@
+<mozilla_values>
+	##foreach @TABLE.arrKeyFields as @k##
+	<key>{$key##@index##}</key>
+	##endfor##
+	##foreach Fields as @f filter @f.bListPage order @f.nListPageOrder##
+	<value>{$show_##@f.strName g##}</value>
+	##endfor##
+	<message status="{$status}">{$message}</message>
+</mozilla_values>
+:::browser controls:::
+<msie_values>
+	##foreach @TABLE.arrKeyFields as @k##
+	<key>{$key##@index##}</key>
+	##endfor##
+	##foreach Fields as @f filter @f.bListPage order @f.nListPageOrder##
+	<value><![CDATA[{$show_##@f.strName g##}]]></value>
+	##endfor##
+	<message status="{$status}">{$message}</message>
+</msie_values>

@@ -1,0 +1,421 @@
+<html>
+<head>
+<title>##@TABLE.strCaption h##</title>
+	<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body topmargin=5 bgcolor=white>
+{$includes}
+{include_if_exists file="include/header.##@ext##"}
+{literal}
+<style> 
+table.report {  border-collapse: collapse} 
+table.report td { 
+ padding: 2px; 
+ border-width: 1px; 
+ border-style: solid; 
+ border-color: #cccccc; 
+}
+
+td.group_1 { 
+background-color:#ccffcc;
+}
+
+td.group_2 { 
+background-color:#cceeff;
+}
+td.group_3 { 
+background-color:#ffcccc;
+}
+td.group_4 { 
+background-color:#ffff90;
+}
+
+td.nbgroup_1 { 
+background-color:#ccffcc;
+border-style:none;
+}
+
+td.nbgroup_2 { 
+background-color:#cceeff;
+border-style:none;
+}
+td.nbgroup_3 { 
+background-color:#ffcccc;
+border-style:none;
+}
+td.nbgroup_4 { 
+background-color:#ffff90;
+border-style:none;
+}
+
+td.header_1
+{
+background-color:#90ff90;
+}
+td.header_2
+{
+background-color:#aaccff
+}
+td.header_3
+{
+background-color:#ffaaaa
+}
+td.header_4
+{
+background-color:#ffff40
+}
+td.pagesummary
+{
+background-color:#ffffbb;
+}
+td.globalsummary
+{
+background-color:#ffe0b0;
+}
+</style> 
+{/literal}
+
+
+<table>
+<tr>
+<td width=30>&nbsp;</td>
+<td align=center>
+<font size=+0><b>&nbsp;##@TABLE.strCaption hn##</b></font>
+</td>
+
+<td width=80% align=center>
+
+<table align='center' border='0'>
+<tr>
+<td width=10>&nbsp;</td>
+
+##if @BUILDER.bCreateLoginPage##
+<td align=center>##message LOGGED_AS ##&nbsp;<b>{$userid}</b>&nbsp;
+<a href="login.##@ext##?a=logout">##message LOG_OUT##</a>
+</td><td width=20>&nbsp;</td>
+
+##if @BUILDER.Registration.bChangePwdPage && @BUILDER.nLoginMethod == SECURITY_TABLE##
+##if @BUILDER.bGuestLogin## {if $guest==0} ##endif##
+<td align=center>&nbsp;
+<a href="changepwd.##@ext##">##message CHANGE_PASSWORD ##</a>
+</td><td width=20>&nbsp;</td>
+##if @BUILDER.bGuestLogin## {/if} ##endif##
+##endif##
+##endif##
+
+##if CreateMenu##
+<td valign=middle align=center>##message QUICK_JUMP##:</td>
+<td align=center>
+<select onchange="window.location.href=this.options[this.selectedIndex].value;">
+<option value="menu.##@ext##">##message BACK_TO_MENU##</option>
+##foreach @BUILDER.Tables as @t filter @t.bMenuItem order @t.nMenuOrder##
+##if GroupSecurity##{if $allow_##@t.strShortTableName##}##endif##
+	##if @t.bList##
+<option value="##@t.strShortTableName##_list.##@ext##" 
+	##elseif @t.bAdd##
+<option value="##@t.strShortTableName##_add.##@ext##" 
+	##elseif @t.nType==titREPORT##
+<option value="##@t.strShortTableName##_report.##@ext##" 
+	##elseif @t.nType==titCHART##
+<option value="##@t.strShortTableName##_chart.##@ext##" 
+	##endif##
+##if @t.strDataSourceTable==@TABLE.strDataSourceTable## selected##endif##>##@t.strCaption h##</option>
+##if GroupSecurity##{/if}##endif##
+##endfor##
+</select>
+</td>
+<td width=20>&nbsp;</td>
+##endif##
+
+##if Fields[bAdvancedSearch=1].len##
+<td align=center>
+<a href="##@TABLE.strShortTableName h##_search.##@ext##">##message ADVANCED_SEARCH##</a>	
+</td>
+<td width=20>&nbsp;</td>
+##endif##
+</table>
+</td>
+</table>
+{doevent name="ReportOnLoad"}
+<table width=50%>
+<td width=30>&nbsp;</td>
+<td>
+##message GROUPS_PP##:&nbsp;
+<select 
+onChange="javascript: document.location='##@TABLE.strShortTableName h##_report.##@ext##?pagesize='+this.options[this.selectedIndex].value;">
+<option value="1" {$gpp1_selected}>1</option>
+<option value="3" {$gpp3_selected}>3</option>
+<option value="5" {$gpp5_selected}>5</option>
+<option value="10" {$gpp10_selected}>10</option>
+<option value="50" {$gpp50_selected}>50</option>
+<option value="100" {$gpp100_selected}>100</option>
+<option value="-1" {$gpp0_selected}>All</option>
+</select>
+</td>
+<td >
+{$pagination}
+</td>
+</table>
+<TABLE class=report WIDTH=95% CELLPADDING=1 CELLSPACING=0 BORDER=0 align=center style="border: solid; border-width: 1px; border-color: black;">
+<!--{foreach from=$rowinfo item=row}-->
+<!-------------------------------------  group headers ----------------------------------------->
+##foreach @TABLE.arrReportGroupFields as @g##
+<!--{if $row.newgroup_##@g.strGroupField g##}-->
+##if @first##
+<tr>
+##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+<td class=blackshade>##@f.strLabel h##</td>
+##endfor##
+</tr>
+##endif##
+<tr>
+	##foreach @TABLE.arrReportGroupFields as @gg##
+		##if @g.strGroupField==@gg.strGroupField##
+<td colspan=##eval Fields[bReportPage].len-@g.nGroupOrder+1## class=header_##@g.nGroupOrder##><font style="font-weight:900">{$row.1##@g.strGroupField g##_grval}</font></td>
+		##elseif @gg.nGroupOrder<@g.nGroupOrder##
+<td class=nbgroup_##@gg.nGroupOrder## style="border-style:none;">&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>
+<!--{/if}-->
+##endfor##
+##if @TABLE.bReportShowDetails##
+<!-------------------------------------  data ----------------------------------------->
+<!--{if $row.havedata}-->
+<tr>
+	##foreach @TABLE.arrReportGroupFields as @g##
+		##if @g.nGroupInterval##
+	<td class=group_##@index##>{$row.1##@g.strGroupField g##_value}</td>
+		##else##
+	<td class=nbgroup_##@index## style="border-style:none; border-right:solid 1px">&nbsp;</td>
+		##endif##
+	##endfor##
+	##foreach Fields as @f filter @f.bReportPage && @TABLE.arrReportGroupFields[strGroupField==@f.strName].len==0 order nReportPageOrder##
+	<td class=data>{$row.1##@f.strName g##_value}</td>
+	##endfor##
+</tr>
+<!--{/if}-->
+##endif##
+<!-------------------------------------  group summary ----------------------------------------->
+##foreach @TABLE.arrReportGroupFields as @g order desc##
+##if @g.bShowGroupSummary##
+<!--{if $row.endgroup_##@g.strGroupField g##}-->
+<tr>
+	##repeat @TABLE.arrReportGroupFields.len-@index##
+	<td class=group_##@index## style="border-style:none"></td>
+	##endrepeat##
+	##foreach Fields as @f filter @f.strName=@g.strGroupField##
+	<td style="border-top: none" class=nbgroup_##@g.nGroupOrder## colspan=##eval Fields[bReportPage].len-@g.nGroupOrder+1## >
+	##message SUMMARY_FOR## ##@f.strLabel h## {$row.1##@g.strGroupField g##_grval}
+	 - {$row.group##@g.strGroupField g##_total_cnt} ##message RECORDS_TOTAL##</div></td>
+	##endfor##
+</tr>
+##if Fields[bReportPage && bSum].len##
+<!--  Sum -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=group_##@g.nGroupOrder## style="border-left: solid black 1px;">##message SUM##</td>
+		##elseif @f.bSum##
+	<td class=group_##@g.nGroupOrder##>{$row.group##@g.strGroupField g##_total##@f.strName g##_sum}</td>
+		##elseif @index<@g.nGroupOrder##
+	<td class=group_##@index## style="border-style:none">&nbsp;</td>
+		##else##
+	<td class=group_##@g.nGroupOrder##>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bAvg].len##
+<!--  Avg -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=group_##@g.nGroupOrder##>##message AVERAGE##</td>
+		##elseif @f.bAvg##
+	<td class=group_##@g.nGroupOrder##>{$row.group##@g.strGroupField g##_total##@f.strName g##_avg}</td>
+		##elseif @index<@g.nGroupOrder##
+	<td class=group_##@index## style="border-style:none">&nbsp;</td>
+		##else##
+	<td class=group_##@g.nGroupOrder##>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bMin].len##
+<!--  Min -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=group_##@g.nGroupOrder##>##message MIN##</td>
+		##elseif @f.bMin##
+	<td class=group_##@g.nGroupOrder##>{$row.group##@g.strGroupField g##_total##@f.strName g##_min}</td>
+		##elseif @index<@g.nGroupOrder##
+	<td class=group_##@index## style="border-style:none">&nbsp;</td>
+		##else##
+	<td class=group_##@g.nGroupOrder##>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bMax].len##
+<!--  Max -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=group_##@g.nGroupOrder##>##message MAX##</td>
+		##elseif @f.bMax##
+	<td class=group_##@g.nGroupOrder##>{$row.group##@g.strGroupField g##_total##@f.strName g##_max}</td>
+		##elseif @index<@g.nGroupOrder##
+	<td class=group_##@index## style="border-style:none">&nbsp;</td>
+		##else##
+	<td class=group_##@g.nGroupOrder##>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+<!--{/if}-->
+##endif##
+##endfor##
+<!--{/foreach}-->
+##if @TABLE.bReportPageSummary || @TABLE.bReportGlobalSummary##
+<tr>
+##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+<td class=blackshade>##@f.strLabel h##</td>
+##endfor##
+</tr>
+##endif##
+##if @TABLE.bReportPageSummary##
+<!--------------------------------------page summary-------------------------------------------->
+<tr>
+	<td class=pagesummary colspan=##Fields[bReportPage].len##>##message PAGE_SUMMARY## 
+	 {$page_total_cnt} - ##message RECORDS_TOTAL##</td>
+</tr>
+##if Fields[bReportPage && bSum].len##
+<!--  Sum -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=pagesummary>##message SUM##</td>
+		##elseif @f.bSum##
+	<td class=pagesummary>{$page_total##@f.strName g##_sum}</td>
+		##else##
+	<td class=pagesummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bAvg].len##
+<!--  Avg -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=pagesummary>##message AVERAGE##</td>
+		##elseif @f.bAvg##
+	<td class=pagesummary>{$page_total##@f.strName g##_avg}</td>
+		##else##
+	<td class=pagesummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bMin].len##
+<!--  Min -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=pagesummary>##message MIN##</td>
+		##elseif @f.bMin##
+	<td class=pagesummary>{$page_total##@f.strName g##_min}</td>
+		##else##
+	<td class=pagesummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bMax].len##
+<!--  Max -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=pagesummary>##message MAX##</td>
+		##elseif @f.bMax##
+	<td class=pagesummary>{$page_total##@f.strName g##_max}</td>
+		##else##
+	<td class=pagesummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##endif##
+##if @TABLE.bReportGlobalSummary##
+<!--------------------------------------global summary-------------------------------------------->
+<tr>
+	<td class=globalsummary colspan=##Fields[bReportPage].len##>##message GLOBAL_SUMMARY## 
+	 {$global_total_cnt} - ##message RECORDS_TOTAL##</td>
+</tr>
+##if Fields[bReportPage && bSum].len##
+<!--  Sum -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=globalsummary>##message SUM##</td>
+		##elseif @f.bSum##
+	<td class=globalsummary>{$global_total##@f.strName g##_sum}</td>
+		##else##
+	<td class=globalsummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bAvg].len##
+<!--  Avg -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=globalsummary>##message AVERAGE##</td>
+		##elseif @f.bAvg##
+	<td class=globalsummary>{$global_total##@f.strName g##_avg}</td>
+		##else##
+	<td class=globalsummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bMin].len##
+<!--  Min -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=globalsummary>##message MIN##</td>
+		##elseif @f.bMin##
+	<td class=globalsummary>{$global_total##@f.strName g##_min}</td>
+		##else##
+	<td class=globalsummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##if Fields[bReportPage && bMax].len##
+<!--  Max -->
+<tr>
+	##foreach Fields as @f filter @f.bReportPage order nReportPageOrder##
+		##if @g.strGroupField==@f.strName##
+	<td class=globalsummary>##message MAX##</td>
+		##elseif @f.bMax##
+	<td class=globalsummary>{$global_total##@f.strName g##_max}</td>
+		##else##
+	<td class=globalsummary>&nbsp;</td>
+		##endif##
+	##endfor##
+</tr>	
+##endif##
+##endif##
+</table>
+<br>
+{$pagination}
+<br>
+<br>
+{include_if_exists file="include/footer.##@ext##"}
+</body>
+</html>

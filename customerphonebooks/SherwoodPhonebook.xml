@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<YealinkIPPhoneBook>
+  <Title>Yealink</Title>
+  <Menu Name="Stores">
+    <Unit Name="101-BELL GARDENS" Phone1="3237732203" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="102-NORWALK" Phone1="5628633402" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="106-SAN BERNARDINO" Phone1="9098848213" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="107-WEST COVINA" Phone1="6269602733" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="109-LAKEWOOD" Phone1="5625314350" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="110-CARSON" Phone1="3103279221" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="117-EAGLE ROCK" Phone1="3232578111" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="119-MONTEREY PARK" Phone1="3237263333" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="120-FOX HILLS" Phone1="3103904496" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="122-FONTANA" Phone1="9098229380" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="124-CERRITOS" Phone1="5624022807" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="177-SALINAS" Phone1="8314423400" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="178-CHINO HILLS" Phone1="9096272111" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="179-OTAY RANCH" Phone1="6192163322" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="180-WESTMINSTER" Phone1="7148941515" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="181-CLOVIS" Phone1="5593252100" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="182-SOUTH GATE" Phone1="3232499977" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="183-TULARE" Phone1="5596867700" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="184-MAINPLACE" Phone1="7145428000" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="185-HAYWARD" Phone1="5102742181" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="186-VALENCIA" Phone1="6612596000" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="187-MILPITAS" Phone1="4084570740" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="188-GROSSMONT" Phone1="6195895200" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="189-MENIFEE" Phone1="9516798884" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="190-MODESTO" Phone1="2092892001" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="191-SAN JOSE" Phone1="4088004734" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="192-ANTIOCH" Phone1="9257765480" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="193-NEWARK" Phone1="5107441312" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="194-ALPINE" Phone1="6194450251" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="195-CAPITOLA" Phone1="8314648065" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="196-VALLEJO" Phone1="7076554840" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="197-SAN BRUNO" Phone1="" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="198-OAKRIDGE (SAN JOSE)" Phone1="4083632194" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="199-EL CENTRO" Phone1="" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="204-WHITTWOOD" Phone1="5629472548" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="213-OCEANSIDE" Phone1="7607221526" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="214-CARLSBAD" Phone1="7607297924" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="215-MIRA MESA" Phone1="8585783320" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="223-PARKWAY (EL CAJON)" Phone1="6194428801" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="225-PUENTE HILLS" Phone1="6269654112" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="227-VICTORVILLE" Phone1="7602410606" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="229-HUNTINGTON PARK" Phone1="3235858445" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="230-BALDWIN HILLS" Phone1="3232948050" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="232-BAKERSFIELD" Phone1="6618727980" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="233-PANORAMA CITY" Phone1="8188920530" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="234-BONITA" Phone1="6194703181" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="236-SANTA MARIA" Phone1="8059281837" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="237-ORANGE" Phone1="7142834036" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="238-TOWNGATE" Phone1="9516535859" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="240-MONTEBELLO" Phone1="3238881804" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="241-VALLEY PLAZA" Phone1="6613960324" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="242-CHULA VISTA" Phone1="6194261190" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="243-ANTELOPE VALLEY" Phone1="6612660177" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="244-INLAND CENTER" Phone1="9093811600" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="245-PACIFIC VIEW" Phone1="8056429742" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="246-CENTERPOINT" Phone1="8054878332" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="247-BUENA PARK" Phone1="7145274100" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="248-THE ROSE" Phone1="8059833156" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="249-STONEWOOD" Phone1="5628619918" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="250-NORTHRIDGE" Phone1="8183413100" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="251-PICO RIVERA" Phone1="5629493100" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="252-TYLER" Phone1="9513547254" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="253-ESCONDIDO" Phone1="7607477865" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="254-MONTCLAIR PLAZA" Phone1="9094824582" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="256-MISSION VALLEY" Phone1="6192992958" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="258-SANTA ANITA" Phone1="6262949100" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="259-RIVERSIDE" Phone1="9516846211" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="260-PALM DESERT" Phone1="7603464157" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="262-INGLEWOOD" Phone1="3104199993" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="263-TOPANGA" Phone1="8183408777" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="264-LONG BEACH" Phone1="5629013333" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="265-GLENDALE" Phone1="8182475050" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="266-ONTARIO" Phone1="9099805544" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="267-HANFORD" Phone1="5595831111" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="268-DEL AMO" Phone1="3107938777" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="270-COMPTON" Phone1="3106085555" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="271-LAS AMERICAS" Phone1="6194283333" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="272-PASO ROBLES" Phone1="8052260101" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="273-HEMET" Phone1="9516521200" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="274-FRESNO" Phone1="5592255555" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="275-TEMECULA" Phone1="9512963353" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="276-DOS LAGOS" Phone1="9516030222" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="301-CAMARILLO" Phone1="" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="302-STOCKTON" Phone1="" Phone2="" Phone3="" default_photo="Resource:"/>
+  </Menu>
+  <Menu Name="Other">
+    <Unit Name="DCM-DEARDEN'S-COMMERCE" Phone1="3232780104" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="DHP-DEARDEN'S-HUNTINGTON PARK" Phone1="3235822525" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="DLA-DEARDEN'S-LOS ANGELES" Phone1="2136236623" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="DLP-DEARDEN'S LA PUENTE" Phone1="6268500069" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="DSA-DEARDEN'S-SANTA ANA" Phone1="7146640305" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="DVN-DEARDEN'S-VAN NUYS" Phone1="8183760404" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="-HUMAN RESOURCES" Phone1="3108465621" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="-SPECIAL ORDERS" Phone1="3106622100,5210" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="-CREDIT" Phone1="3106652120" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="-DISTRIBUTION" Phone1="3108465669" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="-ARTCARVED" Phone1="8005315055" Phone2="" Phone3="" default_photo="Resource:"/>
+    <Unit Name="-BOGARZ" Phone1="8004220207" Phone2="" Phone3="" default_photo="Resource:"/>
+  </Menu>
+</YealinkIPPhoneBook>

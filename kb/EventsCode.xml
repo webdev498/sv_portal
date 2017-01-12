@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+
+<!-- list of possible events
+EVENT_LOGIN_ONLOAD EVENT_BEFORELOGIN EVENT_AFTERSUCCESSFULLOGIN EVENT_AFTERUNSUCCESSFULLOGIN
+
+EVENT_REGISTER_ONLOAD EVENT_BEFOREREGISTER EVENT_AFTERSUCCESSFULREGISTRATION EVENT_AFTERUNSUCCESSFULREGISTRATION
+
+EVENT_CHANGEPASSWORD_ONLOAD EVENT_BEFORECHANGEPASSWORD EVENT_AFTERCHANGEPASSWORD
+
+EVENT_REMINDPASSWORD_ONLOAD EVENT_BEFOREREMINDPASSWORD EVENT_AFTERREMINDPASSWORD
+
+EVENT_ADD_ONLOAD EVENT_BEFOREADD EVENT_AFTERADD
+
+EVENT_LIST_ONLOAD EVENT_BEFOREDELETE EVENT_AFTERDELETE EVENT_AFTERMASSDELETE
+
+EVENT_EDIT_ONLOAD EVENT_BEFOREEDIT EVENT_AFTEREDIT
+	
+EVENT_COPY_ONLOAD EVENT_BEFORECOPY EVENT_AFTERCOPY
+
+EVENT_VIEW_ONLOAD
+EVENT_PRINT_ONLOAD
+EVENT_EXPORT_ONLOAD
+EVENT_REPORT_ONLOAD
+EVENT_CHART_ONLOAD
+
+<Events>
+<Event>EVENT_LOGIN_ONLOAD</Event>
+<Event>EVENT_BEFORELOGIN</Event>
+<Event>EVENT_AFTERSUCCESSFULLOGIN</Event>
+<Event>EVENT_AFTERUNSUCCESSFULLOGIN</Event>
+<Event>EVENT_REGISTER_ONLOAD</Event>
+<Event>EVENT_BEFOREREGISTER</Event>
+<Event>EVENT_AFTERSUCCESSFULREGISTRATION</Event>
+<Event>EVENT_AFTERUNSUCCESSFULREGISTRATION</Event>
+<Event>EVENT_CHANGEPASSWORD_ONLOAD</Event>
+<Event>EVENT_BEFORECHANGEPASSWORD</Event>
+<Event>EVENT_AFTERCHANGEPASSWORD</Event>
+<Event>EVENT_REMINDPASSWORD_ONLOAD</Event>
+<Event>EVENT_BEFOREREMINDPASSWORD</Event>
+<Event>EVENT_AFTERREMINDPASSWORD</Event>
+<Event>EVENT_ADD_ONLOAD</Event>
+<Event>EVENT_BEFOREADD</Event>
+<Event>EVENT_AFTERADD</Event>
+<Event>EVENT_LIST_ONLOAD</Event>
+<Event>EVENT_BEFOREDELETE</Event>
+<Event>EVENT_AFTERDELETE</Event>
+<Event>EVENT_AFTERMASSDELETE</Event>
+<Event>EVENT_EDIT_ONLOAD</Event>
+<Event>EVENT_BEFOREEDIT</Event>
+<Event>EVENT_AFTEREDIT</Event>
+<Event>EVENT_COPY_ONLOAD</Event>
+<Event>EVENT_BEFORECOPY</Event>
+<Event>EVENT_AFTERCOPY</Event>
+<Event>EVENT_VIEW_ONLOAD</Event>
+<Event>EVENT_SEARCH_ONLOAD</Event>
+<Event>EVENT_PRINT_ONLOAD</Event>
+<Event>EVENT_EXPORT_ONLOAD</Event>
+<Event>EVENT_REPORT_ONLOAD</Event>
+<Event>EVENT_CHART_ONLOAD</Event>
+</Events>
+</EventCode>
+
+ --> 
+
+
+<languages>
+<language name="php"/>
+
+<EventCodes language="php">
+<EventCode type="EMAIL" name="Send simple email" events="all" code="
+// **********  Send simple email  ************
+
+$email=&quot;test@test.com&quot;;
+$message=&quot;Hello there\nBest regards&quot;;
+$subject=&quot;Sample subject&quot;;
+mail($email, $subject, $message);
+">
+<Events/>
+</EventCode>
+
+<EventCode type="EMAIL" name="Send email with old data record" code="
+//**********  Send email with old data record  ************
+global $conn,$strTableName;
+$email=&quot;test@test.com&quot;;
+$message=&quot;&quot;;
+$subject=&quot;Sample subject&quot;;
+
+// modify the following SQL query to select fields you like to send
+$rs =  db_query(&quot;select * from &quot; . $strTableName .&quot; where &quot;. $where,$conn);
+
+if($data=db_fetch_array($rs))
+{
+	foreach($data as $field=>$value)
+		$message.= $field.&quot; : &quot;.$value.&quot;\r\n&quot;;
+	mail($email, $subject, $message);
+}
+
+
+">
+<Events>
+<Event>EVENT_BEFOREDELETE</Event>
+<Event>EVENT_EDIT_ONLOAD</Event>
+<Event>EVENT_BEFOREEDIT</Event>
+<Event>EVENT_COPY_ONLOAD</Event>
+<Event>EVENT_BEFORECOPY</Event>
+<Event>EVENT_VIEW_ONLOAD</Event>
+</Events>
+</EventCode>
+
+
+<EventCode type="EMAIL" name="Send email with new data" code="
+//**********  Send email with new data  ************
+
+$email=&quot;test@test.com&quot;;
+$message=&quot;&quot;;
+$subject=&quot;New data record&quot;;
+
+foreach($values as $field=>$value)
+	$message.= $field.&quot; : &quot;.$value.&quot;\r\n&quot;;
+	
+mail($email, $subject, $message);
+
+">
+
+<Events>
+<Event>EVENT_BEFOREREGISTER</Event>
+<Event>EVENT_BEFOREADD</Event>
+<Event>EVENT_BEFOREEDIT</Event>
+<Event>EVENT_BEFORECOPY</Event>
+</Events>
+</EventCode>
+
+
+<EventCode type="OTHER" name="Display a message on the Web page" events="all" code="
+//**********  Display a message on the Web page  ************
+echo &quot;Your message here&quot;;
+
+">
+<Events/>
+</EventCode>
+
+
+<EventCode type="DATABASE" name="Save old data record in another table" code="
+//**********  Save old data record in another table  ************
+global $conn,$strTableName;
+
+$strSQLSave = &quot;INSERT INTO AnotherTable (Field1, Field2) SELECT Field1, Field2 FROM &quot;.$strTableName.&quot; where &quot;.$where;
+db_exec($strSQLSave,$conn);
+
+">
+<Events>
+<Event>EVENT_BEFOREDELETE</Event>
+<Event>EVENT_EDIT_ONLOAD</Event>
+<Event>EVENT_BEFOREEDIT</Event>
+<Event>EVENT_COPY_ONLOAD</Event>
+<Event>EVENT_BEFORECOPY</Event>
+<Event>EVENT_VIEW_ONLOAD</Event>
+</Events>
+</EventCode>
+ 
+<EventCode type="DATABASE" name="Save new data in another table" code="
+//**********  Save new data in another table  ************
+global $conn,$strTableName;
+
+$strSQLSave = &quot;INSERT INTO AnotherTable (Field1, Field2) values (&quot;;
+
+$strSQLSave .=  $values[&quot;Field1&quot;].&quot;,&quot;;
+$strSQLSave .=  $values[&quot;Field2&quot;];
+
+$strSQLSave .= &quot;)&quot;;
+db_exec($strSQLSave,$conn);
+
+">
+<Events>
+<Event>EVENT_BEFOREREGISTER</Event>
+<Event>EVENT_BEFOREADD</Event>
+<Event>EVENT_BEFOREEDIT</Event>
+<Event>EVENT_BEFORECOPY</Event>
+</Events>
+</EventCode>
+
+
+<EventCode type="DATABASE" name="Insert a record into another table" events="all" code="
+//**********  Insert a record into another table  ************
+global $conn;
+$strSQLInsert = &quot;insert into TableName (Field1, Field2) values (Value1, Value2)&quot;;
+db_exec($strSQLInsert,$conn);
+
+">
+<Events/>
+</EventCode>
+
+
+<EventCode type="OTHER" name="Redirect to another page" events="all" code="
+//**********  Redirect to another page  ************
+header(&quot;Location: anypage.php&quot;);
+exit();
+">
+<Events/>
+</EventCode>
+
+<EventCode type="DATABASE" name="Check if specific record exists" events="all" code="
+//**********  Check if specific record exists  ************
+global $conn;
+$strSQLExists = &quot;select * from AnyTable where AnyColumn='AnyValue'&quot;;
+$rsExists = db_query($strSQLExists,$conn);
+$data=db_fetch_array($rsExists);
+if($data)
+{
+	// if record exists do something
+}
+else
+{
+	// if dont exist do something else
+}
+
+">
+<Events/>
+</EventCode>
+
+<EventCode type="OTHER" name="Custom code" events="all" code="
+//**********  Custom code  ************
+// put your custom code here
+
+">
+<Events/>
+</EventCode>
+
+</EventCodes>
+</languages>
+

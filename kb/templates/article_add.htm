@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>article</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="include/style.css">{$includes}
+<META name=GENERATOR content="MSHTML 8.00.6001.23588"></HEAD>
+<BODY bgColor=white {$bodyonload}>{include_if_exists file="include/header.php"} 
+<FORM encType=multipart/form-data method=post name=editform 
+action=article_add.php {$onsubmit}>
+<H1>article, Add new record</H1>{doevent name="AddOnLoad"}{$message} 
+<DIV align=left>
+<HR SIZE=1 width=300 noShade>
+</DIV>&nbsp;&nbsp;&nbsp;<A href="article_list.php?a=return"><FONT color=#388e8e 
+size=2><STRONG>Back to list</STRONG></FONT></A><BR><BR>
+<TABLE cellPadding=2>
+  <TBODY>
+  <TR>
+    <TD class=shade width=150>Category</TD>
+    <TD width=250>{build_edit_control field="Category" mode="add" value=$value_Category} &nbsp;<IMG 
+      src="images/icon_required.gif"></TD>
+  <TR>
+    <TD class=shade width=150>Title</TD>
+    <TD width=250>{build_edit_control field="Title" mode="add" value=$value_Title} 
+      &nbsp;<IMG src="images/icon_required.gif"></TD>
+  <TR>
+    <TD class=shade width=150>Problem</TD>
+    <TD width=250>{build_edit_control field="Problem" mode="add" value=$value_Problem} &nbsp;<IMG 
+      src="images/icon_required.gif"></TD>
+  <TR>
+    <TD class=shade width=150>Screenshot of the Problem</TD>
+    <TD width=250>{build_edit_control field="screenp" mode="add" value=$value_screenp}</TD>
+  <TR>
+    <TD class=shade width=150>File of the Problem</TD>
+    <TD width=250>{build_edit_control field="filep" mode="add" value=$value_filep}</TD>
+  <TR>
+    <TD class=shade width=150>Solution</TD>
+    <TD width=250>{build_edit_control field="Solution" mode="add" value=$value_Solution}</TD>
+  <TR>
+    <TD class=shade width=150>Screenshot of the Solution</TD>
+    <TD width=250>{build_edit_control field="screens" mode="add" value=$value_screens}</TD>
+  <TR>
+    <TD class=shade width=150>File of the Solution</TD>
+    <TD width=250>{build_edit_control field="files" mode="add" value=$value_files}</TD>
+  <TR>
+    <TD class=shade width=150>Date Created</TD>
+    <TD width=250>{build_edit_control field="DateCreated" mode="add" value=$value_DateCreated} &nbsp;<IMG 
+      src="images/icon_required.gif"></TD>
+  <TR height=50>
+    <TD colSpan=2 align=middle><INPUT class=button value=Save type=submit name=submit1><INPUT class=button value=Reset type=reset><input type=hidden name="a" value="added"></TD></FORM><!-- legend -->
+  <TR height=50>
+    <TD colSpan=2 align=left>
+      <HR SIZE=1 width=300 noShade>
+      <BR><IMG src="images/icon_required.gif"><FONT color=#ff0000 
+      size=2><STRONG>- Required field</STRONG></FONT></TD></TR></TBODY></TABLE>{include_if_exists file="include/footer.php"}{$linkdata}<script>SetToFirstControl();</script> </BODY></HTML>

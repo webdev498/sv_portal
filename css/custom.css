@@ -1,0 +1,56 @@
+/* Theme Name: The Project - Responsive Website Template
+Author:HtmlCoder
+Author URI:http://www.htmlcoder.me
+Author e-mail:htmlcoder.me@gmail.com
+Version:1.1.0
+Created:December 2014
+License URI:http://support.wrapbootstrap.com/
+File Description: Place here your custom CSS styles
+*/
+
+.fullscreen-bg {
+  background: url('../images/SimpleVolP-Transparant.png') ;
+  margin: 0;
+  background-size: 1000px 1000px;
+  background-repeat: no-repeat;
+  display: compact;
+
+}
+
+.btn-xsm {
+  padding: 4px 12px;
+  font-size: 10px;
+  line-height: 1.46666667;
+  border-radius: 3px;
+  margin: 3px 0;
+}
+.btn-sm {
+padding: 5px 15px;
+font-size: 12px;
+line-height: 1.46666667;
+border-radius: 3px;
+margin: 2px 0;
+}
+
+.modal.modal-wide .modal-dialog {
+  width: 80%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+.popover {
+  width: 800px;
+  max-width: 800px;
+  font-size: 13px;
+  text-align: left;
+  border: none;
+}
+.popover-title {
+  background-color: #09afdf;
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 13px;
+}
+.popover-content {
+  font-size: 12px;
+}
