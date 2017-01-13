@@ -629,6 +629,24 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 								<div id=macmsg></div>
 							</div>
 							<div class="form-group has-feedback">
+								<label for="line1" class="col-sm-3 control-label">Line 1</label>
+								<div class="col-sm-8">
+									<div id=div_line1></div>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="line2" class="col-sm-3 control-label">Line 2</label>
+								<div class="col-sm-8">
+									<div id=div_line2></div>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="line3" class="col-sm-3 control-label">Line 3</label>
+								<div class="col-sm-8">
+									<div id=div_line3></div>
+								</div>
+							</div>
+							<div class="form-group has-feedback">
 								<label for="orderType" class="col-sm-3 control-label">Phone Model</label>
 								<div class="col-sm-8">
 									<div id=div_phone></div>
@@ -1156,13 +1174,14 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 				});
 				
 			}
-			function get_config(deviceId,deviceName, userId) {
+			function get_config(deviceId,deviceName, userId,siteNumber) {
 				thediv = '#config';
 				$label = 'Config for: '+deviceName;
 				$('#configModalLabel').html($label);
 				document.getElementById('deviceId').value = deviceId;
 				document.getElementById('userId').value = userId;
 				document.getElementById('deviceName').value = deviceName;
+				document.getElementById('siteNumber').value = siteNumber;
 				
 				
 				$.ajax({
@@ -1189,7 +1208,7 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 							
 						}
 						get_config_options(data['phoneModelID'],data['baseTemplateID'],data['customerTemplateID'],data['codec'],data['transport'],data['proxy']);
-
+						get_devices_dd(deviceId,data['line2'],data['line3']);
 						
 					}
 				});
@@ -1204,6 +1223,7 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 				$('#div_transport').html('<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>'); 
 				$('#div_tproxy').html('<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>'); 
 
+				
 				$.ajax({
 					type: "GET",
 					url: "ajax_functions.php?fn=get_config_options&phoneModelID="+phoneModelID+"&accountId=<?php echo $kazooAccountID ?>&baseTemplateID="+baseTemplateID+"&customerTemplateID="+customerTemplateID+"&codec="+codec+"&transport="+transport+"&proxy="+proxy,
@@ -1220,9 +1240,32 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 						$('#div_proxy').html(data['proxy']);
 						
 						
+						
 					}
 				});
 				
+			}
+			function get_devices_dd(deviceId,line2,line3) {
+				
+				siteNumber = document.getElementById('siteNumber').value;
+				
+				$('#div_line1').html('<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>'); 
+				$('#div_line2').html('<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>'); 
+				$('#div_line3').html('<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>'); 
+				
+				$.ajax({
+					type: "GET",
+					url: "ajax_functions.php?fn=get-devices&siteNumber="+siteNumber+"&deviceId="+deviceId+"&line2="+line2+"&line3="+line3+"&accountId=<?php echo $kazooAccountID?>",
+					dataType:'json',
+					success: function(data){
+			
+						
+						$('#div_line1').html(data['line1']);
+						$('#div_line2').html(data['line2']);
+						$('#div_line3').html(data['line3']);
+						
+					}
+				});
 			}
 			function update_config() {
 				
@@ -1237,26 +1280,29 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 				transport = document.getElementById('transport').value;
 				deviceId = document.getElementById('deviceId').value;
 				userId = document.getElementById('userId').value;
-				deviceName = document.getElementById('deviceName').value;			
-				
+				deviceName = document.getElementById('deviceName').value;
+				siteNumber = document.getElementById('siteNumber').value;				
+				line1 = document.getElementById('line1').value;
+				line2 = document.getElementById('line2').value;
+				line3 = document.getElementById('line3').value;
 				
 				if (mac.length!== 12) {
 					$('#configUpdateMsg').html('<B>ERROR: MAC address must be 12 characters.</B>');
 					
 				} else {
 				
-					if (mac && phoneModelID && baseTemplateID && customerTemplateID && codec && transport && deviceId && proxy) {
+					if (mac && phoneModelID && baseTemplateID && customerTemplateID && codec && transport && line1 && proxy) {
 					
 						$('#configUpdateMsg').html('Updating Config... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
 
 						$.ajax({
 							type: "GET",
-							url: "ajax_functions.php?fn=update_config&phoneModelID="+phoneModelID+"&deviceId="+deviceId+"&mac="+mac+"&accountId=<?php echo $kazooAccountID?>&baseTemplateID="+baseTemplateID+"&customerTemplateID="+customerTemplateID+"&codec="+codec+"&transport="+transport+"&proxy="+proxy,
+							url: "ajax_functions.php?fn=update_config&phoneModelID="+phoneModelID+"&line1="+line1+"&line2="+line2+"&line3="+line3+"&mac="+mac+"&accountId=<?php echo $kazooAccountID?>&baseTemplateID="+baseTemplateID+"&customerTemplateID="+customerTemplateID+"&codec="+codec+"&transport="+transport+"&proxy="+proxy,
 							
 							success: function(data){
 
 								
-								get_config(deviceId,deviceName,userId);
+								get_config(line1,deviceName,userId, siteNumber);
 								
 								if (refresh) {
 									$('#configUpdateMsg').html('Refreshing data from server... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');

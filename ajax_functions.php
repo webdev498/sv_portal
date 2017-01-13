@@ -652,8 +652,10 @@ $user = $_SESSION['user'];
 			$codec = $row['codec'];
 			$transport = $row['transport'];
 			$proxy = $row['proxy'];
+			$line2 = $row['deviceID_line2'];
+			$line3 = $row['deviceID_line3'];
 						
-			$arr = array ('result'=> 'SUCCESS','phoneModelID'=>$phoneModelID,'mac'=> $mac,'baseTemplateID'=> $baseTemplateID,'customerTemplateID'=>$customerTemplateID,'codec'=>$codec,'transport'=>$transport,'proxy'=>$proxy);
+			$arr = array ('result'=> 'SUCCESS','phoneModelID'=>$phoneModelID,'mac'=> $mac,'baseTemplateID'=> $baseTemplateID,'customerTemplateID'=>$customerTemplateID,'codec'=>$codec,'transport'=>$transport,'proxy'=>$proxy,'line2'=>$line2,'line3'=>$line3);
 			 
 		}
 		echo json_encode($arr);
@@ -688,16 +690,17 @@ $user = $_SESSION['user'];
 		$codec = $_REQUEST['codec'];
 		$proxy = $_REQUEST['proxy'];
 		$transport = $_REQUEST['transport'];	
-		$deviceId = $_REQUEST['deviceId'];
 		$accountId = $_REQUEST['accountId'];
+		$line1 = $_REQUEST['line1'];
+		$line2 = $_REQUEST['line2'];
+		$line3 = $_REQUEST['line3'];
 		
-		//If MAC exists delete the old record
-		$duplicateMac = $_REQUEST['duplicateMac'];
-		$sql = "DELETE FROM apCONFIGS where mac='{$mac}' and deviceID !='{$deviceId}'";
+		
+		$sql = "DELETE FROM apCONFIGS where mac='{$mac}'";
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );
 		
-		$sql = "INSERT INTO apCONFIGS (proxy, mac, phoneModelID, baseTemplateID, customerTemplateID, codec, transport, accountId, deviceID, lastUpdate) VALUES ('{$proxy}','{$mac}', {$phoneModelID}, {$baseTemplateID}, {$customerTemplateID}, '{$codec}', '{$transport}', '{$accountId}', '{$deviceId}', '{$now}')  ON DUPLICATE KEY UPDATE proxy='{$proxy}', mac='{$mac}', phoneModelID={$phoneModelID}, baseTemplateID={$baseTemplateID}, customerTemplateID={$customerTemplateID}, codec='{$codec}', transport='{$transport}', accountId='{$accountId}', lastUpdate='{$now}'";
+		$sql = "INSERT INTO apCONFIGS (proxy, mac, phoneModelID, baseTemplateID, customerTemplateID, codec, transport, accountId, deviceID, deviceID_line2, deviceID_line3, lastUpdate) VALUES ('{$proxy}','{$mac}', {$phoneModelID}, {$baseTemplateID}, {$customerTemplateID}, '{$codec}', '{$transport}', '{$accountId}', '{$line1}', '{$line2}', '{$line3}','{$now}') ";
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );
 		
@@ -720,7 +723,7 @@ $user = $_SESSION['user'];
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );
 		
-		
+		//Get phone models
 		$phone = "<select name=phoneModelID id=phoneModelID oninput='javascript:get_config_options(this.options[this.selectedIndex].value,0,0,0,0)' required>";	
 		$phone .= "<option value=''>--Please Select--</option>";
 		while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
@@ -733,7 +736,7 @@ $user = $_SESSION['user'];
 		}
 		$phone .= "</select>";
 		
-		
+		//Get base templates for this phone model
 		$sql = "select * from apTemplates where phoneModelID = {$phoneModelID} and type='BASE'";
 		
 		mysql_select_db($db);
@@ -751,6 +754,7 @@ $user = $_SESSION['user'];
 		}
 		$base .= "</select>";
 		
+		//Get customer templates for this phone model
 		$sql = "select * from apTemplates where phoneModelID = {$phoneModelID} and type='CUSTOMER' and accountId='{$accountId}'";
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );
@@ -768,6 +772,8 @@ $user = $_SESSION['user'];
 			$customer .= "<option {$sel} value='" . $row['templateID'] . "'>" . $row['templateName'] . "</option>";
 		}
 		$customer .= "</select>";
+		
+		
 
 		if ($codec=='G729' or $codec=='') { 
 			$c_729 = 'selected';
@@ -817,6 +823,52 @@ $user = $_SESSION['user'];
 		$proxystr .= "</select>";
 		
 		$arr = array ('phone'=> $phone,'base'=> $base,'customer'=> $customer,'codec'=> $codecstr,'transport'=>$transportstr, 'proxy'=>$proxystr);
+		echo json_encode($arr);
+	}
+	if ($fn == "get-devices") {
+		
+		//Get available devices to assign
+		
+		$siteNumber = $_REQUEST['siteNumber'];
+		$accountId = $_REQUEST['accountId'];
+		$deviceId = $_REQUEST['deviceId'];
+		$deviceID_line2 = $_REQUEST['line2'];
+		$deviceID_line3 = $_REQUEST['line3'];
+		
+		$sql = "select d.* from KazooDevices d where (select u.last_name from KazooUsers u where u.userId=d.ownerId) = '{$siteNumber}' and d.accountId='{$accountId}'";
+		mysql_select_db($db);
+		$retval = mysql_query( $sql, $conn );
+		
+		$line1 = "<select name=line1 id=line1 required>";
+		$line2 = "<select name=line2 id=line2 required {$deviceID_line2}>";
+		$line3 = "<select name=line3 id=line3 required {$deviceID_line3}>";
+		
+		$line2 .= "<option selected value=''>--NOT USED--</option>";
+		$line3 .= "<option selected value=''>--NOT USED--</option>";
+		
+		while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
+		{
+			$sel = '';
+			$sel2 = '';
+			$sel3 = '';
+			if ($deviceId == $row['deviceId']) {
+				$sel = ' selected ';
+			}
+			if ($deviceID_line2 == $row['deviceId']) {
+				$sel2 = ' selected ';
+			}
+			if ($deviceID_line3 == $row['deviceId']) {
+				$sel3 = ' selected ';
+			}
+			$line1 .= "<option {$sel} value='" . $row['deviceId'] . "'>" . $row['name'] . "</option>";
+			$line2 .= "<option {$sel2} value='" . $row['deviceId'] . "'>" . $row['name'] . "</option>";
+			$line3 .= "<option {$sel3} value='" . $row['deviceId'] . "'>" . $row['name'] . "</option>";
+		}
+		$line1 .= "</select>";
+		$line2 .= "</select>";
+		$line3 .= "</select>";
+		
+		$arr = array ('line1'=> $line1,'line2'=> $line2,'line3'=> $line3,'sql'=>$sql);
 		echo json_encode($arr);
 	}
 	if ($fn == "new-location") {
@@ -894,6 +946,7 @@ $user = $_SESSION['user'];
 				$user_agent = $row['user_agent'];
 				$status = $row['status'];
 				$name = $row['name'];
+				$username = $row['username'];
 				$cdrEventsRecovery = $row['cdrEventsRecovery'];
 				$cdrEventsUnallocated = $row['cdrEventsUnallocated'];
 				
@@ -910,6 +963,8 @@ $user = $_SESSION['user'];
 
 				}
 				
+				
+				
 				$cdrIcon = "";
 				$cdrIcon2 = "";	
 				$configIcon = "";
@@ -923,14 +978,17 @@ $user = $_SESSION['user'];
 				}
 				
 				if ($user == 'admin') {
-					$configIcon = "<td><a href='#' data-toggle='modal' data-target='#configModal' onclick='javascript:get_config(\"" . $row['deviceId'] . "\",\"" . $name . "\",\"" . $row['ownerId'] . "\")'><i class='fa fa-cog'></i></a></td>";
+					$configIcon = "<td><a href='#' data-toggle='modal' data-target='#configModal' onclick='javascript:get_config(\"" . $row['deviceId'] . "\",\"" . $name . "\",\"" . $row['ownerId'] . "\",\"" . $last_name . "\")'><i class='fa fa-cog'></i></a></td>";
 				}
-			$s .= "<tr><td align=left nowrap><a href='#' data-toggle='modal' data-target='#eventModal' onclick='javascript:get_events(\"" . $row['deviceId'] . "\")'>" . $icon . "{$cdrIcon} {$cdrIcon2}</a></td><TD align=left>"  . $row['name'] . "</td><TD nowrap align=left>&nbsp;&nbsp;&nbsp;&nbsp;"  . $network_ip . ":" . $network_port . "</td><td nowrap>" . substr($user_agent,0,60) . "</td><td><a href='#' data-toggle='modal' data-target='#jsonModal' onclick='javascript:get_json(\"" . $row['deviceId'] . "\")'>JSON</a></td>" . $configIcon . "</tr>";
+			$s .= "<tr>" . $configIcon . "<td align=left nowrap><a href='#' data-toggle='modal' data-target='#eventModal' onclick='javascript:get_events(\"" . $row['deviceId'] . "\")'>" . $icon . "{$cdrIcon} {$cdrIcon2}</a></td><TD align=left>"  . $row['name'] . "</td><TD nowrap align=left>&nbsp;&nbsp;&nbsp;&nbsp;"  . $network_ip . ":" . $network_port . "</td><td nowrap>" . substr($user_agent,0,60) . "</td><td><a href='#' data-toggle='modal' data-target='#jsonModal' onclick='javascript:get_json(\"" . $row['deviceId'] . "\")'>JSON</a></td></tr>";
 			}
 			$s .= "</table>";
 		}
 		
 		echo $s;
 	}
+
+
+
 	
 	?>

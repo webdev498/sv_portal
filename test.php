@@ -1,12 +1,29 @@
-<?php include 'inc_header.php';
+<?php include "inc_db.php";
 
 header("Content-Type: text/plain");
+date_default_timezone_set('America/Chicago');
+$now = date("Y-m-d H:i:s");
+		
+		
+function get_random_port() {
+	$random = mt_rand(10100,64000);
+	$random_port = $random & ~1;	//make it an even number
+	return $random_port;
+}
 
-	$mac = 'AABBCC112233';
+//temp
+$mac = 'AABBCC112233';
 
-	$sql = "CALL sp_getConfig('{$mac}')";
+	//Update the last accessed field
+	$sql = "UPDATE apCONFIGS SET lastAccess = '{$now}' WHERE mac='{$mac}'";
+	mysql_select_db($db);
+	$retval2 = mysql_query( $sql, $conn );  
+	
+
+	$sql = "CALL sp_getConfig('{$mac}');";
 	mysql_select_db($db);
 	$retval = mysql_query( $sql, $conn );  
+	
 	if(mysql_num_rows($retval) == 0)
 	{
 		echo "MAC {$mac} not found.";
@@ -27,19 +44,27 @@ header("Content-Type: text/plain");
 		$transport = $row['transport'];
 		$proxy = $row['proxy'];
 		$customer = $row['customer'];
-		$deviceName = $row['name'];
+		
 		$ownerId = $row['ownerId'];
 		$userName = $row['first_name'] . " " . $row['last_name'];
 		$timezone = $row['timezone'];
 		$callerid = $row['callerid'];
 		$lastUpdate = $row['lastUpdate'];
+		$realm = $row['realm'];
+		
+		$deviceName = $row['name'];
 		$username = $row['username'];
 		$password = $row['password'];
-		$realm = $row['realm'];
+		
+		$deviceName2 = $row['a2_name'];
+		$username2 = $row['a2_username'];
+		$password2 = $row['a2_password'];
+		
+		$deviceName3 = $row['a3_name'];
+		$username3 = $row['a3_username'];
+		$password3 = $row['a3_password'];
 
-		//Random port
-		$random = mt_rand(10100,64000);
-		$random_port = $random & ~1;	//make it an even number
+		
 		
 		//Build the config
 				
@@ -109,17 +134,42 @@ header("Content-Type: text/plain");
 		$baseConfig = str_replace('{{TIMEZONE-OFFSET}}', $timezoneOffset, $baseConfig);
 		$baseConfig = str_replace('{{TIMEZONE-NAME}}', $timezoneName, $baseConfig);
 		$baseConfig = str_replace('{{PRIMARY-HEADEND}}', $primaryHeadend, $baseConfig);
-		
-		
-		$baseConfig = str_replace('{{A1-DISPLAY-NAME}}', $userName, $baseConfig);
-		$baseConfig = str_replace('{{A1-LABEL}}', $userName, $baseConfig);
 		$baseConfig = str_replace('{{REALM}}', $realm, $baseConfig);
 		
+		$baseConfig = str_replace('{{A1-DISPLAY-NAME}}', $deviceName, $baseConfig);
+		$baseConfig = str_replace('{{A1-LABEL}}', $deviceName, $baseConfig);
 		$baseConfig = str_replace('{{A1-USER-NAME}}', $username, $baseConfig);
 		$baseConfig = str_replace('{{A1-AUTH-NAME}}', $username, $baseConfig);
 		$baseConfig = str_replace('{{A1-PASSWORD}}', $password, $baseConfig);
 		
-		$baseConfig = str_replace('{{RANDOM_PORT}}', $random_port, $baseConfig);
+		$a2_enable='0';
+		$a3_enable='0';
+		if ($username2) {
+			$a2_enable='1';
+		}
+		if ($username3) {
+			$a3_enable='1';
+		}
+		$baseConfig = str_replace('{{A2-ENABLE}}', $a2_enable, $baseConfig);
+		$baseConfig = str_replace('{{A2-DISPLAY-NAME}}', $deviceName2, $baseConfig);
+		$baseConfig = str_replace('{{A2-LABEL}}', $deviceName2, $baseConfig);
+		$baseConfig = str_replace('{{A2-USER-NAME}}', $username2, $baseConfig);
+		$baseConfig = str_replace('{{A2-AUTH-NAME}}', $username2, $baseConfig);
+		$baseConfig = str_replace('{{A2-PASSWORD}}', $password2, $baseConfig);
+		
+		$baseConfig = str_replace('{{A3-ENABLE}}', $a3_enable, $baseConfig);
+		$baseConfig = str_replace('{{A3-DISPLAY-NAME}}', $deviceName3, $baseConfig);
+		$baseConfig = str_replace('{{A3-LABEL}}', $deviceName3, $baseConfig);
+		$baseConfig = str_replace('{{A3-USER-NAME}}', $username3, $baseConfig);
+		$baseConfig = str_replace('{{A3-AUTH-NAME}}', $username3, $baseConfig);
+		$baseConfig = str_replace('{{A3-PASSWORD}}', $password3, $baseConfig);
+		
+		$baseConfig = str_replace('{{RANDOM_PORT}}', get_random_port(), $baseConfig);
+		$baseConfig = str_replace('{{RANDOM_PORT2}}', get_random_port(), $baseConfig);
+		$baseConfig = str_replace('{{RANDOM_PORT3}}', get_random_port(), $baseConfig);
+		$baseConfig = str_replace('{{RANDOM_PORT4}}', get_random_port(), $baseConfig);
+		$baseConfig = str_replace('{{RANDOM_PORT5}}', get_random_port(), $baseConfig);
+		
 		$baseConfig = str_replace('{{MAC}}', $mac, $baseConfig);
 		
 		$baseConfig = str_replace('{{DEVICENAME}}', $deviceName, $baseConfig);
@@ -139,6 +189,9 @@ header("Content-Type: text/plain");
 		
 		
 		
+	
+		
+		
 	}
-
+	mysql_close($conn);
 ?>
