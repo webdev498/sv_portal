@@ -70,7 +70,7 @@ include "inc_db.php";
 				}
 				
 				
-				$sql = "INSERT INTO KazooStatusEvents (accountId, customer,type, deviceId, event, eventDate, site, userId, call_id, email, cis_process) VALUES ('{$account_id}',,'{$customer}', '{$type}', '{$deviceId}', '{$event}', '{$datetime}', '{$site}', '{$userId}', '{$id}', COALESCE((select email from tblCustomerLocations where customerID = (select customerID from tblCustomers where customer='{$customer}') and siteNumber = '{$site}'),''), {$cis_process})";
+				$sql = "INSERT INTO KazooStatusEvents (accountId, customer,type, deviceId, event, eventDate, site, userId, call_id, email, cis_process) VALUES ('{$account_id}','{$customer}', '{$type}', '{$deviceId}', '{$event}', '{$datetime}', '{$site}', '{$userId}', '{$id}', (Select email from tblCustomerLocations l WHERE l.siteNumber='{$site}'	AND l.customerID=(select c.customerID from tblCustomers c where c.kazooAccountID='{$account_id}')), {$cis_process})";
 				echo $sql . "<BR>";
 				
 				mysql_select_db($db);
