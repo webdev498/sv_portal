@@ -1286,42 +1286,59 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 				line2 = document.getElementById('line2').value;
 				line3 = document.getElementById('line3').value;
 				
-				if (mac.length!== 12) {
-					$('#configUpdateMsg').html('<B>ERROR: MAC address must be 12 characters.</B>');
-					
-				} else {
-				
-					if (mac && phoneModelID && baseTemplateID && customerTemplateID && codec && transport && line1 && proxy) {
-					
-						$('#configUpdateMsg').html('Updating Config... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
+				lineError = false;
+				if (line1 == line2 || line1 == line3) {
+					lineError = true;
 
-						$.ajax({
-							type: "GET",
-							url: "ajax_functions.php?fn=update_config&phoneModelID="+phoneModelID+"&line1="+line1+"&line2="+line2+"&line3="+line3+"&mac="+mac+"&accountId=<?php echo $kazooAccountID?>&baseTemplateID="+baseTemplateID+"&customerTemplateID="+customerTemplateID+"&codec="+codec+"&transport="+transport+"&proxy="+proxy,
-							
-							success: function(data){
-
-								
-								get_config(line1,deviceName,userId, siteNumber);
-								
-								if (refresh) {
-									$('#configUpdateMsg').html('Refreshing data from server... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
-									refresh_kazoo_user(userId);
-								}
-								if (last_codec != codec && last_codec !='') {
-									//alert('new codec');
-									//TO DO: Change codec in 2600hz, reboot phone
-									$('#configUpdateMsg').html('Updating codec... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
-								}
-								$('#configUpdateMsg').html(data);
-								
-							}
-						});
-					} else {
-						$('#configUpdateMsg').html('<B>ERROR: All data required to update a config!</B>');
-						
-					}
 				}
+				if (line2 == line3 && line2 !=='' && line3 !=='') {
+					lineError = true;
+					
+				}
+				if (line2 =='' && line3 !=='') {
+					lineError = true;
+					
+				}
+				if (lineError){ 
+					alert('Line 1, 2, or 3 error! Lines cannot be the same and must be configured in order.');
+				} else {
+					if (mac.length!== 12) {
+						$('#configUpdateMsg').html('<B>ERROR: MAC address must be 12 characters.</B>');
+						
+					} else {
+					
+						if (mac && phoneModelID && baseTemplateID && customerTemplateID && codec && transport && line1 && proxy) {
+						
+							$('#configUpdateMsg').html('Updating Config... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
+
+							$.ajax({
+								type: "GET",
+								url: "ajax_functions.php?fn=update_config&phoneModelID="+phoneModelID+"&line1="+line1+"&line2="+line2+"&line3="+line3+"&mac="+mac+"&accountId=<?php echo $kazooAccountID?>&baseTemplateID="+baseTemplateID+"&customerTemplateID="+customerTemplateID+"&codec="+codec+"&transport="+transport+"&proxy="+proxy,
+								
+								success: function(data){
+
+									
+									get_config(line1,deviceName,userId, siteNumber);
+									
+									if (refresh) {
+										$('#configUpdateMsg').html('Refreshing data from server... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
+										refresh_kazoo_user(userId);
+									}
+									if (last_codec != codec && last_codec !='') {
+										//alert('new codec');
+										//TO DO: Change codec in 2600hz, reboot phone
+										$('#configUpdateMsg').html('Updating codec... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
+									}
+									$('#configUpdateMsg').html(data);
+									
+								}
+							});
+						} else {
+							$('#configUpdateMsg').html('<B>ERROR: All data required to update a config!</B>');
+							
+						}
+					}		//mac OK
+				} //line error
 			}
 			
 			

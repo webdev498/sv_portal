@@ -405,7 +405,7 @@ $user = $_SESSION['user'];
 						"<td>" . $row['dt'] . "</td>" .
 						
 						"<td>" . $row['type'] . "</td>" .	
-						"<td>" . $row['event'] . "</td>" .	
+						"<td>" . $row['event'] . " (" . $row['call_id'] . ")</td>" .	
 												
 					"</tr>";
 				
@@ -978,7 +978,7 @@ $user = $_SESSION['user'];
 				}
 				
 				if ($user == 'admin') {
-					$configIcon = "<td><a href='#' data-toggle='modal' data-target='#configModal' onclick='javascript:get_config(\"" . $row['deviceId'] . "\",\"" . $name . "\",\"" . $row['ownerId'] . "\",\"" . $last_name . "\")'><i class='fa fa-cog'></i></a></td>";
+					$configIcon = "<td><a href='#' data-toggle='modal' data-target='#configModal' onclick='javascript:get_config(\"" . $row['deviceId'] . "\",\"" . $name . "\",\"" . $row['ownerId'] . "\",\"" . $last_name . "\")'><i class='fa fa-cog fa-2x'></i></a></td>";
 				}
 			$s .= "<tr>" . $configIcon . "<td align=left nowrap><a href='#' data-toggle='modal' data-target='#eventModal' onclick='javascript:get_events(\"" . $row['deviceId'] . "\")'>" . $icon . "{$cdrIcon} {$cdrIcon2}</a></td><TD align=left>"  . $row['name'] . "</td><TD nowrap align=left>&nbsp;&nbsp;&nbsp;&nbsp;"  . $network_ip . ":" . $network_port . "</td><td nowrap>" . substr($user_agent,0,60) . "</td><td><a href='#' data-toggle='modal' data-target='#jsonModal' onclick='javascript:get_json(\"" . $row['deviceId'] . "\")'>JSON</a></td></tr>";
 			}
