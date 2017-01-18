@@ -151,6 +151,12 @@ echo "<PRE>";
 	$sql = "INSERT INTO KazooMonitorLog (updateDate, notes) VALUES ('{$now}', '{$notes}')";
 	mysql_select_db($db);
 	$retval1 = mysql_query( $sql, $conn );  
+	
+	//update last public IPs
+	$sql = "update KazooDevices d set lastPublicIP = (select network_ip from KazooRegistrations r where r.deviceId=d.deviceId)";
+	mysql_select_db($db);
+	$retval1 = mysql_query( $sql, $conn );  
+	
 
 echo "STATUS UPDATE COMPLETE. \n Devices: {$cnt}";
 
