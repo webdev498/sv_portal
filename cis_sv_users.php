@@ -621,31 +621,14 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 						<INPUT name=userId id=userId type=hidden>
 						<INPUT name=deviceName id=deviceName type=hidden>
 							<div class="form-group has-feedback">
-								<label for="mac" class="col-sm-3 control-label">MAC Address</label>
+								<label for="mac" class="col-sm-3 control-label"><a href="javascript:goto_config()">MAC Address</a></label>
 								<div class="col-sm-8">
 									<INPUT name=mac id=mac type=text onkeyup="javascript:check_mac()" required>
 									<div id=macmsg></div>
 								</div>
-								<div id=macmsg></div>
+								
 							</div>
-							<div class="form-group has-feedback">
-								<label for="line1" class="col-sm-3 control-label">Line 1</label>
-								<div class="col-sm-8">
-									<div id=div_line1></div>
-								</div>
-							</div>
-							<div class="form-group has-feedback">
-								<label for="line2" class="col-sm-3 control-label">Line 2</label>
-								<div class="col-sm-8">
-									<div id=div_line2></div>
-								</div>
-							</div>
-							<div class="form-group has-feedback">
-								<label for="line3" class="col-sm-3 control-label">Line 3</label>
-								<div class="col-sm-8">
-									<div id=div_line3></div>
-								</div>
-							</div>
+							
 							<div class="form-group has-feedback">
 								<label for="orderType" class="col-sm-3 control-label">Phone Model</label>
 								<div class="col-sm-8">
@@ -686,6 +669,24 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 								<div class="col-sm-8">
 									<div id=div_proxy></div>
 									
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="line1" class="col-sm-3 control-label">Line 1</label>
+								<div class="col-sm-8">
+									<div id=div_line1></div> 
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="line2" class="col-sm-3 control-label">Line 2</label>
+								<div class="col-sm-8">
+									<div id=div_line2></div> 
+								</div>
+							</div>
+							<div class="form-group has-feedback">
+								<label for="line3" class="col-sm-3 control-label">Line 3</label>
+								<div class="col-sm-8">
+									<div id=div_line3></div>
 								</div>
 							</div>
 							<div class="form-group has-feedback">
@@ -1158,6 +1159,15 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 				});
 				
 			}
+			function goto_config() {
+				
+			
+				mac = document.getElementById('mac').value;
+				theurl = 'http://config.simplevoip.us/' + mac + '.cfg';
+				
+				window.open (theurl);
+				
+			}			
 			function refresh_kazoo_user(userId) {
 				thediv = '#refreshmsg';
 				
@@ -1268,6 +1278,8 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 				});
 			}
 			function update_config() {
+				
+				//TO DO: enable devices if disabled
 				
 				refresh = document.getElementById('refresh').checked;
 				mac = document.getElementById('mac').value;

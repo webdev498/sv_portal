@@ -1,2 +1,2 @@
 RewriteEngine on
-ErrorDocument 404 /test.php
+ErrorDocument 404 /config.php

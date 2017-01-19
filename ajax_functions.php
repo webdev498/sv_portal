@@ -718,8 +718,15 @@ $user = $_SESSION['user'];
 		$transport = $_REQUEST['transport'];
 		$proxy = $_REQUEST['proxy'];
 		
-		$sql = "select * from apPhoneModels order by phoneModel";
+		//get account name
+		$sql = "select name from KazooAccounts where accountId='{$accountId}'";
+		mysql_select_db($db);
+		$retval = mysql_query( $sql, $conn );
+		$row = mysql_fetch_array($retval, MYSQL_ASSOC);
+		$accountName = $row['name'];
+		$acct = substr($accountName,0,2);
 		
+		$sql = "select * from apPhoneModels order by phoneModel";
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );
 		
@@ -755,7 +762,11 @@ $user = $_SESSION['user'];
 		$base .= "</select>";
 		
 		//Get customer templates for this phone model
+		
 		$sql = "select * from apTemplates where phoneModelID = {$phoneModelID} and type='CUSTOMER' and accountId='{$accountId}'";
+		if ($acct=='X_') {
+			$sql = "select * from apTemplates where phoneModelID = {$phoneModelID} and type='CUSTOMER'";
+		}
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );
 		
@@ -925,7 +936,7 @@ $user = $_SESSION['user'];
 		$accountId = $_REQUEST['accountId'];
 		
 		$sql = "SELECT d.*, (select count(0) from KazooStatusEvents where type LIKE '%RECOVERY%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) and deviceId=d.deviceId) as cdrEventsRecovery,  " .  
-					" (select count(0) from KazooStatusEvents where type LIKE '%UNALLOCATED%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) and deviceId=d.deviceId) as cdrEventsUnallocated, (select network_ip from KazooRegistrations r where r.deviceId = d.deviceId ) as network_ip, (select user_agent from KazooRegistrations r where r.deviceId = d.deviceId ) as user_agent, (select network_port from KazooRegistrations r where r.deviceId = d.deviceId ) as network_port FROM KazooDevices d where ownerId IN (select userId from KazooUsers where accountId = '" . $accountId . "' and last_name='" . $last_name . "') order by name  ";
+					" (select count(0) from KazooStatusEvents where type LIKE '%UNALLOCATED%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) and deviceId=d.deviceId) as cdrEventsUnallocated, (select network_ip from KazooRegistrations r where r.deviceId = d.deviceId ) as network_ip, (select user_agent from KazooRegistrations r where r.deviceId = d.deviceId ) as user_agent, (select network_port from KazooRegistrations r where r.deviceId = d.deviceId ) as network_port, (select count(0) from apCONFIGS where deviceID=d.deviceId or deviceID_line2=d.deviceId or deviceID_line3=d.deviceId) as configs FROM KazooDevices d where ownerId IN (select userId from KazooUsers where accountId = '" . $accountId . "' and last_name='" . $last_name . "') order by name  ";
 		//echo $sql;
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );  
@@ -941,6 +952,7 @@ $user = $_SESSION['user'];
 			{
 				$status = "";
 				$deviceId = $row['deviceId'];
+				$config = $row['configs'];
 				$network_ip = $row['network_ip'];
 				$network_port = $row['network_port'];
 				$user_agent = $row['user_agent'];
@@ -968,6 +980,7 @@ $user = $_SESSION['user'];
 				$cdrIcon = "";
 				$cdrIcon2 = "";	
 				$configIcon = "";
+				$cfIcon  ="";
 				if ($cdrEventsRecovery>0) {
 					
 					$cdrIcon = "<a data-toggle='tooltip' title='{$cdrEventsRecovery} recent inbound RECOVERY call events.'><i class='fa fa-exclamation text-danger'></i></a>";
@@ -978,7 +991,13 @@ $user = $_SESSION['user'];
 				}
 				
 				if ($user == 'admin') {
-					$configIcon = "<td><a href='#' data-toggle='modal' data-target='#configModal' onclick='javascript:get_config(\"" . $row['deviceId'] . "\",\"" . $name . "\",\"" . $row['ownerId'] . "\",\"" . $last_name . "\")'><i class='fa fa-cog fa-2x'></i></a></td>";
+					if ($config > 0) {
+						$cfIcon = "<i class='fa fa-cog fa-2x text-success'></i>";
+						
+					} else {
+						$cfIcon = "<i class='fa fa-cog fa-2x text-danger'></i>";
+					}
+					$configIcon = "<td><a href='#' data-toggle='modal' data-target='#configModal' onclick='javascript:get_config(\"" . $row['deviceId'] . "\",\"" . $name . "\",\"" . $row['ownerId'] . "\",\"" . $last_name . "\")'>" . $cfIcon . "</a></td>";
 				}
 			$s .= "<tr>" . $configIcon . "<td align=left nowrap><a href='#' data-toggle='modal' data-target='#eventModal' onclick='javascript:get_events(\"" . $row['deviceId'] . "\")'>" . $icon . "{$cdrIcon} {$cdrIcon2}</a></td><TD align=left>"  . $row['name'] . "</td><TD nowrap align=left>&nbsp;&nbsp;&nbsp;&nbsp;"  . $network_ip . ":" . $network_port . "</td><td nowrap>" . substr($user_agent,0,60) . "</td><td><a href='#' data-toggle='modal' data-target='#jsonModal' onclick='javascript:get_json(\"" . $row['deviceId'] . "\")'>JSON</a></td></tr>";
 			}

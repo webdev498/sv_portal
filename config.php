@@ -94,7 +94,7 @@ $mac = substr($filename,1,12);
 		"##            /___/_/_/_/_/ .__/_/\__/|___/\___/___/_/    \n" .
 		"##                       /_/    \n".	   
 		"################################################################################################\n" . 
-		"\n################################################################################################\n## BEGIN BASE CONFIG: {$customer}/{$customerTemplateName} \n################################################################################################\n";
+		"\n################################################################################################\n## BEGIN BASE CONFIG: {$baseTemplateName}\n################################################################################################\n";
 
 		//Default UDP Transport
 		$transport_type = '0';
@@ -135,6 +135,7 @@ $mac = substr($filename,1,12);
 				$primaryHeadend = "us-west.simplevoip.us";
 				break;
 		}
+		$panasonicTZ = $timezoneOffset * 60;
 		
 		//Override Proxy
 		switch ($proxy) {
@@ -153,6 +154,7 @@ $mac = substr($filename,1,12);
 		 
 		$baseConfig = str_replace('{{HEADER}}', $header, $baseConfig);
 		$baseConfig = str_replace('{{TIMEZONE-OFFSET}}', $timezoneOffset, $baseConfig);
+		$baseConfig = str_replace('{{PANASONIC-TIMEZONE}}', $panasonicTZ, $baseConfig);
 		$baseConfig = str_replace('{{TIMEZONE-NAME}}', $timezoneName, $baseConfig);
 		$baseConfig = str_replace('{{PRIMARY-HEADEND}}', $primaryHeadend, $baseConfig);
 		$baseConfig = str_replace('{{REALM}}', $realm, $baseConfig);
@@ -207,9 +209,9 @@ $mac = substr($filename,1,12);
 		echo $customerConfig . "\n";
 		echo "\n################################################################################################\n## END CUSTOMER CONFIG: {$customer}/{$customerTemplateName} \n################################################################################################\n\n";
 		
-		echo "\n################################################################################################\n## BEGIN CODEC CONFIG: {$codecTemplateName} \n################################################################################################\n\n";
+		echo "\n################################################################################################\n## BEGIN CODEC CONFIG: {$codec} \n################################################################################################\n\n";
 		echo $codecConfig . "\n";
-		echo "\n################################################################################################\n## END CODEC CONFIG: {$codecTemplateName} \n################################################################################################\n\n";
+		echo "\n################################################################################################\n## END CODEC CONFIG: {$codec} \n################################################################################################\n\n";
 		
 		
 		
