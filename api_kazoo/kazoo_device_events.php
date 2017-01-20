@@ -84,7 +84,9 @@ include "inc_db.php";
 				}
 			
 			}
-		
+			if (substr($customer,0,1) == 'X_') {
+				$cis_process = 1;
+			}
 			if ($type) {
 				$sql = "INSERT INTO KazooStatusEvents (userId, accountId, customer,type, deviceId, event, eventDate, site, downtime, cis_process, email) VALUES ('{$userId}','{$accountId}','{$customer}', '{$type}', '{$deviceId}', '{$event}', '{$now}', '{$site}',{$downtime},{$cis_process},COALESCE((select email from tblCustomerLocations where customerID = (select customerID from tblCustomers where customer='{$customer}') and siteNumber = '{$site}'),''))";
 				echo $sql . "\n";
