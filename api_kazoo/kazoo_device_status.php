@@ -153,7 +153,7 @@ echo "<PRE>";
 	$retval1 = mysql_query( $sql, $conn );  
 	
 	//update last public IPs
-	$sql = "update KazooDevices d set lastPublicIP = (select network_ip from KazooRegistrations r where r.deviceId=d.deviceId)";
+	$sql = "update KazooDevices d set lastPublicIP = (select network_ip from KazooRegistrations r where r.deviceId=d.deviceId), lastPrivateIP = (select contact_ip from KazooRegistrations rr where rr.deviceId=d.deviceId)";
 	mysql_select_db($db);
 	$retval1 = mysql_query( $sql, $conn );  
 	

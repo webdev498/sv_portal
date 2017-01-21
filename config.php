@@ -1,11 +1,11 @@
 <?php include "inc_db.php";
 
 $filename = $_SERVER['REQUEST_URI'];
+$mac = strtoupper(substr($filename,1,12));
 
-header("Content-Type: text/plain");
 date_default_timezone_set('America/Chicago');
 $now = date("Y-m-d H:i:s");
-		
+	
 		
 function get_random_port() {
 	$random = mt_rand(10100,64000);
@@ -13,7 +13,7 @@ function get_random_port() {
 	return $random_port;
 }
 
-$mac = substr($filename,1,12);
+
 
 	//Update the last accessed field
 	$sql = "UPDATE apCONFIGS SET lastAccess = '{$now}' WHERE mac='{$mac}'";
@@ -27,7 +27,20 @@ $mac = substr($filename,1,12);
 	
 	if(mysql_num_rows($retval) == 0)
 	{
-		echo "MAC {$mac} not found.";
+		$output .= "MAC {$mac} not found.";
+		//$output .= "#!version:1.0.0.1";
+		$subject = "MAC fail {$mac}";
+		$msg = "{$filename}";
+		$msg = wordwrap($msg,70);
+		
+		
+		$headers = 'From: noreply@simplevoip.us' . "\r\n" .
+		'Reply-To: noreply@simplevoip.us' . "\r\n" .
+		'X-Mailer: PHP/' . phpversion();
+		
+		$mailto = "jrobs@gecko2.com";
+		$mail1 = mail($mailto, $subject, $msg, $headers);
+		
 	}
 	else
 	{
@@ -202,16 +215,16 @@ $mac = substr($filename,1,12);
 		$baseConfig = str_replace('{{TRANSPORT-TYPE}}', $transport_type, $baseConfig);
 		
 		
-		echo $baseConfig . "\n";
-		echo "\n################################################################################################\n## END BASE CONFIG: {$baseTemplateName} \n################################################################################################\n\n";
+		$output .= $baseConfig . "\n";
+		$output .= "\n################################################################################################\n## END BASE CONFIG: {$baseTemplateName} \n################################################################################################\n\n";
 		
-		echo "\n################################################################################################\n## BEGIN CUSTOMER CONFIG: {$customer}/{$customerTemplateName} \n################################################################################################\n\n";
-		echo $customerConfig . "\n";
-		echo "\n################################################################################################\n## END CUSTOMER CONFIG: {$customer}/{$customerTemplateName} \n################################################################################################\n\n";
+		$output .= "\n################################################################################################\n## BEGIN CUSTOMER CONFIG: {$customer}/{$customerTemplateName} \n################################################################################################\n\n";
+		$output .= $customerConfig . "\n";
+		$output .= "\n################################################################################################\n## END CUSTOMER CONFIG: {$customer}/{$customerTemplateName} \n################################################################################################\n\n";
 		
-		echo "\n################################################################################################\n## BEGIN CODEC CONFIG: {$codec} \n################################################################################################\n\n";
-		echo $codecConfig . "\n";
-		echo "\n################################################################################################\n## END CODEC CONFIG: {$codec} \n################################################################################################\n\n";
+		$output .= "\n################################################################################################\n## BEGIN CODEC CONFIG: {$codec} \n################################################################################################\n\n";
+		$output .= $codecConfig . "\n";
+		$output .= "\n################################################################################################\n## END CODEC CONFIG: {$codec} \n################################################################################################\n\n";
 		
 		
 		
@@ -221,4 +234,14 @@ $mac = substr($filename,1,12);
 		
 	}
 	mysql_close($conn);
+	
+$filesize = strlen($output);
+	
+header("Content-Type: text/plain");
+//header("Content-Disposition: attachment; filename=http://config.simplevoip.us/001565AC6262.cfg//");	
+//header("Content-Length: " . $filesize);
+
+print $output;	
+//header("Connection: close");
+//\exit();
 ?>
