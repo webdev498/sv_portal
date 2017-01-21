@@ -415,7 +415,7 @@ include 'inc_email.php';
 									<select name=locationID id=locationID required>
 									<option value=''>--Please Select--</option>
 									<?php
-									$sql = "SELECT * FROM tblCustomerLocations where customerID='{$row['customerID']}' ORDER BY siteNumber";
+									$sql = "SELECT * FROM tblCustomerLocations where customerID='{$row['customerID']}' ORDER BY siteNumber, state, city";
 									mysql_select_db($db);
 									$retval2 = mysql_query( $sql, $conn );  
 									while($row2 = mysql_fetch_array($retval2, MYSQL_ASSOC)) {
