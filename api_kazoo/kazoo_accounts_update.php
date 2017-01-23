@@ -3,7 +3,7 @@ include 'kazoo_token.php';
 //error_reporting(E_ALL | E_STRICT);
 //ini_set('display_errors', 'On');
 
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('UTC');
 $now = date("Y-m-d H:i:s");
 
 set_time_limit (480);
