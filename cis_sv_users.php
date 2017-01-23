@@ -332,18 +332,18 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 					
 					$sql = "select u.*, " .
 							"(select count(0) from KazooDevices where status='UP'" .  
-								"and ownerId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as upDevices," .
+								"and ownerId IN (select userId from KazooUsers  where last_name=u.last_name and accountId='{$kazooAccountID}')) as upDevices," .
 							"(select count(0) from KazooStatusEvents where type LIKE '%RECOVERY%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) " .  
-								"and userId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as cdrEventsRecovery, " .
+								"and userId IN (select userId from KazooUsers  where last_name=u.last_name and accountId='{$kazooAccountID}')) as cdrEventsRecovery, " .
 							"(select count(0) from KazooStatusEvents where type LIKE '%UNALLOCATED%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) " .  
-								"and userId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as cdrEventsUnallocated, " .
+								"and userId IN (select userId from KazooUsers  where last_name=u.last_name and accountId='{$kazooAccountID}')) as cdrEventsUnallocated, " .
 							"(select count(0) from KazooDevices where status='DOWN' " .
-								"and ownerId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as downDevices," . 
+								"and ownerId IN (select userId from KazooUsers  where last_name=u.last_name and accountId='{$kazooAccountID}')) as downDevices," . 
 							"(select count(0) from KazooDevices where status ='NOT AVAILABLE' and name not like '%Kyocera%' "  .
-								"and ownerId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as naDevices, " . 		  
-							"(select city from tblCustomerLocations where siteNumber=LPAD(u.last_name,3,'0') and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as city, " .
-							"(select state from tblCustomerLocations where siteNumber=LPAD(u.last_name,3,'0') and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as state, " . 
-							"(select tempDID from tblOrders where orderType='NEWSITE' and siteNumber=LPAD(u.last_name,3,'0') and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as tempDID, " . 
+								"and ownerId IN (select userId from KazooUsers  where last_name=u.last_name and accountId='{$kazooAccountID}')) as naDevices, " . 		  
+							"(select city from tblCustomerLocations where siteNumber=u.last_name and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as city, " .
+							"(select state from tblCustomerLocations where siteNumber=u.last_name and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as state, " . 
+							"(select tempDID from tblOrders where orderType='NEWSITE' and siteNumber=u.last_name and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as tempDID, " . 
 							"(select lnpstatus from tblOrders where orderType='LNP' and did=RIGHT(u.callerid,10) and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as lnpstatus, " .  	
 							"(select focdate from tblOrders where orderType='LNP' and did=RIGHT(u.callerid,10) and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as focdate " .  		  	   		  							
 							"from KazooUsers u where accountId='{$kazooAccountID}' and first_name not like 'X_%' group by u.last_name order by downDevices DESC, cdrEventsRecovery DESC, cdrEventsUnallocated DESC,u.last_name, u.first_name";
