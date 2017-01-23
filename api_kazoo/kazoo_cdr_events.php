@@ -1,13 +1,11 @@
 <?php
 include "inc_db.php";
-//error_reporting(E_ALL | E_STRICT);
-//ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', 'On');
 
 date_default_timezone_set('UTC');
 
 $now = date("Y-m-d H:i:s");
-
-
 
 	$sql = "Select * from KazooMonitor WHERE id=1";
 	mysql_select_db($db);
