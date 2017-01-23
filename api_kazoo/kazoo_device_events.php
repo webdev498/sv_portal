@@ -20,6 +20,7 @@ include "inc_db.php";
 		$deviceId = $row['deviceId'];
 		$userId = $row['ownerId'];
 		$LastRegistered = $row['LastRegistered'];
+		$eventDate = $row['eventDate'];
 		$LastUpdate = $row['LastUpdate'];
 		$lastDown = $row['lastDown'];
 		$accountId = $row['accountId'];
@@ -67,7 +68,8 @@ include "inc_db.php";
 					//set status to REGISTERED
 					//Log an UP event
 					$type = "UP";
-					$downtime=round((strtotime($lastDown) - strtotime($LastRegistered))/60);	
+					//$downtime=round((strtotime($lastDown) - strtotime($LastRegistered))/60);	
+					$downtime=round((strtotime($eventDate) - strtotime($lastDown))/60);
 					$event = "DEVICE UP: " . $name . ". DOWN TIME: " . $downtime . " minutes.";
 					$sqlstatus = "UPDATE KazooDevices SET status='UP' WHERE deviceID='{$deviceId}'";
 					$eventCount++;
