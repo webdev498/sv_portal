@@ -1,12 +1,13 @@
 <?php
-
+include "inc_db.php";
 //error_reporting(E_ALL | E_STRICT);
 //ini_set('display_errors', 'On');
 
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('UTC');
+
 $now = date("Y-m-d H:i:s");
 
-include "inc_db.php";
+
 
 	$sql = "Select * from KazooMonitor WHERE id=1";
 	mysql_select_db($db);
@@ -26,7 +27,7 @@ include "inc_db.php";
 		$dbconn = pg_connect("host=sv-postgres.cilqdskq1dv5.us-east-1.rds.amazonaws.com port=5432 dbname=cdr2db user=cdr2db password=Vl37yZnf5DSg");
 		$sql = "select *,(select name from accounts where id=d.account_id) as customer,(select last_name from users u where u.id = d.owner_id) as last_name  from data d where datetime > '{$lastProcess}' and hangup_cause IN ('RECOVERY_ON_TIMER_EXPIRE','UNALLOCATED_NUMBER') AND direction='outbound' AND request like '%simplevoip%' order by datetime asc";
 		$retval = pg_query($dbconn, $sql);
-		echo $sql;
+		//echo $sql;
 		if(pg_num_rows($retval) == 0)
 		{
 			echo "No calls found.";

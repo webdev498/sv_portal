@@ -3,7 +3,7 @@
 //error_reporting(E_ALL | E_STRICT);
 //ini_set('display_errors', 'On');
 
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('UTC');
 $now = date("Y-m-d H:i:s");
 
 include "inc_db.php";
@@ -57,7 +57,7 @@ include "inc_db.php";
 					//set status to EXPIRED
 					//Log a DOWN event
 					$type = "DOWN";
-					$event = "DEVICE DOWN: " . $name . " at " . $now . ". Last online at " . $LastRegistered;
+					$event = "DEVICE DOWN: " . $name . ". Last online at " . $LastRegistered;
 					$sqlstatus = "UPDATE KazooDevices SET status='DOWN' WHERE deviceID='{$deviceId}'";
 					$eventCount++;
 				
@@ -68,7 +68,7 @@ include "inc_db.php";
 					//Log an UP event
 					$type = "UP";
 					$downtime=round((strtotime($lastDown) - strtotime($LastRegistered))/60);	
-					$event = "DEVICE UP: " . $name . " at " . $now . ". DOWN TIME: " . $downtime . " minutes.";
+					$event = "DEVICE UP: " . $name . ". DOWN TIME: " . $downtime . " minutes.";
 					$sqlstatus = "UPDATE KazooDevices SET status='UP' WHERE deviceID='{$deviceId}'";
 					$eventCount++;
 				}
@@ -78,7 +78,7 @@ include "inc_db.php";
 					//Log an UP event - first time
 					$type = "UP";
 					$cis_process = 1;
-					$event = "DEVICE UP: " . $name . " at " . $now . ". **This is the first time this device has been online**";
+					$event = "DEVICE UP: " . $name . ". **This is the first time this device has been online**";
 					$sqlstatus = "UPDATE KazooDevices SET status='UP' WHERE deviceID='{$deviceId}'";
 					$eventCount++;
 				}
