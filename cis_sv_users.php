@@ -332,15 +332,15 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 					
 					$sql = "select u.*, " .
 							"(select count(0) from KazooDevices where status='UP'" .  
-								"and ownerId IN (select userId from KazooUsers  where last_name=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as upDevices," .
+								"and ownerId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as upDevices," .
 							"(select count(0) from KazooStatusEvents where type LIKE '%RECOVERY%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) " .  
-								"and userId IN (select userId from KazooUsers  where last_name=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as cdrEventsRecovery, " .
+								"and userId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as cdrEventsRecovery, " .
 							"(select count(0) from KazooStatusEvents where type LIKE '%UNALLOCATED%' and eventDate > date_sub(current_date, INTERVAL 1 DAY) " .  
-								"and userId IN (select userId from KazooUsers  where last_name=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as cdrEventsUnallocated, " .
+								"and userId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as cdrEventsUnallocated, " .
 							"(select count(0) from KazooDevices where status='DOWN' " .
-								"and ownerId IN (select userId from KazooUsers  where last_name=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as downDevices," . 
+								"and ownerId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as downDevices," . 
 							"(select count(0) from KazooDevices where status ='NOT AVAILABLE' and name not like '%Kyocera%' "  .
-								"and ownerId IN (select userId from KazooUsers  where last_name=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as naDevices, " . 		  
+								"and ownerId IN (select userId from KazooUsers  where LPAD(last_name,3,'0')=LPAD(u.last_name,3,'0') and accountId='{$kazooAccountID}')) as naDevices, " . 		  
 							"(select city from tblCustomerLocations where siteNumber=LPAD(u.last_name,3,'0') and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as city, " .
 							"(select state from tblCustomerLocations where siteNumber=LPAD(u.last_name,3,'0') and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as state, " . 
 							"(select tempDID from tblOrders where orderType='NEWSITE' and siteNumber=LPAD(u.last_name,3,'0') and customerID=(select customerID from tblCustomers where KazooAccountID='{$kazooAccountID}') limit 1) as tempDID, " . 
