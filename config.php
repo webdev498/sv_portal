@@ -3,7 +3,7 @@
 $filename = $_SERVER['REQUEST_URI'];
 
 $mac = $_REQUEST['mac'];
-$mac = strtoupper(substr($filename,1,12));
+$mac = strtoupper(substr($mac,1,12));
 
 date_default_timezone_set('America/Chicago');
 $now = date("Y-m-d H:i:s");
