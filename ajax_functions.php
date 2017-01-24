@@ -373,7 +373,7 @@ $user = $_SESSION['user'];
 			$tz = "America/Chicago";
 		}
 		
-		$sql = "SELECT *,convert_tz(eventDate,'+00:00','{$tz}') as dt FROM KazooStatusEvents where deviceId='" . $deviceId . "'  order by eventDate DESC limit 15";
+		$sql = "SELECT *,convert_tz(eventDate,'+00:00','{$tz}') as dt FROM KazooStatusEvents where deviceId='" . $deviceId . "' and type in ('UP','DOWN') order by eventDate DESC limit 15";
 		//echo $sql;
 		mysql_select_db($db);
 		$retval = mysql_query( $sql, $conn );  
@@ -435,7 +435,7 @@ $user = $_SESSION['user'];
 		
 		$dbconn = pg_connect("host=sv-postgres.cilqdskq1dv5.us-east-1.rds.amazonaws.com port=5432 dbname=cdr2db user=cdr2db password=Vl37yZnf5DSg");
 
-		$sql = "select timezone('" . $timezone . "',datetime) as datetime, direction, billing_seconds, callee_id_name, callee_id_number, caller_id_name, caller_id_number from data where owner_id IN ({$ownerIdList}) AND billing_seconds > 0 and timezone('" . $timezone . "',datetime) >= '{$startdate} 00:00:01' and timezone('" . $timezone . "',datetime) <= '{$enddate} 23:59:59' AND ( direction='inbound' or (direction='outbound' and request like '%simplevoip%')) order by datetime desc";
+		$sql = "select timezone('" . $timezone . "',datetime) as datetime, direction, billing_seconds, callee_id_name, callee_id_number, caller_id_name, caller_id_number from data where owner_id IN ({$ownerIdList}) AND billing_seconds > 0 and timezone('" . $timezone . "',datetime) >= '{$startdate} 00:00:01' and timezone('" . $timezone . "',datetime) <= '{$enddate} 23:59:59' AND ( direction='inbound' or (direction='outbound' and request like '%simplevoip%')) and CHAR_LENGTH(callee_id_number) >=10 and CHAR_LENGTH(caller_id_number)>=10 order by datetime desc";
 
 
 		$retval = pg_query($dbconn, $sql);
@@ -983,11 +983,11 @@ $user = $_SESSION['user'];
 				$cfIcon  ="";
 				if ($cdrEventsRecovery>0) {
 					
-					$cdrIcon = "<a data-toggle='tooltip' title='{$cdrEventsRecovery} recent inbound RECOVERY call events.'><i class='fa fa-exclamation text-danger'></i></a>";
+					//$cdrIcon = "<a data-toggle='tooltip' title='{$cdrEventsRecovery} recent inbound RECOVERY call events.'><i class='fa fa-exclamation text-danger'></i></a>";
 				}
 				if ($cdrEventsUnallocated>0) {
 					
-					$cdrIcon2 = "<a data-toggle='tooltip' title='{$cdrEventsUnallocated} recent inbound UNALLOCATED call events.'><i class='fa fa-mobile text-danger'></i></a>";
+					//$cdrIcon2 = "<a data-toggle='tooltip' title='{$cdrEventsUnallocated} recent inbound UNALLOCATED call events.'><i class='fa fa-mobile text-danger'></i></a>";
 				}
 				
 				if ($user == 'admin') {

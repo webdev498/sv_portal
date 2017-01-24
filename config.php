@@ -153,13 +153,13 @@ function get_random_port() {
 		//Override Proxy
 		switch ($proxy) {
 			case "WEST":
-				$primaryHeadend = "us-west{$tcp}.simplevoip.us";
+				$primaryHeadend = "us-west.simplevoip.us";
 				break;
 			case "EAST":
-				$primaryHeadend = "us-east{$tcp}.simplevoip.us";
+				$primaryHeadend = "us-east.simplevoip.us";
 				break;
 			case "CENTRAL":
-				$primaryHeadend = "us-central{$tcp}.simplevoip.us";
+				$primaryHeadend = "us-central.simplevoip.us";
 				break;
 			default:
 				break;
@@ -243,5 +243,5 @@ header("Content-Type: text/plain");
 
 print $output;	
 //header("Connection: close");
-//\exit();
+//exit();
 ?>
