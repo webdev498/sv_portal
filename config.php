@@ -1,8 +1,9 @@
 <?php include "inc_db.php";
 
 $filename = $_SERVER['REQUEST_URI'];
-$mac = strtoupper(substr($filename,1,12));
+
 $mac = $_REQUEST['mac'];
+$mac = strtoupper(substr($filename,1,12));
 
 date_default_timezone_set('America/Chicago');
 $now = date("Y-m-d H:i:s");
