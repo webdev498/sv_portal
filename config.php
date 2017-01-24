@@ -103,6 +103,8 @@ function get_random_port() {
 		"## TRANSPORT: 	{$transport}\n" .	
 		"## PROXY: 	{$proxy}\n" .			
 		"## UPDATED:	{$lastUpdate}\n##\n" .	
+		"## BASE: 	{$baseTemplateName}\n" . 
+		"## CUST CONF: 	{$customerTemplateName}\n" . 
 		"##               _____            __   _   __     _______ \n" .
 		"##              / __(_)_ _  ___  / /__| | / /__  /  _/ _ \ \n" .
 		"##             _\ \/ /  ' \/ _ \/ / -_) |/ / _ \_/ // ___/ \n" .
