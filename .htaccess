@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule ^([0-9a-fA-F]){12}.cfg /config.php
+RewriteRule ^/([0-9a-fA-F]){12}.cfg /config.php
