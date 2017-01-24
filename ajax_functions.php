@@ -399,7 +399,7 @@ $user = $_SESSION['user'];
 					"<tbody>"; 
 			while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
 					{
-					$downtime = $row['dt'];
+					$downtime = $row['downtime'];
 					$msg = "";
 					if ($row['type']=='UP') {
 						$msg = "Downtime: " . $downtime . " minutes.";
