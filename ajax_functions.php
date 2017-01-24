@@ -383,7 +383,11 @@ $user = $_SESSION['user'];
 		}
 		else
 		{
-			
+			$downtime = $row['dt'];
+			$msg = "";
+			if ($row['type']=='UP') {
+				$msg = "Downtime: " . $downtime . " minutes.";
+			}
 			$s = "<table class='table table-hover'>" .
 					"<thead>" .
 						"<tr>" .
@@ -405,7 +409,7 @@ $user = $_SESSION['user'];
 						"<td>" . $row['dt'] . "</td>" .
 						
 						"<td>" . $row['type'] . "</td>" .	
-						"<td>" . $row['event'] . " (" . $row['call_id'] . ")</td>" .	
+						"<td>" . $msg . ")</td>" .	
 												
 					"</tr>";
 				
