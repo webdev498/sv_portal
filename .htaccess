@@ -1,2 +1,2 @@
 RewriteEngine on
-ErrorDocument 404 /config.php
+RewriteRule ^/000000000000\.cfg /config.php
