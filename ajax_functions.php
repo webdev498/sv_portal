@@ -383,11 +383,7 @@ $user = $_SESSION['user'];
 		}
 		else
 		{
-			$downtime = $row['dt'];
-			$msg = "";
-			if ($row['type']=='UP') {
-				$msg = "Downtime: " . $downtime . " minutes.";
-			}
+			
 			$s = "<table class='table table-hover'>" .
 					"<thead>" .
 						"<tr>" .
@@ -403,13 +399,17 @@ $user = $_SESSION['user'];
 					"<tbody>"; 
 			while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
 					{
-				 
+					$downtime = $row['dt'];
+					$msg = "";
+					if ($row['type']=='UP') {
+						$msg = "Downtime: " . $downtime . " minutes.";
+					}
 					
 					$s .= "<tr>" .
 						"<td>" . $row['dt'] . "</td>" .
 						
 						"<td>" . $row['type'] . "</td>" .	
-						"<td>" . $msg . ")</td>" .	
+						"<td>" . $msg . "</td>" .	
 												
 					"</tr>";
 				
