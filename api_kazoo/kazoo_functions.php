@@ -34,5 +34,7 @@ if ($fn == 'get-registration') {
 	$status = $response->status;	
 	echo "Reboot Sent. Status: {$status}";
 }	
-
+if ($fn == 'enable-device') {
+	
+}
 ?>
