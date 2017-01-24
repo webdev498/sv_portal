@@ -435,7 +435,7 @@ $user = $_SESSION['user'];
 		
 		$dbconn = pg_connect("host=sv-postgres.cilqdskq1dv5.us-east-1.rds.amazonaws.com port=5432 dbname=cdr2db user=cdr2db password=Vl37yZnf5DSg");
 
-		$sql = "select timezone('" . $timezone . "',datetime) as datetime, direction, billing_seconds, callee_id_name, callee_id_number, caller_id_name, caller_id_number from data where owner_id IN ({$ownerIdList}) AND billing_seconds > 0 and timezone('" . $timezone . "',datetime) >= '{$startdate} 00:00:01' and timezone('" . $timezone . "',datetime) <= '{$enddate} 23:59:59' AND ( direction='inbound' or (direction='outbound' and request like '%simplevoip%')) and CHAR_LENGTH(callee_id_number) >=10 and CHAR_LENGTH(caller_id_number)>=10 order by datetime desc";
+		$sql = "select timezone('" . $timezone . "',datetime) as datetime, direction, billing_seconds, callee_id_name, callee_id_number, caller_id_name, caller_id_number from data where owner_id IN ({$ownerIdList}) AND billing_seconds > 0 and timezone('" . $timezone . "',datetime) >= '{$startdate} 00:00:01' and timezone('" . $timezone . "',datetime) <= '{$enddate} 23:59:59' AND ( direction='inbound' or (direction='outbound' and request like '%simplevoip%'))  and data.to=request  order by datetime desc";
 
 
 		$retval = pg_query($dbconn, $sql);
