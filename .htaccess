@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule ^([A-Za-z0-9-/]+)$ config.php?mac=$1 
+RewriteRule ^([A-Za-f0-9]+.cfg)$ config.php?mac=$1 
