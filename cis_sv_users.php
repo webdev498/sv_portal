@@ -421,11 +421,11 @@ $LastDeviceUpdate = $row['LastDeviceUpdate'];
 							$cdrIcon2 = "";								
 							if ($cdrEventsRecovery>0) {
 								
-								$cdrIcon = "<a data-toggle='tooltip' title='{$cdrEventsRecovery} recent inbound RECOVERY call events.'><i class='fa fa-exclamation text-danger'></i></a>";
+								//$cdrIcon = "<a data-toggle='tooltip' title='{$cdrEventsRecovery} recent inbound RECOVERY call events.'><i class='fa fa-exclamation text-danger'></i></a>";
 							}
 							if ($cdrEventsUnallocated>0) {
 								
-								$cdrIcon2 = "<a data-toggle='tooltip' title='{$cdrEventsUnallocated} recent inbound UNALLOCATED call events.'><i class='fa fa-mobile text-danger'></i></a>";
+								//$cdrIcon2 = "<a data-toggle='tooltip' title='{$cdrEventsUnallocated} recent inbound UNALLOCATED call events.'><i class='fa fa-mobile text-danger'></i></a>";
 							}
 							$thisSite = $row['last_name'];
 							
