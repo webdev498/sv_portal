@@ -1,2 +1,2 @@
 RewriteEngine on
-ErrorDocument 404 /config.php
+RewriteRule ^([A-Za-f0-9]{12}\.cfg)$ config.php?mac=$1 

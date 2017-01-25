@@ -1,7 +1,9 @@
 <?php include "inc_db.php";
 
 $filename = $_SERVER['REQUEST_URI'];
-$mac = strtoupper(substr($filename,1,12));
+
+$mac = $_REQUEST['mac'];
+$mac = strtoupper(substr($mac,0,12));
 
 date_default_timezone_set('America/Chicago');
 $now = date("Y-m-d H:i:s");
@@ -101,6 +103,8 @@ function get_random_port() {
 		"## TRANSPORT: 	{$transport}\n" .	
 		"## PROXY: 	{$proxy}\n" .			
 		"## UPDATED:	{$lastUpdate}\n##\n" .	
+		"## BASE: 	{$baseTemplateName}\n" . 
+		"## CUST CONF: 	{$customerTemplateName}\n" . 
 		"##               _____            __   _   __     _______ \n" .
 		"##              / __(_)_ _  ___  / /__| | / /__  /  _/ _ \ \n" .
 		"##             _\ \/ /  ' \/ _ \/ / -_) |/ / _ \_/ // ___/ \n" .
@@ -153,13 +157,13 @@ function get_random_port() {
 		//Override Proxy
 		switch ($proxy) {
 			case "WEST":
-				$primaryHeadend = "us-west{$tcp}.simplevoip.us";
+				$primaryHeadend = "us-west.simplevoip.us";
 				break;
 			case "EAST":
-				$primaryHeadend = "us-east{$tcp}.simplevoip.us";
+				$primaryHeadend = "us-east.simplevoip.us";
 				break;
 			case "CENTRAL":
-				$primaryHeadend = "us-central{$tcp}.simplevoip.us";
+				$primaryHeadend = "us-central.simplevoip.us";
 				break;
 			default:
 				break;
@@ -243,5 +247,6 @@ header("Content-Type: text/plain");
 
 print $output;	
 //header("Connection: close");
-//\exit();
+//exit();
+
 ?>
