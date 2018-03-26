@@ -1,0 +1,296 @@
+[33mcommit 8e2baad64afc712a56f02f80c06886e6bf7ee123[m
+Merge: 41e43d8 4924a5f
+Author: expertwebdev99 <expertwebdev99@yandex.com>
+Date:   Wed Jan 25 06:15:37 2017 -0800
+
+    Merge pull request #2 from simplevoip/staging
+    
+    Staging
+
+[33mcommit 4924a5f54a79bbd5208819715ca2ea054170b6ef[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Tue Jan 24 21:48:08 2017 -0600
+
+    updates
+
+[33mcommit 916f7719b9608c469ba5ebc2d7244e262a5d15cf[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Tue Jan 24 13:54:57 2017 -0600
+
+    fix
+
+[33mcommit ee44f629ce5ea26ee21194c6e4e0d02988a6100b[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Tue Jan 24 13:53:06 2017 -0600
+
+    fixed loop
+
+[33mcommit 8fb75bc1b963a1e2d5645d0294d8ee92daa52a9e[m
+Merge: dc0face 8fea3c6
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Tue Jan 24 13:50:20 2017 -0600
+
+    Merge branch 'staging' of https://github.com/simplevoip/sv_portal into staging
+
+[33mcommit dc0facee357560330caaff7d81a00b16fad43c16[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Tue Jan 24 13:50:00 2017 -0600
+
+    updated display in events window
+
+[33mcommit 8fea3c6100430dd9618a8e847aefb411cd68c42c[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:54:58 2017 -0600
+
+    Update config.php
+
+[33mcommit 148da9453ec2524b0a96e2996b9e2e26ef5a1773[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:42:11 2017 -0600
+
+    Update config.php
+    
+    changed
+
+[33mcommit 654163ca1c9cbad9198e7f7cd2224facc2988b68[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:41:39 2017 -0600
+
+    Update .htaccess
+
+[33mcommit 1245e984ec12d084afa59757e9e544f9c94dabb5[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:40:49 2017 -0600
+
+    Update .htaccess
+    
+    updated
+
+[33mcommit 54e88a167a9d40282a3088ef2fed7a687564f0b0[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:39:54 2017 -0600
+
+    Update config.php
+    
+    test
+
+[33mcommit 02f3f6da5164f972993826bdec879066e137ace4[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:38:26 2017 -0600
+
+    Update config.php
+    
+    updated for filename
+
+[33mcommit 9df2187fdf568aeb0189e676047f3592f341142d[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:38:01 2017 -0600
+
+    Update .htaccess
+
+[33mcommit 5fd312289c78087dbb8f351a17966a98ae8138d3[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:32:02 2017 -0600
+
+    Update config.php
+    
+    fixed merge issues
+
+[33mcommit b96b23a38b8526dd5af6233cca741c19fcd29627[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:27:55 2017 -0600
+
+    Update .htaccess
+    
+    test
+
+[33mcommit 9a27d86200c25c1f21dc660787f0e8d65d8e7f6d[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:11:34 2017 -0600
+
+    Update .htaccess
+
+[33mcommit 3dee80f7adf9a1b920ce08c0de442502e797987a[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 10:02:36 2017 -0600
+
+    Update .htaccess
+    
+    testing
+
+[33mcommit 967200a86ef54fc2555f759de996f28a68c729c4[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 09:58:53 2017 -0600
+
+    Update .htaccess
+    
+    fixed match for valid MAC
+
+[33mcommit 96107496a6c40cdc4ed4f7b5798172bab08c1812[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Tue Jan 24 09:46:23 2017 -0600
+
+    Update .htaccess
+    
+    changed to rewrite rule to match on mac address only
+
+[33mcommit 18095b1640f4d6f12d25afa57b4865bd75a3d47c[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 21:41:07 2017 -0600
+
+    fixed CDR query
+
+[33mcommit 520f8a4a04da5011bea1ac0b85381e27a5736a0d[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 21:11:22 2017 -0600
+
+    fix messed up merge
+
+[33mcommit 916462159a14d60f9932bb11cacd9969abd4e9be[m
+Merge: c2639ee 902314a
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 21:02:53 2017 -0600
+
+    trying to sync
+
+[33mcommit c2639ee6b22c91a22f06cee61b5abe62984c199a[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 21:01:13 2017 -0600
+
+    removed non up/down events from showing. updated search functions for CDR
+
+[33mcommit 902314a984aaba186e683a6be4fd3cdfe7194ba8[m
+Merge: 5c7bdb5 41e43d8
+Author: expertwebdev99 <expertwebdev99@yandex.com>
+Date:   Mon Jan 23 18:45:02 2017 -0800
+
+    Merge branch 'master' of https://github.com/simplevoip/sv_portal into staging
+
+[33mcommit 41e43d85a6b2da3489e43c0c037487b2cf2d23a2[m
+Author: Ronald Pang <expertwebdev99@yandex.com>
+Date:   Tue Jan 24 02:38:16 2017 +0000
+
+    change the name of htaccess file
+
+[33mcommit 5c7bdb528bfa1c145d08f8f26a786ded2f5255eb[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 15:31:18 2017 -0600
+
+    Fixed downtime calculation for UP devices
+
+[33mcommit 4faa4fbf4b8a49b956c48024b134a9f9a25722c3[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 14:58:34 2017 -0600
+
+    reverted
+
+[33mcommit 6eb88b6fc7632486bb806c205ab6d4ac07696cc5[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 14:44:50 2017 -0600
+
+    more left padding
+
+[33mcommit dd013d1fe9a57692a5b022c04ec32b2aa6243632[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 14:42:18 2017 -0600
+
+    0 padded last name to match on site number
+
+[33mcommit 774b6e3c6e0faeed2c29e6d3d99d7842db05670f[m
+Merge: 062aa3c b79ca57
+Author: expertwebdev99 <expertwebdev99@yandex.com>
+Date:   Mon Jan 23 12:18:30 2017 -0800
+
+    Merge branch 'staging'
+
+[33mcommit b79ca5747f0cdcc7aba31febc202c24a167f0df6[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Mon Jan 23 10:13:46 2017 -0600
+
+    testing CDR events
+
+[33mcommit af21b200e95f2f39d7b95e8b9787737664a3c89c[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Sun Jan 22 20:53:55 2017 -0600
+
+    changed time zones all to UTC for monitoring
+
+[33mcommit 062aa3c0cb762b87a86468c938105ce904074975[m
+Merge: 79d596d 09d6f0e
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Fri Jan 20 19:59:18 2017 -0600
+
+    Merge pull request #1 from simplevoip/staging
+    
+    testing
+
+[33mcommit 09d6f0e49312d75d4a21f24c74e4828bc9f9f0d4[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Fri Jan 20 19:57:37 2017 -0600
+
+    testing
+
+[33mcommit 79d596d95bd68b7e8c25e3c627628e270393c7c3[m
+Merge: 6fdef91 b0dee5f
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Fri Jan 20 19:55:19 2017 -0600
+
+    Merge branch 'master' of https://github.com/simplevoip/sv_portal
+    
+    # Conflicts:
+    #       ajax_functions.php
+    #       api_kazoo/kazoo_device_status.php
+
+[33mcommit 6fdef91a3951c00a4f32591f58224b5ca6f65c7e[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Fri Jan 20 19:14:12 2017 -0600
+
+    added contact_ip to device status update
+
+[33mcommit b0dee5f070e4e2a7af526c867fe414d526b54c50[m
+Author: EC2 Default User <ec2-user@web.simplevoip.us>
+Date:   Fri Jan 20 22:58:33 2017 +0000
+
+    full synchronization with server
+
+[33mcommit b3a5d25052f2d2aa7404fdca010f6f648e5ea456[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Thu Jan 19 12:28:41 2017 -0600
+
+    various user updates
+
+[33mcommit 23a227f4c65bbf8c11567b70f1e18a261feb5a8a[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Wed Jan 18 09:43:49 2017 -0600
+
+    updated device status to include public IP for CIS
+
+[33mcommit ea234cafddc0ac2aba620949084f56ca17b35be0[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Tue Jan 17 09:45:16 2017 -0600
+
+    feature updates
+
+[33mcommit fc5e367d1663cfccd28d078a7e9eea67d0198c21[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Fri Jan 13 16:48:58 2017 -0600
+
+    Fixed SQL error for logging cdr events
+
+[33mcommit 87f35218910d946f6ba19127bb3a20356f9463e5[m
+Author: Josh Robbins <jrobs@simplevoip.us>
+Date:   Fri Jan 13 11:27:50 2017 -0600
+
+    josh first commit - new config management functions
+
+[33mcommit ffe1bc814ed53849fc89dfadece8c60944be5674[m
+Author: expertwebdev99 <expertwebdev99@yandex.com>
+Date:   Thu Jan 12 10:41:21 2017 -0800
+
+    First commit
+
+[33mcommit 33927f2ec624f3f3c89a8a3c81de7f99634d148a[m
+Author: simplevoip <jrobs@simplevoip.us>
+Date:   Thu Jan 12 09:46:12 2017 -0600
+
+    Initial commit
